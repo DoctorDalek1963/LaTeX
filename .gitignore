@@ -1,0 +1,32 @@
+# All the auxiliary files generated in compilation
+# These are the same extensions in clean_and_move.py,
+# and were taken from TeXstudio's default auxiliary file extensions list
+*.log
+*.aux
+*.dvi
+*.lof
+*.lot
+*.bit
+*.idx
+*.glo
+*.bbl
+*.bcf
+*.ilg
+*.toc
+*.ind
+*.out
+*.blg
+*.fdb_latexmk
+*.fls
+*.run.xml
+*.synctex.gz
+
+# Ignore pdf files in main directories
+*.pdf
+# But not in PDFs directories
+!*/PDFs/*.pdf
+
+**/.mypy_cache/
+**/__pycache__/
+# minted is a package used for rendering code snippets in LaTeX documents
+**/_minted*/

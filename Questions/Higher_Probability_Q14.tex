@@ -1,0 +1,109 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[nodayofweek]{datetime}
+
+\usepackage{minted}
+
+% Set size of text area with total parameter
+\usepackage[a4paper, total={155mm, 255mm}]{geometry}
+
+\title{Higher Probability Q14}
+\author{Dyson}
+\date{\today}
+
+\newcommand{\oo}[1]{\frac{1}{#1}}
+
+\begin{document}
+
+\maketitle
+
+% Set paragraph spacing here to avoid messing with title
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\section{The Question}
+
+Higher Probability Question 14 in the A Level Summer Work is quite an interesting question. It says:
+
+David has designed a game.\\
+He uses a fair 6-sided dice and a fair 5-sided spinner.\\
+The dice is numbered 1 to 6.\\
+The spinner is numbered 1 to 5.
+
+Each player rolls the dice once and spins the spinner once.\\
+A player can win £5 or £2.
+
+For a player to win £5, they must roll a 5 \textbf{and} spin a 5.\\
+For a player to win £2, they must roll a 1 \textbf{or} spin a 1 \textbf{or} both.
+
+David expects 30 people will play his game.\\
+Each person will pay David £1 to play the game.
+
+Work out how much profit David can expect to make.
+
+\hspace*{\fill}(4 marks)
+
+\section{The Original Working}
+
+Initially, my thinking was: each of the 30 people pays £1 to play, so we have a £30 gross profit. Then, the probability of rolling a 5 is $\oo{6}$, the probability of spinning a 5 is $\oo{5}$, so the probability of both is $\oo{6} \times \oo{5} = \oo{30}$. This means we can expect 1 of the 30 people to win £5, so our net profit at this point becomes £25.
+
+The probability of rolling a 1 is $\oo{6}$, the probability of spinning a 1 is $\oo{5}$, and the probability of both is therefore $\oo{6} \times \oo{5} = \oo{30}$. Then, to get the probability of A \textbf{or} B \textbf{or} C, I added these probabilities together to get $\frac{2}{5}$. This is $\frac{12}{30}$, meaning 12 people win £2. This means we subtract £24 from our net profit and get a final profit of £1.
+
+Now, this seemed off to me. It just didn't feel right that David would only make £1 profit. So, I wrote some Julia code to simulate it.
+
+\newpage
+
+\section{The Improved Working}
+
+\begin{minted}{julia}
+using Statistics
+
+function game()
+	total = 0
+
+	for _ in 1:30
+		# Add one to the total for each person
+		total += 1
+
+		# Roll a die and spin a spinner
+		d = rand(1:6)
+		s = rand(1:5)
+
+		# Check the conditions and subtract the relevant amounts from the total
+		if d == 5 && s == 5
+			total -= 5
+		elseif d == 1 || s == 1 || (d == 1 && s == 1)
+			total -= 2
+		end
+	end
+
+	return total
+end
+
+println(mean([game() for _ in 1:10000]))
+\end{minted}
+
+This code consistently gave me a mean of £5. I spent about an hour carefully checking through my code and making sure that everything was correct and eventually concluded that £5 was the real answer and my maths must have been wrong.
+
+After some thinking, I realised that the \textit{both} part of the second condition is irrelevant. If a person both rolls a 1 \textbf{and} spins a 1, then they must have already rolled a 1 \textbf{or} spun a 1. We can show this with some boolean algebra.
+
+Let $R$ be whether the person has rolled a 1 and let $S$ be whether the person has spun a 1. Then, our expression is $R \vee S \vee (R \wedge S)$. By associativity of $\vee$, we can write this as $R \vee (S \vee (R \wedge S))$. Then, by absorption, $S \vee (R \wedge S) = S$, so our expression gets simplified to $R \vee S$. Therefore, the \textit{both} part of the second condition can be ignored.
+
+Changing the code confirms that by removing the check for both, the answer doesn't change. However, this probability of both \textit{must} be removed from the probability calculation. This gives us $P(\text{£}2) = \frac{11}{30}$, so 11 people win £2 and we get a final total of £3. This is still wrong.
+
+I had to do some research on combining probabilities and learned that $P(A \vee B)$ only equals $P(A) + P(B)$ if $A$ and $B$ are dependent events, meaning they influence each other. If $A$ happens, then $B$ cannot. This is not the case with this question and we cannot simply add the probabilities of independent events like this.
+
+In the platonic world of perfect probabilities with 30 people playing the game, 5 people roll a 1 and 6 people spin a 1. This does \textbf{not} mean that 11 people rolled a 1 \textbf{or} spun a 1. This is because $P(R \wedge S) = P(R) \times P(S) = \oo{6} \times \oo{5} = \oo{30}$. That means that 1 person rolled a 1 \textbf{and} spun a 1, so this person gets double counted when we simply add the probabilities.
+
+\newpage
+
+This means that for two independent events $A$ and $B$, $P(A \vee B) = P(A) + P(B) - P(A \wedge B)$. Thus, $$P(R \vee S \vee (R \wedge S)) = P(R \vee S)$$
+$$= P(R) + P(S) - P(R \wedge S)$$
+$$= \oo{6} + \oo{5} - \oo{30} = \oo{3}$$
+
+This means that $\oo{3}$ of the 30 people win £2, meaning we only take £20 from our £25 net profit, finally getting the £5 answer.
+
+Quite frankly, this question was a bitch.
+
+\end{document}

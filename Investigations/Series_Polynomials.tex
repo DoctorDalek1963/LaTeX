@@ -1,0 +1,223 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage[nodayofweek]{datetime}
+
+\usepackage{minted}
+
+% Set size of text area with total parameter
+\usepackage[a4paper, total={135mm, 255mm}]{geometry}
+
+\title{Series Polynomials}
+\author{Dyson}
+\date{\today}
+
+\newcommand{\sn}{\sum\limits_{r=1}^{n}}
+\newcommand{\inn}{\in \mathbb{N}}
+\newcommand{\oo}[1]{\frac{1}{#1}}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{sublemma}{Lemma}[lemma]
+\newtheorem{conjecture}{Conjecture}
+
+\begin{document}
+
+\maketitle
+
+% Set paragraph spacing here to avoid messing with title
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+The challenge question in Exercise 3B is about series sums of polynomials.
+
+Part $a$ of this question asks for polynomials $f_2(x)$, $f_3(x)$, $f_4(x)$ such that for every $n \inn$,
+\begin{gather*}
+\sn f_2(r) = n^2\\
+\sn f_3(r) = n^3\\
+\sn f_4(r) = n^4
+\end{gather*}
+
+Finding these polynomials reveals a very interesting pattern.
+
+\section{Finding Polynomials}
+
+Throughout this paper, all $n \inn$.
+
+Let's first establish some basic lemmas about series.
+
+\begin{lemma}
+$\sn (f(r) + g(r)) = \sn f(r) + \sn g(r)$
+\end{lemma}
+
+\begin{lemma}
+$\sn kf(r) = k \sn f(r)$
+\end{lemma}
+
+\begin{lemma}
+$\sn 1 = n$
+\end{lemma}
+
+\begin{lemma}
+$\sn r = \oo{2}n(n + 1)$
+\end{lemma}
+
+\begin{lemma}
+$\sn r^2 = \oo{6}n(n + 1)(2n + 1)$
+\end{lemma}
+
+\begin{lemma}
+$\sn r^3 = \oo{4}n^2(n + 1)^2$
+\end{lemma}
+
+\subsection{Finding $f_2(r)$}
+We want a polynomial $f_2(r)$ such that $\sn f_2(r) = n^2$.
+
+We already have, by Lemma 4, $$\sn r = \oo{2}n(n + 1) = \oo{2}\left(n^2 + n\right)$$
+
+We need to get rid of the $\oo{2}$, which we can do by multiplying by 2 to get $$2 \sn r = \sn 2r = n^2 + n$$
+
+Then, we just need to get rid of the $n$.
+
+We know that $\sn 1 = n$, so
+\begin{gather*}
+\sn 2r - \sn 1 = \sn (2r - 1) = n^2\\
+\therefore f_2(r) = 2r - 1
+\end{gather*}
+
+\subsection{Finding $f_3(r)$}
+
+Next, we want a polynomial $f_3(r)$ such that $\sn f_3(r) = n^3$.
+
+Similarly to with $f_2(r)$, by Lemma 5, we already have
+\begin{gather*}
+\sn r^2 = \oo{6}n(n + 1)(2n + 1)\\
+= \oo{3}n^3 + \oo{2}n^2 + \oo{6}n\\[0.2em]
+= \oo{3}\left(n^3 + \frac{3}{2}n^2 + \oo{2}n\right)
+\end{gather*}
+
+We can then multiply by $3$ to remove the $\oo{3}$ and get $$3 \sn r^2 = \sn 3r^2 = n^3 + \frac{3}{2}n^2 + \oo{2}n$$
+
+To get rid of the $\oo{2}n$, we can just do $$\sn 3r^2 - \sn \oo{2} = \sn \left(3r^2 - \oo{2}\right) = n^3 + \frac{3}{2}n^2$$
+
+We know that $\sn f_2(r) = n^2$, so we simply need to subtract $\frac{3}{2}f_2(r)$ from our polynomial to get rid of the resultant $\frac{3}{2}n^2$.
+
+\begin{gather*}
+3r^2 - \oo{2} - \frac{3}{2}(2r - 1) = 3r^2 - 3r + 1\\
+\therefore f_3(r) = 3r^2 - 3r + 1
+\end{gather*}
+
+\subsection{Finding $f_4(r)$}
+
+Next, we want a polynomial $f_4(r)$ such that $\sn f_4(r) = n^4$.
+
+We know, by Lemma 6, that
+\begin{gather*}
+\sn r^3 = \oo{4}n^2(n + 1)^2\\
+= \oo{4}\left(n^4 + 2n^3 + n^2\right)
+\end{gather*}
+
+We can multiply by $4$ to get $$4 \sn r^3 = \sn 4r^3 = n^4 + 2n^3 + n^2$$
+
+We can then get $n^4$ on its own by subtracting $2f_3(r)$ and $f_2(r)$ from $4r^3$.
+\begin{gather*}
+4r^3 - 2\left(3r^2 - 3r + 1\right) - (2r - 1)\\
+= 4r^3 - 6r^2 + 6r - 2 - 2r + 1\\
+= 4r^3 - 6r^2 + 4r - 1\\
+\therefore f_4(r) = 4r^3 - 6r^2 + 4r - 1
+\end{gather*}
+
+\section{Finding Patterns}
+
+We can find $f_1(r)$, where $\sn f_1(r) = n^1 = n$ to trivially be $1$.
+
+These are our polynomials:\\[0.5em]
+$f_1(r) = 1$\\[0.5em]
+$f_2(r) = 2r - 1$\\[0.5em]
+$f_3(r) = 3r^2 - 3r + 1$\\[0.5em]
+$f_4(r) = 4r^3 - 6r^2 + 4r - 1$
+
+After looking at these for a while, we can notice a few things. Firstly, the constants are always $\pm 1$, and the signs of these constants alternate with increasing degrees of polynomial. In fact, all the signs alternate.
+
+Secondly, we can notice that the first term of $f_m(r)$ is always of the form $mr^{m-1}$.
+
+However, the most interesting thing to notice with these polynomials is that the coefficients look like binomial expansions, albeit with the leading term removed.
+
+\vspace{3em}
+
+\begin{conjecture}
+$f_5(r) = 5r^4 - 10r^3 + 10r^2 - 5r + 1$
+\end{conjecture}
+
+And, more generally,
+\begin{conjecture}
+$f_m(r) = r^m - (r - 1)^m$
+\end{conjecture}
+
+This form expands to give us the full binomial expansion with alternating signs, but we subtract this from $r^m$ to flip all the signs and remove the $r^m$ term.
+
+Conjecture 2 states: $$\forall m, n \inn, \sn \left(r^m - (r - 1)^m\right) = n^m$$
+
+In order to prove Conjecture 1, we need to know the formula for $\sn r^4$. Wolfram Alpha says:
+
+\begin{lemma}
+$\sn r^4 = \oo{30}n(n + 1)(2n + 1)\left(3n^2 + 3n - 1\right)$
+\end{lemma}
+
+This can also be expanded to give
+\begin{gather*}
+\oo{5}n^5 + \oo{2}n^4 + \oo{3}n^3 - \oo{30}n\\[0.2em]
+= \oo{5}\left(n^5 + \frac{5}{2}n^4 + \frac{5}{3}n^3 - \oo{6}n\right)
+\end{gather*}
+
+We can multiply by 5 to get $$5 \sn r^4 = \sn 5r^4 = n^5 + \frac{5}{2}n^4 + \frac{5}{3}n^3 - \oo{6}n$$
+
+Now, we just need to get rid of the other terms to get a polynomial $f_5(r)$ such that $\sn f_5(r) = n^5$.
+
+\begin{gather*}
+f_5(r) = 5r^4 - \frac{5}{2}f_4(r) - \frac{5}{3}f_3(r) + \oo{6}f_1(r)\\
+= 5r^4 - \frac{5}{2}\left(4r^3 - 6r^2 + 4r - 1\right) - \frac{5}{3}\left(3r^2 - 3r + 1\right) + \oo{6}\\
+= 5r^4 - 10r^3 + 10r^2 - 5r + 1
+\end{gather*}
+
+This proves Conjecture 1.
+
+However, to prove Conjecture 2, I think I need to find more patterns.
+
+\section{Finding Patterns (again)}
+
+Let's look at sums of powers of $r$. By Lemmas 3 to 7, we have
+\begin{alignat*}{3}
+&\sn r^0 &&= n &&= n\\
+&\sn r^1 &&= \oo{2}n(n + 1) &&= \oo{2}n^2 + \oo{2}n\\
+&\sn r^2 &&= \oo{6}n(n + 1)(2n + 1) &&= \oo{3}n^3 + \oo{2}n^2 + \oo{6}n\\
+&\sn r^3 &&= \oo{4}n^2(n + 1)^2 &&= \oo{4}n^4 + \oo{2}n^3 + \oo{4}n^2\\
+&\sn r^4 &&= \oo{30}n(n + 1)(2n + 1)\left(3n^2 + 3n - 1\right) &&= \oo{5}n^5 + \oo{2}n^4 + \oo{3}n^3 - \oo{30}n
+\end{alignat*}
+
+I can't see much of a pattern here, but the first term of $\sn r^m$ always seems to be $\oo{m+1}n^{m+1}$ and the second term always seems to be $\oo{2}n^{m}$, except in the case of $m = 0$.
+
+Finding a general formula for $\sn r^m$ seems quite hard. In fact, Wolfram Alpha evaluates it as $H^{(-m)}_n$, where $H^{(k)}_n$ is the \textit{generalised harmonic number}. These numbers are related to the harmonic series, defined as $\sum\limits_{n=1}^\infty \oo{n}$.
+
+$H^{(k)}_n$ can be defined as $$H^{(k)}_n = \sn r^{-k}$$
+
+This means that $$H^{(-k)}_n = \sn r^k$$
+
+This is just rephrasing the same thing. This is useless. Thanks Wolfram Alpha.
+
+Asking SymPy to evaluate \texttt{Sum(r**m - (r - 1)**m, (r, 1, n))} gives $-0^m + n^m$, so there's clearly an algorithm to do this, but I don't know how to prove this result. I also don't know why it returns $-0^m$ as part of the answer.
+
+I believe that proving Conjecture 2 is possible, but I don't think I currently have the tools to do so.
+
+\section{Part \textit{b}}
+
+This question does have a part $b$, which I should probably address quickly. It says:
+
+Hence, show that for any linear, quadratic, or cubic polynomial $h(x)$, there exists a polynomial $g(x)$ such that $\sn g(r) = n(h(n))$.
+
+If we let $$h(n) = an^3 + bn^2 + cn + d$$ then $$n(h(n)) = an^4 + bn^3 + cn^2 + dn$$
+
+Then, $g(r)$ is simply $$af_4(r) + bf_3(r) + cf_2(r) + df_1(r)$$
+
+This idea extends to linear and quadratic polynomials $h(x)$ and if we assume Conjecture 2 to be true, meaning we can find any $f_m(r)$, then this idea extends to any degree polynomial.
+
+\end{document}

@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{cancel}
+\usepackage[nodayofweek]{datetime}
+
+% Set size of text area with total parameter
+\usepackage[a4paper, total={155mm, 255mm}]{geometry}
+
+\title{Computing the Mean of Consecutive Integers}
+\author{Dyson}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% Set paragraph spacing here to avoid messing with title
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+While looking through the source code of Julia's Statistics library to try out the \texttt{@edit} macro like the massive nerd I am, I noticed something interesting. If the user calls \texttt{mean()} with a \texttt{UnitRange} object, which is just a range between two integers, then the \texttt{mean()} function doesn't sum the range and divide by its length. Instead, it simply returns the start of the range, plus the end, divided by 2. This makes sense intuitively. The mean of a range of consecutive integers is just the middle of the range, but I wanted to prove it rigorously.
+
+\section{The Conjecture}
+
+We want to show that $\displaystyle \frac{\sum\limits_{n = a}^b n}{b - a + 1} \equiv \frac{a + b}{2}$, for $a, b \in \mathbb{Z}$ and $b > a$.
+
+We have to use $b - a + 1$ for the length of the range, per se. $b - a$ is just the difference, but we need to count both $a$ and $b$, so we have to add one.
+
+\section{The Proof}
+
+We should start by getting rid of the sum.
+\begin{gather*}
+\sum_{n = a}^b n = \sum_{n = 1}^b n - \sum_{n = 1}^{a - 1} n\\[0.5em]
+= \frac{b(b + 1)}{2} - \frac{(a - 1)(a - 1 + 1)}{2}\\[0.5em]
+= \frac{b(b + 1)}{2} - \frac{a(a - 1)}{2}\\[0.5em]
+= \frac{b^2 + b - a^2 + a}{2}
+\end{gather*}
+
+This means that now we only need to show that $\displaystyle \frac{b^2 + b - a^2 + a}{2} \div (b - a + 1) \equiv \frac{a + b}{2}$.
+\begin{gather*}
+\frac{b^2 + b - a^2 + a}{2} \div (b - a + 1) = \frac{b^2 + b - a^2 + a}{2(b - a + 1)}
+\end{gather*}
+
+\newpage
+
+We want this to become $\dfrac{a + b}{2}$, so if we could show that the numerator could be written as $(a + b)(b - a + 1)$, then we could just cancel the fraction down and get what we want. Factoring $b - a + 1$ out of the numerator is tricky, but expanding the brackets to show that we get the numerator is easy.
+
+\begin{gather*}
+(a + b)(b - a + 1) = ab - a^2 + a + b^2 - ab + b\\[0.5em]
+= -a^2 + a + b^2 + b\\[0.5em]
+= b^2 + b - a^2 + a\\[1em]
+\therefore \frac{b^2 + b - a^2 + a}{2(b - a + 1)} = \frac{(a + b)\cancel{(b - a + 1)}}{2\cancel{(b - a + 1)}} = \frac{a + b}{2}
+\end{gather*}
+\hspace*{\fill}$\square$
+
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{cancel}
+\usepackage[nodayofweek]{datetime}
+
+% Set size of text area with total parameter
+\usepackage[a4paper, total={155mm, 255mm}]{geometry}
+
+\title{Proving The Power Rule}
+\author{Dyson}
+\date{\today}
+
+\newcommand{\deriv}{\dfrac{\text{d}}{\text{d}x}}
+
+\begin{document}
+
+\maketitle
+
+% Set paragraph spacing here to avoid messing with title
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\section{The Conjecture}
+
+The power rule states that for all $\displaystyle n \in \mathbb{Z}, \deriv x^n = nx^{n - 1}$. We want to prove this from first principles.
+
+\section{The Proof}
+
+\subsection{For The Naturals}
+
+Proving the power rule for $n \in \mathbb{N}, 0 \notin \mathbb{N}$ is relatively easy and just involves some simple binomial expansion.\\
+
+Let $f(x) = x^n$.
+
+We know that the derivate $f'(x)$ of $f(x)$ is defined as $$f'(x) = \lim_{h \to 0} \left( \frac{f(x + h) - f(x)}{h} \right)$$
+
+If we plug in our $f(x) = x^n$, then we get $$f'(x) = \lim_{h \to 0} \left( \frac{(x + h)^n - x^n}{h} \right)$$
+
+We need to cancel the $h$ before we let it go to 0. We can do this by expanding the binomial $(x + h)^n$ in the numerator like so: $$(x + h)^n = x^n + nx^{n - 1}h + \binom{n}{2}x^{n - 2}h^2 + \cdots + nxh^{n - 1} + h^n$$
+
+We now have an $x^n$ term and a $-x^n$ term in the numerator. These cancel to give us $$\lim_{h \to 0} \left( \frac{nx^{n - 1}h + \binom{n}{2}x^{n - 2}h^2 + \cdots + nxh^{n - 1} + h^n}{h} \right)$$
+
+We can then factor out $h$ from the numerator and cancel like so: $$\lim_{h \to 0} \left( \frac{\cancel{h} \left( nx^{n - 1} + \binom{n}{2}x^{n - 2}h + \cdots + nxh^{n - 2} + h^{n - 1} \right)}{\cancel{h}} \right)$$
+$$=\lim_{h \to 0} \left(nx^{n - 1} + \binom{n}{2}x^{n - 2}h + \cdots + nxh^{n - 2} + h^{n - 1} \right)$$
+
+We can now let $h$ go to 0 and thereby show that $f'(x) = nx^{n - 1}$
+
+\hspace*{\fill}$\square$
+
+\subsection{For All Integers}
+
+Proving the power rule for all $n \in \mathbb{Z}$ is a bit more complicated.
+
+We know that the power rule would say $$\deriv x^0 = 0x^{-1} = 0$$ We also know that $x^0$ is always 1, and the derivative of a constant is always 0, so the power rule holds for $n = 0$.
+
+To prove it for negative integers, I'm going to prove that $$\deriv x^{-n} = -nx^{-n-1}, n \in \mathbb{N}$$ because this is easier to prove and will expand the proof to all integers.\\
+
+Let $f(x) = x^{-n}$.
+
+We plug this $f(x)$ into the definition and get $$f'(x) = \lim_{h \to 0}\left( \frac{(x + h)^{-n} - x^{-n}}{h} \right)$$
+
+If it's possible to expand binomials with negative powers, I don't know how to do it, but I do know that $a^{-b} = \dfrac{1}{a^b}$, so we'll use that and focus on the numerator for now.
+
+\begin{gather*}
+(x + h)^{-n} - x^{-n} = \frac{1}{(x + h)^n} - \frac{1}{x^n}\\[0.5em]
+= \frac{x^n}{x^n(x + h)^n} - \frac{(x + h)^n}{x^n(x + h)^n}\\[0.5em]
+= \frac{x^n - (x + h)^n}{x^n(x + h)^n}
+\end{gather*}
+
+We're going to expand and simplify the numerator, so for the sake of simplicity, I'm leaving the denominator unexpanded for now.
+
+\begin{gather*}
+\frac{x^n - (x^n + nx^{n - 1}h + \binom{n}{2}x^{n - 2}h^2 + \cdots + nxh^{n - 1} + h^n)}{x^n(x + h)^n}\\[0.5em]
+= \frac{-nx^{n - 1}h - \binom{n}{2}x^{n - 2}h^2 - \cdots - nxh^{n - 1} - h^n}{x^n(x + h)^n}
+\end{gather*}
+
+Now, we're going to re-introduce $h$ before expanding the denominator.
+
+Dividing a fraction by $h$ is the same as just multiplying the denominator by $h$.
+
+\begin{gather*}
+\frac{-nx^{n - 1}h - \binom{n}{2}x^{n - 2}h^2 - \cdots - nxh^{n - 1} - h^n}{x^n(x + h)^n} \div h\\[0.5em]
+= \frac{-nx^{n - 1}h - \binom{n}{2}x^{n - 2}h^2 - \cdots - nxh^{n - 1} - h^n}{hx^n(x + h)^n}
+\end{gather*}
+
+We can factor a $h$ out from the numerator and get $$\frac{h(-nx^{n - 1} - \binom{n}{2}x^{n - 2}h - \cdots - nxh^{n - 2} - h^{n - 1})}{hx^n(x + h)^n}$$
+
+We can now cancel the $h$ and expand the denominator.
+
+\begin{gather*}
+\frac{-nx^{n - 1} - \binom{n}{2}x^{n - 2}h - \cdots - nxh^{n - 2} - h^{n - 1}}{x^n(x^n + nx^{n - 1}h + \binom{n}{2}x^{n - 2}h^2 + \cdots + nxh^{n - 1} + h^n)}\\[0.5em]
+= \frac{-nx^{n - 1} - \binom{n}{2}x^{n - 2}h - \cdots - nxh^{n - 2} - h^{n - 1}}{x^{2n} + nx^{2n - 1}h + \binom{n}{2}x^{2n - 2}h^2 + \cdots + nx^{n + 1}h^{n - 1} + x^nh^n}
+\end{gather*}
+
+Now, we let $h$ go to 0 to get rid of all the $h$ terms and get left with $$\dfrac{-nx^{n - 1}}{x^{2n}}$$
+
+Because $\dfrac{1}{x^{2n}} = x^{-2n}$, we can rewrite this as $$-nx^{n - 1}x^{-2n} = -nx^{n - 1 - 2n} = -nx^{-n - 1}$$
+
+\hspace*{\fill}$\square$
+
+The proof for negative integers is a bit longer and more involved. There's probably a much more elegant proof, but I'm pretty sure this one works, and I'm happy with it.
+
+Thus, I have proved that for all $n \in \mathbb{Z}$, $\deriv x^n = nx^{n - 1}$.
+
+\end{document}

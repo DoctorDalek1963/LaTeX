@@ -1,0 +1,130 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{gensymb}
+\usepackage[nodayofweek]{datetime}
+
+\usepackage{tikz}
+
+% Set size of text area with total parameter
+\usepackage[a4paper, total={135mm, 255mm}]{geometry}
+
+\title{Complex Binomial Sequences}
+\author{Dyson}
+\date{\today}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\opi}{(1 + i)}
+\newcommand{\mopi}{(-1 + i)}
+
+\begin{document}
+
+\maketitle
+
+% Set paragraph spacing here to avoid messing with title
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+Throughout this paper, all $n \in \mathbb{N}$ and $0 \in \mathbb{N}$.
+
+\section{Looking at $\opi^n$}
+
+The sequence $\opi^n$ creates an interesting graph when plotted sequentially on an Argand diagram.
+
+\begin{center}
+\resizebox{135mm}{!}{
+\begin{tikzpicture}
+    \begin{scope}[thick,font=\scriptsize]
+        % Axes
+        \draw (-18,0) -- (18,0);
+        \draw (0,-18) -- (0,18);
+
+        % Axes labels
+        \foreach \n in {-17,...,-1,1,2,...,17}{
+            \draw (\n,-3pt) -- (\n,3pt);
+            \draw (-3pt,\n) -- (3pt,\n);
+        }
+
+        % Draw the actual plot of the sequence
+        \draw (1,0) -- (1,1) -- (0,2) -- (-2,2) -- (-4,0) -- (-4,-4) -- (0,-8) -- (8,-8) -- (16,0) -- (16,16);
+    \end{scope}
+\end{tikzpicture}
+}
+\end{center}
+
+Initially, I confused this shape for a coarse approximation of a Golden Spiral. If this were the case, then the ratio between the moduli of successive elements of the sequence would tend to $\phi$ as $n$ grows to $\infty$. Here's an example:
+
+\begin{align*}
+\dfrac{\abs{\opi^3}}{\abs{\opi^2}} = \dfrac{\abs{-2 + 2i}}{\abs{2i}} = \dfrac{\sqrt{8}}{2} = \dfrac{2\sqrt{2}}{2} = \sqrt{2}
+\end{align*}
+
+The ratio is $\sqrt{2}$, which is not $\phi$. This ratio is true for all $\dfrac{\abs{\opi^{n + 1}}}{\abs{\opi^n}}$, meaning this shape is not a Golden Spiral.
+
+\begin{proof}
+Let $z_1$ and $z_2$ be two consecutive elements of the sequence $\opi^n$.
+
+We want the ratio between the moduli of these elements, $\dfrac{\abs{z_2}}{\abs{z_1}}$.
+
+Let $f(n) = \dfrac{\abs{\opi^{n + 1}}}{\abs{\opi^n}}$.
+
+We can easily show that $f(0) = \dfrac{\abs{\opi^1}}{\abs{\opi^0}} = \dfrac{\abs{1 + i}}{\abs{1}} = \sqrt{2}$.
+
+We can then show:
+\begin{gather*}
+f(n) = \dfrac{\abs{\opi^{n + 1}}}{\abs{\opi^n}}\\[0.5em]
+= \dfrac{\abs{\opi\opi^n}}{\abs{\opi\opi^{n - 1}}} = \dfrac{\abs{\opi}}{\abs{\opi}} \times \dfrac{\abs{\opi^n}}{\abs{\opi^{n - 1}}}\\[0.5em]
+= 1 \times \dfrac{\abs{\opi^n}}{\abs{\opi^{n - 1}}} = f(n - 1)
+\end{gather*}
+
+We can do this because for $z, w \in \mathbb{C}$, $\abs{zw} = \abs{z} \times \abs{w}$.
+
+We've now shown that for $n > 0$, $f(n) = f(n - 1)$. This always recurs to the base case of $f(0)$ and means that all $f(n) = \sqrt{2}$.
+
+This means that the ratio of the moduli between any two consecutive members of the sequence $\opi^n$ is always $\sqrt{2}$.
+\end{proof}
+
+\newpage
+
+\section{Looking at $\mopi^n$}
+
+If we look at the series $(1 - i)^n$ and plot it sequentially on an Argand diagram, then we get the same spiral as when plotting $\opi$ but reflected in the real axis.
+
+However, if we look at $\mopi^n$, then we get something completely different.
+
+\begin{center}
+    \resizebox{135mm}{!}{
+        \begin{tikzpicture}
+        \begin{scope}[thick,font=\scriptsize]
+        % Axes
+        \draw (-18,0) -- (18,0);
+        \draw (0,-18) -- (0,18);
+
+        % Axes labels
+        \foreach \n in {-17,...,-1,1,2,...,17}{
+            \draw (\n,-3pt) -- (\n,3pt);
+            \draw (-3pt,\n) -- (3pt,\n);
+        }
+
+        % Draw the actual plot of the sequence
+        \draw (1,0) -- (-1,1) -- (0,-2) -- (2,2) -- (-4,0) -- (4,-4) -- (0,8) -- (-8,-8) -- (16,0) -- (-16,16);
+        \end{scope}
+        \end{tikzpicture}
+    }
+\end{center}
+
+This is a very interesting plot. We can use a very similar proof to the one at the end of \S1 to prove that the ratio between the moduli of any two elements of the sequence is $\sqrt{2}$. However, the more interesting thing with this sequence is not the moduli of the elements, but the arguments. How does the angle of each point relative to the origin change?
+
+Looking at the sequence $\arg(n)$ (in degrees) for $n \in \{0,1,...,10\}$, we get
+% This text environment is to add spaces between each element. Yes, a text env in a math env is a bodge. Sue me.
+$$\text{0, 135, 270, 405, 540, 675, 810, 945, 1080, 1215, 1350}$$
+
+If we take each of these elements mod 360, we get
+$$\text{0, 135, 270, 45, 180, 315, 90, 225, 0, 135, 270}$$
+
+The arguments of the members of $\mopi^n$ rotate around the unit circle with a period of 8. This is the same period as $\opi^n$.
+
+But, despite the two sequences having the same ratio of moduli, and the same rotation period, this second sequence creates a completely different graph. This is because the rotation of each term of $\opi^n$ relative to the last is 45. This means that it takes a whole rotation of 8 terms to get back to the initial angle.
+
+However, the relative rotation of $\mopi^n$ is 135, meaning that we after 3 terms, we've rotated $45\degree$ from the initial value. This creates a very interesting pattern of triangles on the plot.
+
+\end{document}

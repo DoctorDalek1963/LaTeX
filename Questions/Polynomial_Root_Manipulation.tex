@@ -1,0 +1,128 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage[nodayofweek]{datetime}
+
+% Set size of text area with total parameter
+\usepackage[a4paper, total={155mm, 255mm}]{geometry}
+
+\title{Polynomial Root Manipulation}
+\author{Dyson}
+\date{\today}
+
+\newcommand{\ab}{\alpha\beta}
+\newcommand{\bg}{\beta\gamma}
+\newcommand{\ga}{\gamma\alpha}
+\newcommand{\ag}{\alpha\gamma}
+
+\newcommand{\sone}{\alpha + \beta + \gamma}
+\newcommand{\stwo}{\alpha\beta + \beta\gamma + \gamma\alpha}
+\newcommand{\abg}{\alpha\beta\gamma}
+
+\newcommand{\Sone}{\Sigma_1}
+\newcommand{\Stwo}{\Sigma_2}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{sublemma}{Lemma}[lemma]
+\newtheorem{conjecture}{Conjecture}
+
+\begin{document}
+
+\maketitle
+
+% Set paragraph spacing here to avoid messing with title
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\section{The Question}
+
+Challenge question 2 in the mixed exercise at the end of chapter 4 of the Further Maths Core book says:
+
+The cubic equation $x^3 + 2x^2 -3x - 5 = 0$ has roots $\alpha$, $\beta$, and $\gamma$. Without solving the equation, find an equation that has roots, $\alpha + \beta$, $\beta + \gamma$, and $\gamma + \alpha$.
+
+This question is completely different to all the prior questions in the chapter. Most of these questions ask for a linear transformation of roots that can be done with simple substitution, but this question requires a full expansion of triple brackets, lots of algebra, and some very interesting problem solving at the end.
+
+\section{The Answer}
+
+\subsection{Establishing Lemmas}
+
+Firstly, we want to establish some lemmas. All of these can be shown by expanding $(x - \alpha)(x - \beta)(x - \gamma)$, but we'll just take them as identities here.
+
+For a cubic equation $ax^3 + bx^2 + cx + d = 0$, for $x \in \mathbb{C}$ and $a, b, c, d \in \mathbb{R}$ with roots $\alpha$, $\beta$, $\gamma$:
+
+\begin{lemma}
+$\sone \equiv -\dfrac{b}{a}$
+\end{lemma}
+
+\begin{lemma}
+$\stwo \equiv \dfrac{c}{a}$
+\end{lemma}
+
+\begin{lemma}
+$\abg \equiv -\dfrac{d}{a}$
+\end{lemma}
+
+We can express these with a more compact notation, $\sone = \Sone$, $\stwo = \Stwo$, representing the sum of single terms and the sum of pairs respectively.
+
+We can evaluate these for our original equation and get $\Sone = -2$, $\Stwo = -3$, and $\abg = 5$.
+
+\subsection{Expanding The New Roots}
+
+We want roots of $\alpha + \beta$, $\beta + \gamma$, and $\gamma + \alpha$, so we have the expression $(x - \alpha - \beta)(x - \beta - \gamma)(x - \gamma - \alpha)$. This can be expanded as such:
+\begin{gather*}
+(x - \alpha - \beta)(x - \beta - \gamma)(x - \gamma - \alpha)\\[0.5em]
+= (x - \alpha - \beta)(x^2 - \gamma x - \alpha x - \beta x + \bg + \ab - \gamma x + \gamma^2 + \ag)\\[0.5em]
+= (x - \alpha - \beta)(x^2 - x\Sone + \Stwo - \gamma x + \gamma^2)\\[0.5em]
+= x^3 - x^2\Sone + x\Stwo - \gamma x^2 + \gamma^2 x - \alpha x^2 + \alpha x\Sone - \alpha \Stwo + \ag x - \ag^2 - \beta x^2 + \beta x\Sone - \beta\Stwo + \bg x - \bg^2
+\end{gather*}
+
+After expanding the expression, we need to reorganise and simplify it.
+\begin{gather*}
+x^3  - x^2\Sone + \alpha x\Sone + \beta x\Sone+ x\Stwo - \alpha\Stwo - \beta\Stwo - \gamma x^2 - \alpha x^2 - \beta x^2 + \gamma^2 x + \ag x + \bg x - \ag^2 - \bg^2\\[0.5em]
+= x^3  - x^2\Sone + \alpha x\Sone + \beta x\Sone+ x\Stwo - \alpha\Stwo - \beta\Stwo - x^2(\sone) + \gamma x(\sone) - \ag^2 - \bg^2\\[0.5em]
+= x^3  - x^2\Sone + \alpha x\Sone + \beta x\Sone + x\Stwo - \alpha\Stwo - \beta\Stwo - x^2\Sone + \gamma x\Sone - \ag^2 - \bg^2\\[0.5em]
+= x^3 - 2x^2\Sone + (\sone)x\Sone + x\Stwo - \alpha\Stwo - \beta\Stwo - \ag^2 - \bg^2\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo - \alpha\Stwo - \beta\Stwo - \ag^2 - \bg^2
+\end{gather*}
+
+It was at this point that I got stuck for about 15 minutes. If we had a $-\abg$ term at the end, we could factor it out and do
+\begin{gather*}
+x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo - \alpha\Stwo - \beta\Stwo - \ag^2 - \bg^2 - \abg\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo -1(\alpha\Stwo + \beta\Stwo + \ag^2 + \bg^2 + \abg)\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo -1(\alpha\Stwo + \beta\Stwo + \gamma(\ag + \bg + \ab))\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo -1(\alpha\Stwo + \beta\Stwo + \gamma\Stwo)\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo -\Stwo(\alpha + \beta + \gamma)\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo - \Sone\Stwo
+\end{gather*}
+
+We can then evaluate this and get a definitive equation to answer the original question. But, how do we get that $- \abg$ term at the end?
+
+I spent ages just staring at my book, trying to work out what I'd done wrong and where I'd dropped this term. After thoroughly checking and making sure that I'd expanded everything correctly, I decided to just add the term myself.
+
+\subsection{Adding New Terms}
+
+We know that adding and subtracting a constant from an expression doesn't change its value. So, for any expression $E$, and any constant $k$, $E + k - k = E$.
+
+So, we can add the $-\abg$ term and as long as we also add an extra $+\abg$ term, the value of the expression won't actually change. And we know the value of $\abg$ for our original equation, so we can evaluate it after the simplification.
+
+Thus,
+\begin{gather*}
+x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo - \alpha\Stwo - \beta\Stwo - \ag^2 - \bg^2\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo - \alpha\Stwo - \beta\Stwo - \ag^2 - \bg^2 - \abg + \abg\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo -1(\alpha\Stwo + \beta\Stwo + \ag^2 + \bg^2 + \abg) + \abg\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo -1(\alpha\Stwo + \beta\Stwo + \gamma(\ag + \bg + \ab)) + \abg\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo -1(\alpha\Stwo + \beta\Stwo + \gamma\Stwo) + \abg\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo -\Stwo(\alpha + \beta + \gamma) + \abg\\[0.5em]
+= x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo - \Sone\Stwo + \abg
+\end{gather*}
+
+We can then evaluate this expression with the values for $\Sone$, $\Stwo$, and $\abg$ that we obtained from the coefficients of our original equation.
+\begin{gather*}
+x^3 - 2x^2\Sone + x\Sone^2 + x\Stwo - \Sone\Stwo + \abg\\[0.5em]
+= x^3 + 4x^2 + 4x - 3x - 6 + 5\\[0.5em]
+= x^3 + 4x^2 + x - 1
+\end{gather*}
+
+Therefore, our final equation is $x^3 + 4x^2 + x - 1 = 0$. This is correct, as per the answers in the book.
+
+\end{document}

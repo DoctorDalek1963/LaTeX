@@ -26,7 +26,7 @@
 # But not in PDFs directories
 !*/PDFs/*.pdf
 
-**/.mypy_cache/
-**/__pycache__/
+.mypy_cache/
+__pycache__/
 # minted is a package used for rendering code snippets in LaTeX documents
-**/_minted*/
+_minted*/

@@ -34,8 +34,8 @@ This question wants the fraction of the area of two quarter circles divided by t
 \draw ({sqrt(3)},2) arc[start angle=90, end angle=180, radius=2];
 \draw ({-sqrt(3)},0) arc[start angle=-90, end angle=0, radius=2];
 % Shade them in as well
-\fill[gray,opacity=0.3] ({-sqrt(3)},2) -- ({-sqrt(3)},0) arc[start angle=270, end angle=360, radius=2] -- cycle;
-\fill[gray,opacity=0.3] ({sqrt(3)},0) -- ({sqrt(3)},2) arc[start angle=90, end angle=180, radius=2] -- cycle;
+\fill[gray,opacity=0.3] ({-sqrt(3)},2) -- ({-sqrt(3)},0) arc[start angle=270, end angle=360, radius=2];
+\fill[gray,opacity=0.3] ({sqrt(3)},0) -- ({sqrt(3)},2) arc[start angle=90, end angle=180, radius=2];
 \end{tikzpicture}
 \hspace{\fill}
 
@@ -48,8 +48,8 @@ We can begin by defining the radius of the quarter circles to be 1. We can also 
 \draw ({-sqrt(3)},0) -- ({-sqrt(3)},2) -- ({sqrt(3)},2) -- ({sqrt(3)},0);
 \draw ({sqrt(3)},2) arc[start angle=90, end angle=180, radius=2];
 \draw ({-sqrt(3)},0) arc[start angle=-90, end angle=0, radius=2];
-\fill[gray,opacity=0.3] ({-sqrt(3)},2) -- ({-sqrt(3)},0) arc[start angle=270, end angle=360, radius=2] -- cycle;
-\fill[gray,opacity=0.3] ({sqrt(3)},0) -- ({sqrt(3)},2) arc[start angle=90, end angle=180, radius=2] -- cycle;
+\fill[gray,opacity=0.3] ({-sqrt(3)},2) -- ({-sqrt(3)},0) arc[start angle=270, end angle=360, radius=2];
+\fill[gray,opacity=0.3] ({sqrt(3)},0) -- ({sqrt(3)},2) arc[start angle=90, end angle=180, radius=2];
 % The new labels
 \coordinate[label=0:$1$] (1) at ({sqrt(3)},1);
 \coordinate[label=270:$1$] (1) at ({sqrt(3)-1},0);

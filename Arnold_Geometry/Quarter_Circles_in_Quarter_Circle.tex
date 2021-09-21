@@ -39,9 +39,9 @@ For clarity, I will label the smaller quarter circles.
 \draw (3,3) arc[start angle=270, end angle=180, radius=1];
 \draw (2,4) arc[start angle=0, end angle=-90, radius=2];
 % Shade the quarter circle arcs
-\fill[gray,opacity=0.3] (0,0) -- (3,0) -- (3,3) arc[start angle=90, end angle=180, radius=3];
-\fill[gray,opacity=0.3] (0,2) -- (0,4) -- (2,4) arc[start angle=0, end angle=-90, radius=2];
-\fill[gray,opacity=0.3] (3,3) -- (3,4) -- (2,4) arc[start angle=180, end angle=270, radius=1];
+\fill[gray,opacity=0.3] (3,0) -- (3,3) arc[start angle=90, end angle=180, radius=3];
+\fill[gray,opacity=0.3] (0,4) -- (2,4) arc[start angle=0, end angle=-90, radius=2];
+\fill[gray,opacity=0.3] (3,4) -- (2,4) arc[start angle=180, end angle=270, radius=1];
 % I'm just going to label the quarter circles manually
 \coordinate[label=135:$A$] (A) at (2,1);
 \coordinate[label=225:$B$] (B) at (2.9,3.9);
@@ -60,9 +60,9 @@ To solve this problem, let's first define some lengths. We're going to declare t
 \draw (3,3) arc[start angle=90, end angle=180, radius=3];
 \draw (3,3) arc[start angle=270, end angle=180, radius=1];
 \draw (2,4) arc[start angle=0, end angle=-90, radius=2];
-\fill[gray,opacity=0.3] (0,0) -- (3,0) -- (3,3) arc[start angle=90, end angle=180, radius=3];
-\fill[gray,opacity=0.3] (0,2) -- (0,4) -- (2,4) arc[start angle=0, end angle=-90, radius=2];
-\fill[gray,opacity=0.3] (3,3) -- (3,4) -- (2,4) arc[start angle=180, end angle=270, radius=1];
+\fill[gray,opacity=0.3] (3,0) -- (3,3) arc[start angle=90, end angle=180, radius=3];
+\fill[gray,opacity=0.3] (0,4) -- (2,4) arc[start angle=0, end angle=-90, radius=2];
+\fill[gray,opacity=0.3] (3,4) -- (2,4) arc[start angle=180, end angle=270, radius=1];
 \coordinate[label=135:$A$] (A) at (2,1);
 \coordinate[label=225:$B$] (B) at (2.9,3.9);
 \coordinate[label=315:$C$] (C) at (0.5,3.5);

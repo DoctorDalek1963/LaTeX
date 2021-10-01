@@ -1,0 +1,277 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage[nodayofweek]{datetime}
+
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usetikzlibrary{decorations.pathreplacing}
+
+\usetikzlibrary{math}
+\tikzmath{
+	\picangle = atan(1/2);
+	\sina = sin(\picangle);
+	\cosa = cos(\picangle);
+	\rfof = sqrt(5)/5;
+}
+\tikzset{/tkzmkangle/mark=none}
+
+% Set size of text area with total parameter
+\usepackage[a4paper, total={135mm, 255mm}]{geometry}
+
+\title{Squares in a Rectangle}
+\author{Dyson}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% Set paragraph spacing here to avoid messing with title
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+This question states that the red segments are all the same length, and asks for the fraction of the whole rectangle that is shaded in blue.
+
+\vspace*{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+% These coordinates were initially used to label the triangle seen in the next diagram, which is why the order seems weird
+% H     K             B
+% J                E
+%             D
+%         L
+%   I                 G
+% A              F    C
+\coordinate (A) at (0,0);
+\coordinate (B) at ({14*\rfof},{7*\rfof});
+\coordinate (C) at ({14*\rfof},0);
+\coordinate (D) at ({4*\cosa},{4*\sina});
+\coordinate (E) at ({6*\cosa},{6*\sina});
+\coordinate (F) at ({2*sqrt(5)},0);
+\coordinate (G) at ({14*\rfof},{2*\rfof});
+\coordinate (H) at (0,{7*\rfof});
+\coordinate (I) at ({\cosa},{\sina});
+\coordinate (J) at (0,{5*\rfof});
+\coordinate (K) at ({4*\rfof},{7*\rfof});
+\coordinate (L) at ({3*\cosa},{3*\sina});
+
+
+\draw (A) -- (H) -- (B) -- (C) -- cycle;
+\draw[line width=1pt,color=red] (A) -- (I);
+\draw[line width=1pt,color=red] (L) -- (D);
+\draw[line width=1pt,color=red] (E) -- (B);
+\draw (I) -- (J) -- (K) -- (L) -- cycle;
+\fill[blue,opacity=0.3] (I) -- (J) -- (K) -- (L);
+\draw (D) -- (F) -- (G) -- (E) -- cycle;
+\fill[blue,opacity=0.3] (D) -- (F) -- (G) -- (E);
+\end{tikzpicture}
+\hspace{\fill}
+\vspace*{0.5em}
+
+Before we begin labelling lengths, it is useful to prove that these triangles are all similar. The rectangle is identical on either side of the diagonal, so we can just look at one half.
+
+\vspace*{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\draw (A) -- (B) -- (C) -- cycle;
+\draw (D) -- (F) -- (G) -- (E);
+% Mark the angles
+\tkzMarkAngle(C,A,B);
+\tkzLabelAngle[pos=0.6](C,A,B){$\alpha$};
+\tkzMarkAngle[size=0.6](A,B,C);
+\tkzLabelAngle[pos=0.4](A,B,C){$\beta$};
+\tkzMarkRightAngle(A,C,B);
+\tkzMarkRightAngle(A,D,F);
+\tkzMarkRightAngle(B,E,G);
+\end{tikzpicture}
+\hspace{\fill}
+\vspace*{0.5em}
+
+We can see from the big triangle that $\alpha + \beta = 90\degree$. We can then also label the other angles in the smaller triangles.
+
+\vspace*{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\draw (A) -- (B) -- (C) -- cycle;
+\draw (D) -- (F) -- (G) -- (E);
+\tkzMarkAngle(C,A,B);
+\tkzLabelAngle[pos=0.6](C,A,B){$\alpha$};
+\tkzMarkAngle[size=0.6](A,B,C);
+\tkzLabelAngle[pos=0.4](A,B,C){$\beta$};
+\tkzMarkRightAngle(A,C,B);
+\tkzMarkRightAngle(A,D,F);
+\tkzMarkRightAngle(B,E,G);
+% The new angles
+\tkzMarkAngle[size=0.6](D,F,A);
+\tkzLabelAngle[pos=0.4](D,F,A){$\beta$};
+\tkzMarkAngle[size=0.7](B,G,E);
+\tkzLabelAngle[pos=0.5](B,G,E){$\alpha$};
+\end{tikzpicture}
+\hspace{\fill}
+\vspace*{0.5em}
+
+Since the angles of the square are all $90\degree$, we can see that even the smallest triangle on the diagram has angles $\alpha$ and $\beta$ because the angles on a straight line sum to $180\degree$.
+
+\vspace*{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\coordinate (A) at (0,0);
+\coordinate (B) at ({14*\rfof},{7*\rfof});
+\coordinate (C) at ({14*\rfof},0);
+\coordinate (D) at ({4*\cosa},{4*\sina});
+\coordinate (E) at ({6*\cosa},{6*\sina});
+\coordinate (F) at ({2*sqrt(5)},0);
+\coordinate (G) at ({14*\rfof},{2*\rfof});
+\draw (A) -- (B) -- (C) -- cycle;
+\draw (D) -- (F) -- (G) -- (E);
+\tkzMarkAngle(C,A,B);
+\tkzLabelAngle[pos=0.6](C,A,B){$\alpha$};
+\tkzMarkAngle[size=0.6](A,B,C);
+\tkzLabelAngle[pos=0.4](A,B,C){$\beta$};
+\tkzMarkRightAngle(A,C,B);
+\tkzMarkRightAngle(A,D,F);
+\tkzMarkRightAngle(B,E,G);
+\tkzMarkAngle[size=0.6](D,F,A);
+\tkzLabelAngle[pos=0.4](D,F,A){$\beta$};
+\tkzMarkAngle[size=0.7](B,G,E);
+\tkzLabelAngle[pos=0.5](B,G,E){$\alpha$};
+% The final set of angles
+\tkzMarkRightAngle(D,F,G);
+\tkzMarkRightAngle(E,G,F);
+\tkzMarkAngle[size=0.5](F,G,C);
+\tkzLabelAngle[pos=0.3](F,G,C){$\beta$};
+\tkzMarkAngle[size=0.7](C,F,G);
+\tkzLabelAngle[pos=0.5](C,F,G){$\alpha$};
+\end{tikzpicture}
+\hspace{\fill}
+\vspace*{0.5em}
+
+Now we've shown that all the triangles are similar by AAA. We could do this for the rest of the rectangle as well, but the code to draw these angles is tedious and I'm lazy. It's easy to see that this extends to the rest of the angles in all the other triangles. Now we can get properly started.
+
+Let's first choose the shortest useful length on the diagram and call it 1. This length is the length of the red segments. We will also label the side lengths of the squares $x$.
+
+\vspace*{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\draw (A) -- (H) -- (B) -- (C) -- cycle;
+\draw (A) -- node[above] {1} (I);
+\draw (I) -- node[above] {$x$} (L);
+\draw (L) -- node[below] {1} (D);
+\draw (D) -- node[below] {$x$} (E);
+\draw (E) -- node[below] {1} (B);
+\draw (I) -- node[right] {$x$} (J) -- node[below] {$x$} (K) -- node[left] {$x$} (L);
+\draw (D) -- node[right] {$x$} (F) -- node[above] {$x$} (G) -- node[left] {$x$} (E);
+\end{tikzpicture}
+\hspace{\fill}
+\vspace*{0.5em}
+
+We're only really interested in two of these triangles for this proof, highlighted here.
+
+\vspace*{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\draw (A) -- (H) -- (B) -- (C) -- cycle;
+\draw (A) -- (I);
+\draw (I) -- (L);
+\draw (L) -- node[below] {1} (D);
+\draw (D) -- node[below] {$x$} (E);
+\draw (E) -- node[below] {1} (B);
+\draw (I) -- (J) -- (K) -- node[left] {$x$} (L);
+\draw (D) -- (F) -- (G) -- node[left] {$x$} (E);
+\fill[gray,opacity=0.3] (L) -- (K) -- (B);
+\fill[gray,opacity=0.3] (G) -- (E) -- (B);
+\tkzMarkAngle[size=0.7](B,G,E);
+\tkzLabelAngle[pos=0.5](B,G,E){$\alpha$};
+\tkzMarkAngle[size=0.7](K,B,L);
+\tkzLabelAngle[pos=0.5](K,B,L){$\alpha$};
+\tkzMarkRightAngle(K,L,B);
+\tkzMarkRightAngle(B,E,G);
+\end{tikzpicture}
+\hspace{\fill}
+\vspace*{0.5em}
+
+We can now find $\tan \alpha$ in two different ways. By the triangle on the left, $\tan \alpha = \frac{x}{x + 2}$ and by the triangle on the right, $\tan \alpha = \frac{1}{x}$. We can now solve for $x$.
+\begin{gather*}
+\frac{x}{x + 2} = \frac{1}{x}\\[0.5em]
+\frac{x^2}{x + 2} = 1\\[0.5em]
+x^2 = x + 2\\[0.5em]
+x^2 - x - 2 = 0\\[0.5em]
+(x - 2)(x + 1) = 0
+\end{gather*}
+
+$x$ must be positive, so $x = 2$.
+
+We now have concrete values for these lengths and can use Pythagoras to find the unknown lengths.
+
+\vspace*{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\draw (A) -- node[above] {1} (I);
+\draw (I) -- node[above] {2} (L);
+\draw (L) -- node[below] {1} (D);
+\draw (D) -- node[below] {2} (E);
+\draw (E) -- node[below] {1} (B);
+\draw (I) -- node[right] {2} (J) -- node[below] {2} (K) -- node[left] {2} (L);
+\draw (D) -- node[right] {2} (F) -- node[above] {2} (G) -- node[left] {2} (E);
+% Right angles for the pythag triangles
+\tkzMarkRightAngle(A,I,J);
+\tkzMarkRightAngle(J,H,K);
+\tkzMarkRightAngle(K,L,B);
+\tkzMarkRightAngle(B,E,G);
+\tkzMarkRightAngle(G,C,F);
+\tkzMarkRightAngle(F,D,A);
+% Drawing the rectangle and labeling the lengths
+\draw (A) -- node[left] {$\sqrt{5}$} (J) -- node[left] {$a$} (H) -- node[above] {$b$} (K) -- node[above] {$2\sqrt{5}$} (B) -- node[right] {$\sqrt{5}$} (G) -- node[right] {$a$} (C) -- node[below] {$b$} (F) -- node[below] {$2\sqrt{5}$} (A);
+% Drawing the alpha and beta angles
+\tkzMarkAngle[size=0.5](F,G,C);
+\tkzLabelAngle[pos=0.3](F,G,C){$\beta$};
+\tkzMarkAngle[size=0.7](C,F,G);
+\tkzLabelAngle[pos=0.5](C,F,G){$\alpha$};
+\tkzMarkAngle[size=0.5](K,J,H);
+\tkzLabelAngle[pos=0.3](K,J,H){$\beta$};
+\tkzMarkAngle[size=0.7](H,K,J);
+\tkzLabelAngle[pos=0.5](H,K,J){$\alpha$};
+\end{tikzpicture}
+\hspace{\fill}
+\vspace*{0.5em}
+
+We don't have enough information to find $a$ and $b$ with Pythagoras, but we can use the sine rule with $\alpha$ and $\beta$.
+\begin{gather*}
+\frac{a}{\sin\alpha} = \frac{b}{\sin\beta} = \frac{2}{\sin90\degree}\\[0.5em]
+a = 2 \sin\alpha\\[0.5em]
+b = 2 \sin\beta
+\end{gather*}
+
+We can find $\alpha$ because we know that $\tan\alpha = \frac{1}{x}$ and $x = 2$. Therefore, $\alpha = \arctan\frac{1}{2}$ and $\beta = 90\degree - \alpha$, so $\beta = \arctan2$.
+
+Hence, $$a = 2 \sin \left( \arctan\frac{1}{2} \right) = \frac{2 \sqrt{5}}{5}$$ and $$b = 2 \sin \left( \arctan 2 \right) = \frac{4 \sqrt{5}}{5}$$
+
+We now have all the values we need and can substitute them into the diagram.
+
+\vspace*{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\draw (A) -- node[above] {1} (I);
+\draw (I) -- node[above] {2} (L);
+\draw (L) -- node[below] {1} (D);
+\draw (D) -- node[below] {2} (E);
+\draw (E) -- node[below] {1} (B);
+\draw (I) -- node[right] {2} (J) -- node[below] {2} (K) -- node[left] {2} (L);
+\draw (D) -- node[right] {2} (F) -- node[above] {2} (G) -- node[left] {2} (E);
+\draw (A) -- node[left] {$\sqrt{5}$} (J) -- node[left] {$\frac{2 \sqrt{5}}{5}$} (H) -- node[above] {$\frac{4 \sqrt{5}}{5}$} (K) -- node[above] {$2\sqrt{5}$} (B) -- node[right] {$\sqrt{5}$} (G) -- node[right] {$\frac{2 \sqrt{5}}{5}$} (C) -- node[below] {$\frac{4 \sqrt{5}}{5}$} (F) -- node[below] {$2\sqrt{5}$} (A);
+\draw [decorate,decoration={brace,amplitude=10pt,mirror}] (0,-0.4) -- ({14*sqrt(5)/5},-0.4);
+\coordinate[label=270:$\frac{14\sqrt{5}}{5}$] (.) at ({7*sqrt(5)/5},-0.6);
+\draw [decorate,decoration={brace,amplitude=10pt}] ({14*sqrt(5)/5 + 0.5},{7*sqrt(5)/5}) -- ({14*sqrt(5)/5 + 0.5},0);
+\coordinate[label=0:$\frac{7\sqrt{5}}{5}$] (.) at ({14*sqrt(5)/5 + 0.7},{3.5*sqrt(5)/5});
+\end{tikzpicture}
+\hspace{\fill}
+\vspace*{0.5em}
+
+The area of the two squares is $2 \times 2^2 = 8$, and the area of the whole rectangle is $$\frac{14\sqrt{5}}{5} \times \frac{7\sqrt{5}}{5} = \frac{98}{5}$$
+
+Therefore, the fraction of the original diagram that's shaded in blue is $$\frac{8}{\frac{98}{5}} = \frac{40}{98} = \frac{20}{49}$$
+
+\end{document}

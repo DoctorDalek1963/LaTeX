@@ -63,10 +63,8 @@ This question states that the red segments are all the same length, and asks for
 \draw[line width=1pt,color=red] (A) -- (I);
 \draw[line width=1pt,color=red] (L) -- (D);
 \draw[line width=1pt,color=red] (E) -- (B);
-\draw (I) -- (J) -- (K) -- (L) -- cycle;
-\fill[blue,opacity=0.3] (I) -- (J) -- (K) -- (L);
-\draw (D) -- (F) -- (G) -- (E) -- cycle;
-\fill[blue,opacity=0.3] (D) -- (F) -- (G) -- (E);
+\draw[fill=blue!30] (I) -- (J) -- (K) -- (L) -- cycle;
+\draw[fill=blue!30] (D) -- (F) -- (G) -- (E) -- cycle;
 \end{tikzpicture}
 \hspace{\fill}
 \vspace*{0.5em}

@@ -6,7 +6,7 @@
 \usepackage{minted}
 \usepackage{hyperref}
 
-\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage[backend=biber, sorting=none, style=numeric]{biblatex}
 \addbibresource{series_polynomials.bib}
 
 % Set size of text area with total parameter
@@ -217,7 +217,7 @@ Let's look at sums of powers of $r$. By Lemmas~\ref{lem:sum_1}~to~\ref{lem:sum_r
 
 I can't see much of a pattern here, but the first term of $\sn r^b$ always seems to be $\oo{b+1}n^{b+1}$ and the second term always seems to be $\oo{2}n^{b}$, except in the case of $b = 0$.
 
-I don't think I would able to find a formula for $\sn r^b$ on my own, but in doing some research on this topic, I found this wiki page on \href{https://brilliant.org/wiki/sum-of-n-n2-or-n3/#faulhabers-formula}{brilliant.org} about sums which mentions Faulhaber's formula. I shall rewrite it here. $$\sn r^b = \oo{b+1} \sum_{j=0}^b (-1)^j \binom{b+1}{j} B_j n^{b+1-j}$$ where $B_j$ is the $j$th Bernoulli number.
+I don't think I would able to find a formula for $\sn r^b$ on my own, but in doing some research on this topic, I found Faulhaber's formula on a wiki page on brilliant.org\cite{brilliant.org-sums-wiki}. I shall rewrite the formula here. $$\sn r^b = \oo{b+1} \sum_{j=0}^b (-1)^j \binom{b+1}{j} B_j n^{b+1-j}$$ where $B_j$ is the $j$th Bernoulli number.
 
 In doing further research, I found that this is where the Bernoulli numbers were originally found by Jacob Bernoulli in \textit{Ars Conjectandi}, published in 1713. He was trying to find a general formula for $\sn r^b$ and found these numbers. He could not relate them to any previously known sequence, and de Moivre named them after him.\cite{wikipedia-bernoulli-numbers}
 
@@ -227,7 +227,7 @@ Bernoulli might have written $\sn r^b$ as $$\sn r^b = \sum_{r=0}^b \frac{B_r}{r!
 
 \section{Proving Conjecture~\ref{conj:fa_sum}}
 
-I expected proving Conjecture~\ref{conj:fa_sum} to be hard, but it's actually quite easy and doesn't require the Bernoulli numbers at all. I got these ideas from a phenomenal Mathologer video, \href{https://www.youtube.com/watch?v=fw1kRz83Fj0}{\textit{Power sum MASTER CLASS: How to sum quadrillions of powers ... by hand! (Euler-Maclaurin formula)}}, in which Burkard talks about Bernoulli's attempts to find a general formula for $\sn r^b$, but not before showing off a beautiful recurrence relation for finding these formulas.
+I expected proving Conjecture~\ref{conj:fa_sum} to be hard, but it's actually quite easy and doesn't require the Bernoulli numbers at all. I got these ideas from a phenomenal Mathologer video\cite{mathologer-power-sums}, in which Burkard talks about Bernoulli's attempts to find a general formula for $\sn r^b$, but not before showing off a beautiful recurrence relation for finding these formulas.
 
 I am incredibly thankful for Burkard and the people at Mathologer for producing such wonderful and engaging mathematical content. They have definitely helped to foster my love of mathematics, and I highly recommend the channel to anyone with an interest in maths. Anyway, onto the proof.
 

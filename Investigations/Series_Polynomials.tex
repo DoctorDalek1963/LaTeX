@@ -1,6 +1,6 @@
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath, amssymb}
+\usepackage{amsmath, amssymb, cancel}
 \usepackage[nodayofweek]{datetime}
 
 \usepackage{minted}
@@ -19,6 +19,7 @@
 \newcommand{\sn}{\sum\limits_{r=1}^{n}}
 \newcommand{\inn}{\in \mathbb{N}}
 \newcommand{\oo}[1]{\frac{1}{#1}}
+\newcommand{\zp}{\mathbb{Z}^+}
 
 \newtheorem{lemma}{Lemma}
 \newtheorem{sublemma}{Lemma}[lemma]
@@ -41,7 +42,7 @@ Part $a$ of this question asks for polynomials $f_2(x)$, $f_3(x)$, $f_4(x)$ such
 \sn f_4(r) = n^4
 \end{gather*}
 
-Finding these polynomials reveals a very interesting pattern.
+Finding these polynomials reveals a very interesting pattern, links to the Bernoulli numbers, and has a very nice general form.
 
 \section{Finding Polynomials}
 
@@ -50,32 +51,32 @@ Throughout this paper, all $n \inn$, $n > 1$.
 Let's first establish some basic lemmas about series.
 
 \begin{lemma}
-$\sn (f(r) + g(r)) = \sn f(r) + \sn g(r)$
+$\displaystyle \sn (f(r) + g(r)) = \sn f(r) + \sn g(r)$
 \label{lem:add}
 \end{lemma}
 
 \begin{lemma}
-$\sn kf(r) = k \sn f(r)$
+$\displaystyle \sn kf(r) = k \sn f(r)$
 \label{lem:mult}
 \end{lemma}
 
 \begin{lemma}
-$\sn 1 = n$
+$\displaystyle \sn 1 = n$
 \label{lem:sum_1}
 \end{lemma}
 
 \begin{lemma}
-$\sn r = \oo{2}n(n + 1)$
+$\displaystyle \sn r = \oo{2}n(n + 1)$
 \label{lem:sum_r}
 \end{lemma}
 
 \begin{lemma}
-$\sn r^2 = \oo{6}n(n + 1)(2n + 1)$
+$\displaystyle \sn r^2 = \oo{6}n(n + 1)(2n + 1)$
 \label{lem:sum_r2}
 \end{lemma}
 
 \begin{lemma}
-$\sn r^3 = \oo{4}n^2(n + 1)^2$
+$\displaystyle \sn r^3 = \oo{4}n^2(n + 1)^2$
 \label{lem:sum_r3}
 \end{lemma}
 
@@ -159,19 +160,19 @@ $f_5(r) = 5r^4 - 10r^3 + 10r^2 - 5r + 1$
 \label{conj:f5}
 \end{conjecture}
 
-To find a general form, we have to think about how we go from $(r-1)^a$ to these polynomials.
+To conjecture a general form, we have to think about how we go from $(r-1)^a$ to these polynomials.
 
 Lets look at the example of $f_4(r)$. $$(r-1)^4 = r^4 - 4r^3 + 6r^2 - 4r + 1$$
 
 We have the change the signs of all of these, so we get $$-(r-1)^4 = -r^4 + 4r^3 - 6r^2 + 4r - 1$$ Then we have to remove the leading $-r^4$ and we get $-(r-1)^4 + r^4$, or more simply, $r^4 - (r-1)^4$.
 
-This form of $r^a - (r-1)^a$ gives the results seen previously for $f_a(r)$, so we can conjecture that this pattern continues for all $a \in \mathbb{Z}^+$.
+This form of $r^a - (r-1)^a$ gives the results seen previously for $f_a(r)$, so we can conjecture that this pattern continues for all $a \in \zp$.
 
-$\mathbb{Z}^+$ is simply the set of positive integers, not including 0. This is simpler than writing $a \inn, a > 0$.
+$\zp$ is simply the set of positive integers, not including 0. This is simpler than writing $a \inn,\ a > 0$.
 
 Rather than conjecturing about $f_a(r)$, we want to conjecture about its sum to $n$.
 \begin{conjecture}
-$\displaystyle \forall a, n \in \mathbb{Z}^+, n > 1, \sn \left(r^a - (r - 1)^a\right) = n^a$
+$\displaystyle \forall\ a, n \in \zp,\ n > 1,\ \sn \left(r^a - (r - 1)^a\right) = n^a$
 \label{conj:fa_sum}
 \end{conjecture}
 
@@ -180,7 +181,7 @@ $\displaystyle \forall a, n \in \mathbb{Z}^+, n > 1, \sn \left(r^a - (r - 1)^a\r
 In order to prove Conjecture~\ref{conj:f5}, we need to know the formula for $\sn r^4$. Wolfram Alpha says:
 
 \begin{lemma}
-$\sn r^4 = \oo{30}n(n + 1)(2n + 1)\left(3n^2 + 3n - 1\right)$
+$\displaystyle \sn r^4 = \oo{30}n(n + 1)(2n + 1)\left(3n^2 + 3n - 1\right)$
 \label{lem:sum_r4}
 \end{lemma}
 
@@ -201,11 +202,11 @@ f_5(r) = 5r^4 - \frac{5}{2}f_4(r) - \frac{5}{3}f_3(r) + \oo{6}f_1(r)\\
 
 This proves Conjecture~\ref{conj:f5}.
 
-However, to prove Conjecture~\ref{conj:fa_sum}, I think I need to find more patterns.
+However, to prove Conjecture~\ref{conj:fa_sum}, we need to find more patterns.
 
 \section{Finding Patterns (again)}
 
-Let's look at sums of powers of $r$. By Lemmas 3 to 7, we have
+Let's look at sums of powers of $r$. By Lemmas~\ref{lem:sum_1}~to~\ref{lem:sum_r4}, we have
 \begin{alignat*}{3}
 &\sn r^0 &&= n &&= n\\
 &\sn r^1 &&= \oo{2}n(n + 1) &&= \oo{2}n^2 + \oo{2}n\\
@@ -218,15 +219,77 @@ I can't see much of a pattern here, but the first term of $\sn r^b$ always seems
 
 I don't think I would able to find a formula for $\sn r^b$ on my own, but in doing some research on this topic, I found this wiki page on \href{https://brilliant.org/wiki/sum-of-n-n2-or-n3/#faulhabers-formula}{brilliant.org} about sums which mentions Faulhaber's formula. I shall rewrite it here. $$\sn r^b = \oo{b+1} \sum_{j=0}^b (-1)^j \binom{b+1}{j} B_j n^{b+1-j}$$ where $B_j$ is the $j$th Bernoulli number.
 
-In doing further research, I found that this is were the Bernoulli numbers where found by Jakob Bernoulli in \textit{Ars Conjectandi}, published in 1713. He was trying to find a general formula for $\sn r^b$ and found these numbers. He could not relate them to anything, and de Moivre named them after him.\cite{wikipedia-bernoulli-numbers}
+In doing further research, I found that this is where the Bernoulli numbers were originally found by Jacob Bernoulli in \textit{Ars Conjectandi}, published in 1713. He was trying to find a general formula for $\sn r^b$ and found these numbers. He could not relate them to any previously known sequence, and de Moivre named them after him.\cite{wikipedia-bernoulli-numbers}
 
-Not only that, but Jakob Bernoulli mentioned Faulhaber by name in \textit{Ars Conjectandi}. People have wondered about this problem long before me, and this is where the famous Bernoulli numbers originally came from.
+Not only that, but Jacob Bernoulli mentioned Faulhaber by name in \textit{Ars Conjectandi}. People have wondered about this problem long before me, and this is where the famous Bernoulli numbers originally came from.
 
-Bernoulli would have written $\sn r^b$ as $$\sn r^b = \sum_{r=0}^b \frac{B_r}{r!} b^{\underline{r-1}} n^{b-r+1}$$ where $p^{\underline{q}}$ is the falling factorial $p \times (p-1) \times (p-2) \times \cdots \times (p-q+1)$.
+Bernoulli might have written $\sn r^b$ as $$\sn r^b = \sum_{r=0}^b \frac{B_r}{r!} b^{\underline{r-1}} n^{b-r+1}$$ where $p^{\underline{q}}$ is the falling factorial $p \times (p-1) \times (p-2) \times \cdots \times (p-q+1)$.
 
 \section{Proving Conjecture~\ref{conj:fa_sum}}
 
-Proving Conjecture~\ref{conj:fa_sum} will undoubtedly be hard, and will definitely require knowledge of the Bernoulli numbers. Unfortunately, there seems to be no easy formula for $B_k$. The Bernoulli numbers are usually either defined with a recurrence relation, or with a generating function, or in terms of things like the Riemann Zeta function. So, nothing friendly. Unfortunately, it seems like proving this conjecture is a bit out of my reach currently. But I posited it, and I want to prove it, even if it takes ages.
+I expected proving Conjecture~\ref{conj:fa_sum} to be hard, but it's actually quite easy and doesn't require the Bernoulli numbers at all. I got these ideas from a phenomenal Mathologer video, \href{https://www.youtube.com/watch?v=fw1kRz83Fj0}{\textit{Power sum MASTER CLASS: How to sum quadrillions of powers ... by hand! (Euler-Maclaurin formula)}}, in which Burkard talks about Bernoulli's attempts to find a general formula for $\sn r^b$, but not before showing off a beautiful recurrence relation for finding these formulas.
+
+I am incredibly thankful for Burkard and the people at Mathologer for producing such wonderful and engaging mathematical content. They have definitely helped to foster my love of mathematics, and I highly recommend the channel to anyone with an interest in maths. Anyway, onto the proof.
+
+\subsection{The Proof}
+
+We can find successive summation formulas by manipulating binomial expansions. For the sake of notation, let $\sn r^b$ be written as $S_b$.
+
+The formulas for $S_0$, $S_1$, and $S_2$ can be found relatively easily through many different methods, which I won't talk about here. But let's say we wanted to find a formula for $S_3$. How would we do this? Well, we want to relate different powers, and we can do that nicely with some binomial expansion.
+
+To find $S_3$, we look at $(r-1)^4$. This expands to give $r^4 - 4r^3 + 6r^2 - 4r + 1$. We can manipulate this and get
+\begin{gather*}
+(r-1)^4 = r^4 - 4r^3 + 6r^2 - 4r + 1\\[0.5em]
+\implies 4r^3 - 6r^2 + 4r - 1 = r^4 - (r-1)^4
+\end{gather*}
+
+We can now substitute different values for $r$ and get a list of equations.
+\begin{gather*}
+4 \cdot 1^3 - 6 \cdot 1^2 + 4 \cdot 1^1 - 1 \cdot 1^0 = 1^4 - \cancel{(1-1)^4}\\
+4 \cdot 2^3 - 6 \cdot 2^2 + 4 \cdot 2^1 - 1 \cdot 2^0 = 2^4 - (2-1)^4\\
+4 \cdot 3^3 - 6 \cdot 3^2 + 4 \cdot 3^1 - 1 \cdot 3^0 = 3^4 - (3-1)^4\\
+\vdots\\
+4 \cdot n^3 - 6 \cdot n^2 + 4 \cdot n^1 - 1 \cdot n^0 = n^4 - (n-1)^4
+\end{gather*}
+
+We can now sum these equations. On the RHS, the terms in brackets are cancelled out by the first term on the RHS in the line above. $-(2-1)^4$ cancels with $1^4$, $-(3-1)^4$ cancels with $2^4$, etc.\ and we end up with just $n^4$.
+
+On the LHS, we simply get $4S_3 - 6S_2 + 4S_1 - 1S_0$. This means that $$4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4$$ Since we know $S_0$, $S_1$, and $S_2$, we can simply solve for $S_3$ and get
+\begin{gather*}
+S_3 = \frac{n^4 + 6S_2 - 4S_1 + 1S_0}{4}\\[0.5em]
+= \frac{n^4 + n(n+1)(2n+1) - 2n(n+1) + n}{4}\\[0.5em]
+= \frac{n(n^3 + (n+1)(2n+1) - 2(n+1) + 1))}{4}\\[0.5em]
+= \frac{n(n^3 + 2n^2 + 3n + 1 - 2n - 2 + 1)}{4}\\[0.5em]
+= \frac{n(n^3 + 2n^2 + n)}{4}\\[0.5em]
+= \frac{n^2(n+1)^2}{4}
+\end{gather*}
+
+This is the formula given by Lemma~\ref{lem:sum_r3}, so we know we've done this correctly.
+
+It can be quite easily seen that this process continues and can be used to generate $S_b\ \forall\ b \in \zp$.
+
+Now that we have a way of generating every $S_b$, we can use that to prove Conjecture~\ref{conj:fa_sum}. It's actually remarkably simple.
+
+Let's backtrack a little to when we had $4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4$. This equation is all we need. We can expand the $S_b$ terms to their equivalent sums and use Lemmas~\ref{lem:add}~and~\ref{lem:mult} to manipulate this.
+\begin{gather*}
+4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4\\[0.5em]
+\implies 4 \sn r^3 - 6 \sn r^2 + 4 \sn r^1 - 1 \sn r^0 = n^4\\[0.5em]
+\implies \sn (4r^3 - 6r^2 + 4r - 1) = n^4
+\end{gather*}
+
+This is exactly $f_4(r)$. Since this process can generate all $S_b$, it will also generate all $f_a(r)$.
+
+Therefore, $\sn (r^a - (r-1)^a) = n^a$. Thus, we have proven Conjecture~\ref{conj:fa_sum}.
+
+\hspace*{\fill}$\square$
+
+\section{Conclusion}
+
+I first did that challenge question months ago. This conjecture has bugged me since I first posited it, but I hadn't properly looked into it until recently, and when I did, I could prove it in a day. I quite like this proof, and it is quite elegant in my eyes. I think the reason I didn't find it sooner was because I assumed the problem to be harder than it was. I assumed I'd have to find a general formula for $\sn r^b$, and then I'd have to manipulate it in quite a complicated proof, but this recurrence relation thing to generate $S_b$ is beautiful, because $f_a(r)$ just falls out of it.
+
+I assume there's a name for this polynomial $f_a(r)$ in the context of these sums, where $\sn f_a(r) = n^a$, but I don't know what it's called. So for now, I'm going to call it the Dyson Sum Function.
+
+Humility? Sorry, I don't know what that is.
 
 \printbibliography
 

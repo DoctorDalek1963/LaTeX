@@ -230,7 +230,7 @@ I expected proving Conjecture~\ref{conj:fa_sum} to be hard, but it's actually qu
 
 I am incredibly thankful for Burkard and the people at Mathologer for producing such wonderful and engaging mathematical content. They have definitely helped to foster my love of mathematics, and I highly recommend the channel to anyone with an interest in maths. Anyway, onto the proof.
 
-\subsection{The Proof}
+\subsection{Proving Sum Formulas}
 
 We can find successive summation formulas by manipulating binomial expansions. For the sake of notation, let $\sn r^b$ be written as $S_b$.
 
@@ -265,26 +265,66 @@ S_3 = \frac{n^4 + 6S_2 - 4S_1 + 1S_0}{4}\\[0.5em]
 
 This is the formula given by Lemma~\ref{lem:sum_r3}, so we know we've done this correctly.
 
-It can be quite easily seen that this process continues and can be used to generate $S_b\ \forall\ b \in \zp$.
+It can be seen that this process continues and can be used to generate $S_b\ \forall\ b \in \zp$, but I will prove it rigorously.
+
+We can expand a general $(r-1)^{b+1}$ like so,
+\begin{gather*}
+(r-1)^{b+1} = r^{b+1} - \binom{b+1}{1}r^b + \binom{b+1}{2}r^{b-1} - \cdots \pm \binom{b+1}{b-1}r^2 \mp \binom{b+1}{b}r \pm 1\\[0.5em]
+\implies \binom{b+1}{1}r^b - \binom{b+1}{2}r^{b-1} + \cdots \mp \binom{b+1}{b-1}r^2 \pm \binom{b+1}{b}r \mp 1 = r^{b+1} - (r-1)^{b+1}
+\end{gather*}
+
+We can then sum up many substitutions up to $n$.
+\begin{gather*}
+\binom{b+1}{1}1^b - \binom{b+1}{2}1^{b-1} + \cdots \mp \binom{b+1}{b-1}1^2 \pm \binom{b+1}{b}1 \mp 1 = 1^{b+1} - \cancel{(1-1)^{b+1}}\\[0.5em]
+\binom{b+1}{1}2^b - \binom{b+1}{2}2^{b-1} + \cdots \mp \binom{b+1}{b-1}2^2 \pm \binom{b+1}{b}2 \mp 1 = 2^{b+1} - (2-1)^{b+1}\\[0.5em]
+\binom{b+1}{1}3^b - \binom{b+1}{2}3^{b-1} + \cdots \mp \binom{b+1}{b-1}3^2 \pm \binom{b+1}{b}3 \mp 1 = 3^{b+1} - (3-1)^{b+1}\\[0.5em]
+\vdots\\[0.5em]
+\binom{b+1}{1}n^b - \binom{b+1}{2}n^{b-1} + \cdots \mp \binom{b+1}{b-1}n^2 \pm \binom{b+1}{b}n \mp 1 = n^{b+1} - (n-1)^{b+1}
+\end{gather*}
+
+Again, all but one term on the RHS cancel out and we just get $n^{b+1}$.
+
+On the LHS, we get $$\binom{b+1}{1}S_b - \binom{b+1}{2}S_{b-1} + \cdots \mp \binom{b+1}{b-1}S_2 \pm \binom{b+1}{b}S_1 \mp S_0$$
+
+Then, knowing all $S_c$ for $c < b$, we can solve for $S_b$.
+
+\begin{gather*}
+\binom{b+1}{1}S_b - \binom{b+1}{2}S_{b-1} + \cdots \mp \binom{b+1}{b-1}S_2 \pm \binom{b+1}{b}S_1 \mp S_0 = n^{b+1}\\[0.5em]
+\implies S_b  = \frac{n^{b+1} + \binom{b+1}{2}S_{b-1} - \cdots \pm \binom{b+1}{b-1}S_2 \mp b S_1 \pm S_0}{b+1}
+\end{gather*}
 
 Now that we have a way of generating every $S_b$, we can use that to prove Conjecture~\ref{conj:fa_sum}. It's actually remarkably simple.
 
-Let's backtrack a little to when we had $4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4$. This equation is all we need. We can expand the $S_b$ terms to their equivalent sums and use Lemmas~\ref{lem:add}~and~\ref{lem:mult} to manipulate this.
+\subsection{Proving Conjecture~\ref{conj:fa_sum}}
+
+Let's reuse our example and backtrack a little to when we had $4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4$. This equation is all we need. We don't even need to know any sum formulas.
+
+We can just expand the $S_b$ terms to their equivalent sums and use Lemmas~\ref{lem:add}~and~\ref{lem:mult} to manipulate this.
 \begin{gather*}
 4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4\\[0.5em]
 \implies 4 \sn r^3 - 6 \sn r^2 + 4 \sn r^1 - 1 \sn r^0 = n^4\\[0.5em]
+\implies \sn 4r^3 + \sn -6r^2 + \sn 4r + \sn -1 = n^4\\[0.5em]
 \implies \sn (4r^3 - 6r^2 + 4r - 1) = n^4
 \end{gather*}
 
-This is exactly $f_4(r)$. Since this process can generate all $S_b$, it will also generate all $f_a(r)$.
+This is exactly $f_4(r)$. This process can be used to find any $S_b$, and thus we can do this with any $f_a(r)$.
 
-Therefore, $\sn (r^a - (r-1)^a) = n^a$. Thus, we have proven Conjecture~\ref{conj:fa_sum}.
+In our process of generating $S_b$, $a = b + 1$. We can use this to rewrite the equation in terms of $a$.
+\begin{gather*}
+\binom{a}{1}S_{a-1} - \binom{a}{2}S_{a-2} + \cdots \mp \binom{a}{a-2}S_2 \pm \binom{a}{a-1}S_1 \mp S_0 = n^a\\[0.5em]
+\implies \binom{a}{1} \sn r^{a-1} - \binom{a}{2} \sn r^{a-2} + \cdots \mp \binom{a}{a-2} \sn r^2 \pm \binom{a}{a-1} \sn r \mp \sn 1 = n^a\\[0.5em]
+\implies \sn \binom{a}{1} r^{a-1} + \sn -\binom{a}{2} r^{a-2} + \cdots + \sn \mp \binom{a}{a-2} r^2 + \sn \pm \binom{a}{a-1} r + \sn \mp 1 = n^a\\[0.5em]
+\implies \sn \left( \binom{a}{1} r^{a-1} - \binom{a}{2} r^{a-2} + \cdots \mp \binom{a}{a-2} r^2 \pm \binom{a}{a-1} r \mp 1 \right) = n^a\\[0.5em]
+\therefore \sn (r^a - (r-1)^a) = n^a
+\end{gather*}
+
+Thus, we have proven Conjecture~\ref{conj:fa_sum}.
 
 \hspace*{\fill}$\square$
 
 \section{Conclusion}
 
-I first did that challenge question months ago. This conjecture has bugged me since I first posited it, but I hadn't properly looked into it until recently, and when I did, I could prove it in a day. I quite like this proof, and it is quite elegant in my eyes. I think the reason I didn't find it sooner was because I assumed the problem to be harder than it was. I assumed I'd have to find a general formula for $\sn r^b$, and then I'd have to manipulate it in quite a complicated proof, but this recurrence relation thing to generate $S_b$ is beautiful, because $f_a(r)$ just falls out of it.
+I first did that challenge question months ago. This conjecture has bugged me since I first posited it, but I hadn't properly looked into it until recently, and when I did, I could prove it quite quickly. I quite like this proof, and it is quite elegant in my eyes. I think the reason I didn't find it sooner was because I assumed the problem to be harder than it was. I assumed I'd have to find a general formula for $\sn r^b$, and then I'd have to manipulate it in quite a complicated proof, but this recurrence relation thing to generate $S_b$ is beautiful, because $f_a(r)$ just falls out of it.
 
 I assume there's a name for this polynomial $f_a(r)$ in the context of these sums, where $\sn f_a(r) = n^a$, but I don't know what it's called. So for now, I'm going to call it the Dyson Sum Function.
 

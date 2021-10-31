@@ -1,6 +1,6 @@
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb}
 \usepackage{gensymb}
 \usepackage{cancel}
 \usepackage[nodayofweek]{datetime}
@@ -58,7 +58,6 @@ This question states that the red segments are all the same length, and asks for
 \coordinate (K) at ({4*\rfof},{7*\rfof});
 \coordinate (L) at ({3*\cosa},{3*\sina});
 
-
 \draw (A) -- (H) -- (B) -- (C) -- cycle;
 \draw[line width=1pt,color=red] (A) -- (I);
 \draw[line width=1pt,color=red] (L) -- (D);
@@ -76,6 +75,7 @@ Before we begin labelling lengths, it is useful to prove that these triangles ar
 \begin{tikzpicture}[scale=1.5]
 \draw (A) -- (B) -- (C) -- cycle;
 \draw (D) -- (F) -- (G) -- (E);
+
 % Mark the angles
 \tkzMarkAngle(C,A,B);
 \tkzLabelAngle[pos=0.6](C,A,B){$\alpha$};
@@ -95,6 +95,7 @@ We can see from the big triangle that $\alpha + \beta = 90\degree$. We can then 
 \begin{tikzpicture}[scale=1.5]
 \draw (A) -- (B) -- (C) -- cycle;
 \draw (D) -- (F) -- (G) -- (E);
+
 \tkzMarkAngle(C,A,B);
 \tkzLabelAngle[pos=0.6](C,A,B){$\alpha$};
 \tkzMarkAngle[size=0.6](A,B,C);
@@ -102,6 +103,7 @@ We can see from the big triangle that $\alpha + \beta = 90\degree$. We can then 
 \tkzMarkRightAngle(A,C,B);
 \tkzMarkRightAngle(A,D,F);
 \tkzMarkRightAngle(B,E,G);
+
 % The new angles
 \tkzMarkAngle[size=0.6](D,F,A);
 \tkzLabelAngle[pos=0.4](D,F,A){$\beta$};
@@ -125,6 +127,7 @@ Since the angles of the square are all $90\degree$, we can see that even the sma
 \coordinate (G) at ({14*\rfof},{2*\rfof});
 \draw (A) -- (B) -- (C) -- cycle;
 \draw (D) -- (F) -- (G) -- (E);
+
 \tkzMarkAngle(C,A,B);
 \tkzLabelAngle[pos=0.6](C,A,B){$\alpha$};
 \tkzMarkAngle[size=0.6](A,B,C);
@@ -136,6 +139,7 @@ Since the angles of the square are all $90\degree$, we can see that even the sma
 \tkzLabelAngle[pos=0.4](D,F,A){$\beta$};
 \tkzMarkAngle[size=0.7](B,G,E);
 \tkzLabelAngle[pos=0.5](B,G,E){$\alpha$};
+
 % The final set of angles
 \tkzMarkRightAngle(D,F,G);
 \tkzMarkRightAngle(E,G,F);
@@ -147,21 +151,25 @@ Since the angles of the square are all $90\degree$, we can see that even the sma
 \hspace{\fill}
 \vspace*{0.5em}
 
-Now we've shown that all the triangles are similar by AAA. We could do this for the rest of the rectangle as well, but the code to draw these angles is tedious and I'm lazy. It's easy to see that this extends to the rest of the angles in all the other triangles. Now we can get properly started.
+Now we've shown that all the triangles are similar by AAA. We don't need to even think about the other half of the rectangle, because it's identical. The fraction will be the same if we just look at this half. We can now get properly started.
 
 Let's first choose the shortest useful length on the diagram and call it 1. This length is the length of the red segments. We will also label the side lengths of the squares $x$.
 
 \vspace*{0.5em}
 \hspace{\fill}
 \begin{tikzpicture}[scale=1.5]
-\draw (A) -- (H) -- (B) -- (C) -- cycle;
+\draw (A) -- (C) -- (B);
 \draw (A) -- node[above] {1} (I);
 \draw (I) -- node[above] {$x$} (L);
 \draw (L) -- node[below] {1} (D);
 \draw (D) -- node[below] {$x$} (E);
 \draw (E) -- node[below] {1} (B);
-\draw (I) -- node[right] {$x$} (J) -- node[below] {$x$} (K) -- node[left] {$x$} (L);
+
 \draw (D) -- node[right] {$x$} (F) -- node[above] {$x$} (G) -- node[left] {$x$} (E);
+
+% Lines sticking out 1/4 of the length x
+\draw (I) -- ({3*\cosa/4},{\sina+(5*\rfof-\sina)/4});
+\draw (L) -- ({3*\cosa-(3*\cosa-4*\rfof)/4},{3*\sina+(7*\rfof-3*\sina)/4});
 \end{tikzpicture}
 \hspace{\fill}
 \vspace*{0.5em}
@@ -171,33 +179,39 @@ We're only really interested in two of these triangles for this proof, highlight
 \vspace*{0.5em}
 \hspace{\fill}
 \begin{tikzpicture}[scale=1.5]
-\draw (A) -- (H) -- (B) -- (C) -- cycle;
-\draw (A) -- (I);
-\draw (I) -- (L);
+\draw (A) -- (C) -- (B);
+\draw (A) -- node[above] {1} (I);
+\draw (I) -- node[above] {$x$} (L);
 \draw (L) -- node[below] {1} (D);
-\draw (D) -- node[below] {$x$} (E);
+\draw (D) --  (E);
 \draw (E) -- node[below] {1} (B);
-\draw (I) -- (J) -- (K) -- node[left] {$x$} (L);
-\draw (D) -- (F) -- (G) -- node[left] {$x$} (E);
-\fill[gray,opacity=0.3] (L) -- (K) -- (B);
+
+\draw (D) -- node[right] {$x$} (F) -- (G) -- node[left] {$x$} (E);
+
+\draw (I) -- ({3*\cosa/4},{\sina+(5*\rfof-\sina)/4});
+\draw (L) -- ({3*\cosa-(3*\cosa-4*\rfof)/4},{3*\sina+(7*\rfof-3*\sina)/4});
+
+\fill[gray,opacity=0.3] (A) -- (D) -- (F);
 \fill[gray,opacity=0.3] (G) -- (E) -- (B);
 \tkzMarkAngle[size=0.7](B,G,E);
 \tkzLabelAngle[pos=0.5](B,G,E){$\alpha$};
-\tkzMarkAngle[size=0.7](K,B,L);
-\tkzLabelAngle[pos=0.5](K,B,L){$\alpha$};
-\tkzMarkRightAngle(K,L,B);
+\tkzMarkAngle[size=0.7](F,A,D);
+\tkzLabelAngle[pos=0.5](F,A,D){$\alpha$};
+\tkzMarkRightAngle(A,D,F);
 \tkzMarkRightAngle(B,E,G);
 \end{tikzpicture}
 \hspace{\fill}
 \vspace*{0.5em}
 
 We can now find $\tan \alpha$ in two different ways. By the triangle on the left, $\tan \alpha = \frac{x}{x + 2}$ and by the triangle on the right, $\tan \alpha = \frac{1}{x}$. We can now solve for $x$.
+
 \begin{gather*}
 \frac{x}{x + 2} = \frac{1}{x}\\[0.5em]
 \frac{x^2}{x + 2} = 1\\[0.5em]
 x^2 = x + 2\\[0.5em]
 x^2 - x - 2 = 0\\[0.5em]
-(x - 2)(x + 1) = 0
+(x - 2)(x + 1) = 0\\[0.5em]
+\therefore x = 2 \text{ or } x = - 1
 \end{gather*}
 
 $x$ must be positive, so $x = 2$.
@@ -207,31 +221,24 @@ We now have concrete values for these lengths and can use Pythagoras to find the
 \vspace*{0.5em}
 \hspace{\fill}
 \begin{tikzpicture}[scale=1.5]
-\draw (A) -- node[above] {1} (I);
-\draw (I) -- node[above] {2} (L);
-\draw (L) -- node[below] {1} (D);
-\draw (D) -- node[below] {2} (E);
+\draw (A) -- node[above] {4} (D);
+\draw (D) -- (E);
 \draw (E) -- node[below] {1} (B);
-\draw (I) -- node[right] {2} (J) -- node[below] {2} (K) -- node[left] {2} (L);
 \draw (D) -- node[right] {2} (F) -- node[above] {2} (G) -- node[left] {2} (E);
+
 % Right angles for the pythag triangles
-\tkzMarkRightAngle(A,I,J);
-\tkzMarkRightAngle(J,H,K);
-\tkzMarkRightAngle(K,L,B);
 \tkzMarkRightAngle(B,E,G);
 \tkzMarkRightAngle(G,C,F);
 \tkzMarkRightAngle(F,D,A);
-% Drawing the rectangle and labeling the lengths
-\draw (A) -- node[left] {$\sqrt{5}$} (J) -- node[left] {$a$} (H) -- node[above] {$b$} (K) -- node[above] {$2\sqrt{5}$} (B) -- node[right] {$\sqrt{5}$} (G) -- node[right] {$a$} (C) -- node[below] {$b$} (F) -- node[below] {$2\sqrt{5}$} (A);
-% Drawing the alpha and beta angles
+
+% Draw the triangle and label the lengths
+\draw (B) -- node[right] {$\sqrt{5}$} (G) -- node[right] {$a$} (C) -- node[below] {$b$} (F) -- node[below] {$2\sqrt{5}$} (A);
+
+% Draw the alpha and beta angles
 \tkzMarkAngle[size=0.5](F,G,C);
 \tkzLabelAngle[pos=0.3](F,G,C){$\beta$};
 \tkzMarkAngle[size=0.7](C,F,G);
 \tkzLabelAngle[pos=0.5](C,F,G){$\alpha$};
-\tkzMarkAngle[size=0.5](K,J,H);
-\tkzLabelAngle[pos=0.3](K,J,H){$\beta$};
-\tkzMarkAngle[size=0.7](H,K,J);
-\tkzLabelAngle[pos=0.5](H,K,J){$\alpha$};
 \end{tikzpicture}
 \hspace{\fill}
 \vspace*{0.5em}
@@ -252,24 +259,26 @@ We now have all the values we need and can substitute them into the diagram.
 \vspace*{0.5em}
 \hspace{\fill}
 \begin{tikzpicture}[scale=1.5]
-\draw (A) -- node[above] {1} (I);
-\draw (I) -- node[above] {2} (L);
-\draw (L) -- node[below] {1} (D);
-\draw (D) -- node[below] {2} (E);
+\draw (A) -- node[above] {4} (D);
+\draw (D) -- (E);
 \draw (E) -- node[below] {1} (B);
-\draw (I) -- node[right] {2} (J) -- node[below] {2} (K) -- node[left] {2} (L);
 \draw (D) -- node[right] {2} (F) -- node[above] {2} (G) -- node[left] {2} (E);
-\draw (A) -- node[left] {$\sqrt{5}$} (J) -- node[left] {$\frac{2 \sqrt{5}}{5}$} (H) -- node[above] {$\frac{4 \sqrt{5}}{5}$} (K) -- node[above] {$2\sqrt{5}$} (B) -- node[right] {$\sqrt{5}$} (G) -- node[right] {$\frac{2 \sqrt{5}}{5}$} (C) -- node[below] {$\frac{4 \sqrt{5}}{5}$} (F) -- node[below] {$2\sqrt{5}$} (A);
-\draw [decorate,decoration={brace,amplitude=10pt,mirror}] (0,-0.4) -- ({14*sqrt(5)/5},-0.4);
-\coordinate[label=270:$\frac{14\sqrt{5}}{5}$] (.) at ({7*sqrt(5)/5},-0.6);
-\draw [decorate,decoration={brace,amplitude=10pt}] ({14*sqrt(5)/5 + 0.5},{7*sqrt(5)/5}) -- ({14*sqrt(5)/5 + 0.5},0);
-\coordinate[label=0:$\frac{7\sqrt{5}}{5}$] (.) at ({14*sqrt(5)/5 + 0.7},{3.5*sqrt(5)/5});
+
+% Drawing the triangle and labeling the lengths
+\draw (B) -- node[right] {$\sqrt{5}$} (G) -- node[right] {$\frac{2\sqrt{5}}{5}$} (C) -- node[below] {$\frac{4\sqrt{5}}{5}$} (F) -- node[below] {$2\sqrt{5}$} (A);
+
+% The braces and lengths of them
+\draw [decorate,decoration={brace,amplitude=10pt,mirror}] (0,-0.4) -- ({14*\rfof},-0.4);
+\coordinate[label=270:$\frac{14\sqrt{5}}{5}$] (.) at ({7*\rfof},-0.6);
+
+\draw [decorate,decoration={brace,amplitude=10pt}] ({14*\rfof + 0.5},{7*\rfof}) -- ({14*\rfof + 0.5},0);
+\coordinate[label=0:$\frac{7\sqrt{5}}{5}$] (.) at ({14*\rfof + 0.7},{3.5*\rfof});
 \end{tikzpicture}
 \hspace{\fill}
 \vspace*{0.5em}
 
-The area of the two squares is $2 \times 2^2 = 8$, and the area of the whole rectangle is $$\frac{14\sqrt{5}}{5} \times \frac{7\sqrt{5}}{5} = \frac{98}{5}$$
+The area of the square is $2^2 = 4$, and the area of the big triangle is $$\frac{1}{2} \times \frac{14\sqrt{5}}{5} \times \frac{7\sqrt{5}}{5} = \frac{49}{5}$$
 
-Therefore, the fraction of the original diagram that's shaded in blue is $$8 \div \frac{98}{5} = \frac{40}{98} = \frac{20}{49} \approx 40.8\%$$
+Therefore, the fraction of the original diagram that's shaded in blue is $$4 \div \frac{49}{5} = \frac{20}{49} \approx 40.8\%$$
 
 \end{document}

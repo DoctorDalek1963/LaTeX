@@ -9,9 +9,9 @@
 \addbibresource{series_polynomials.bib}
 
 % Set size of text area with total parameter
-\usepackage[a4paper, total={135mm, 255mm}]{geometry}
+\usepackage[a4paper, total={150mm, 260mm}]{geometry}
 
-\title{Series Polynomials}
+\title{Polynomials That Sum To Pure Powers}
 \author{Dyson}
 \date{\today}
 
@@ -32,16 +32,18 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-The challenge question in Exercise 3B of the Edexcel AS and A Level Further Maths Core book is about series sums of polynomials.
+\section{The Problem}
+
+The challenge question in Exercise 3B of the Edexcel AS and A Level Further Maths Core book is about polynomials that sum to pure powers of $n$.
 
 Part $a$ of this question asks for polynomials $f_2(x)$, $f_3(x)$, $f_4(x)$ such that for every $n \inn$, $n > 1$,
 \begin{gather*}
-\sn f_2(r) = n^2\\
-\sn f_3(r) = n^3\\
+\sn f_2(r) = n^2\\[0.3em]
+\sn f_3(r) = n^3\\[0.3em]
 \sn f_4(r) = n^4
 \end{gather*}
 
-Finding these polynomials reveals a very interesting pattern, links to the Bernoulli numbers, and has a very nice general form.
+Finding these polynomials reveals a very interesting pattern, links to the Bernoulli numbers, and has a very nice general form. And the proof of this general form simply falls out from a recurrence relation.
 
 \section{Finding Polynomials}
 
@@ -90,7 +92,8 @@ Then, we just need to get rid of the $n$.
 
 We know, by Lemma~\ref{lem:sum_1}, that $\sn 1 = n$, so
 \begin{gather*}
-\sn 2r - \sn 1 = \sn (2r - 1) = n^2\\
+\sn 2r - \sn 1 = \sn (2r - 1)\\[0.5em]
+= n^2 + n - n = n^2\\[0.5em]
 \therefore f_2(r) = 2r - 1
 \end{gather*}
 
@@ -100,8 +103,8 @@ Next, we want a polynomial $f_3(r)$ such that $\sn f_3(r) = n^3$.
 
 Similarly to with $f_2(r)$, by Lemma~\ref{lem:sum_r2}, we already have
 \begin{gather*}
-\sn r^2 = \oo{6}n(n + 1)(2n + 1)\\
-= \oo{3}n^3 + \oo{2}n^2 + \oo{6}n\\[0.2em]
+\sn r^2 = \oo{6}n(n + 1)(2n + 1)\\[0.5em]
+= \oo{3}n^3 + \oo{2}n^2 + \oo{6}n\\[0.5em]
 = \oo{3}\left(n^3 + \frac{3}{2}n^2 + \oo{2}n\right)
 \end{gather*}
 
@@ -111,7 +114,7 @@ To get rid of the $\oo{2}n$, we can just do $$\sn 3r^2 - \sn \oo{2} = \sn \left(
 
 We know that $\sn f_2(r) = n^2$, so we simply need to subtract $\frac{3}{2}f_2(r)$ from our polynomial to get rid of the resultant $\frac{3}{2}n^2$.
 \begin{gather*}
-3r^2 - \oo{2} - \frac{3}{2}(2r - 1) = 3r^2 - 3r + 1\\
+3r^2 - \oo{2} - \frac{3}{2}(2r - 1) = 3r^2 - 3r + 1\\[0.5em]
 \therefore f_3(r) = 3r^2 - 3r + 1
 \end{gather*}
 
@@ -121,7 +124,7 @@ Next, we want a polynomial $f_4(r)$ such that $\sn f_4(r) = n^4$.
 
 We know, by Lemma~\ref{lem:sum_r3}, that
 \begin{gather*}
-\sn r^3 = \oo{4}n^2(n + 1)^2\\
+\sn r^3 = \oo{4}n^2(n + 1)^2\\[0.5em]
 = \oo{4}\left(n^4 + 2n^3 + n^2\right)
 \end{gather*}
 
@@ -129,9 +132,9 @@ We can multiply by $4$ to get $$4 \sn r^3 = \sn 4r^3 = n^4 + 2n^3 + n^2$$
 
 We can then get $n^4$ on its own by subtracting $2f_3(r)$ and $f_2(r)$ from $4r^3$.
 \begin{gather*}
-4r^3 - 2\left(3r^2 - 3r + 1\right) - (2r - 1)\\
-= 4r^3 - 6r^2 + 6r - 2 - 2r + 1\\
-= 4r^3 - 6r^2 + 4r - 1\\
+4r^3 - 2\left(3r^2 - 3r + 1\right) - (2r - 1)\\[0.5em]
+= 4r^3 - 6r^2 + 6r - 2 - 2r + 1\\[0.5em]
+= 4r^3 - 6r^2 + 4r - 1\\[0.5em]
 \therefore f_4(r) = 4r^3 - 6r^2 + 4r - 1
 \end{gather*}
 
@@ -165,9 +168,7 @@ Lets look at the example of $f_4(r)$. $$(r-1)^4 = r^4 - 4r^3 + 6r^2 - 4r + 1$$
 
 We have the change the signs of all of these, so we get $$-(r-1)^4 = -r^4 + 4r^3 - 6r^2 + 4r - 1$$ Then we have to remove the leading $-r^4$ and we get $-(r-1)^4 + r^4$, or more simply, $r^4 - (r-1)^4$.
 
-This form of $r^a - (r-1)^a$ gives the results seen previously for $f_a(r)$, so we can conjecture that this pattern continues for all $a \in \zp$.
-
-$\zp$ is simply the set of positive integers, not including 0. This is simpler than writing $a \inn,\ a > 0$.
+This form of $r^a - (r-1)^a$ gives the results seen previously for $f_a(r)$, so we can conjecture that this pattern continues for all $a \in \zp$.\footnote{$\zp$ is simply the set of positive integers, not including 0. This is simpler than writing $a \inn,\ a > 0$.}
 
 Rather than conjecturing about $f_a(r)$, we want to conjecture about its sum to $n$.
 \begin{conjecture}
@@ -186,7 +187,7 @@ $\displaystyle \sn r^4 = \oo{30}n(n + 1)(2n + 1)\left(3n^2 + 3n - 1\right)$
 
 This can then be expanded to give
 \begin{gather*}
-\oo{5}n^5 + \oo{2}n^4 + \oo{3}n^3 - \oo{30}n\\[0.2em]
+\oo{5}n^5 + \oo{2}n^4 + \oo{3}n^3 - \oo{30}n\\[0.5em]
 = \oo{5}\left(n^5 + \frac{5}{2}n^4 + \frac{5}{3}n^3 - \oo{6}n\right)
 \end{gather*}
 
@@ -194,14 +195,16 @@ We can multiply by 5 to get $$5 \sn r^4 = \sn 5r^4 = n^5 + \frac{5}{2}n^4 + \fra
 
 Now, we just need to get rid of the other terms to get a polynomial $f_5(r)$ such that $\sn f_5(r) = n^5$.
 \begin{gather*}
-f_5(r) = 5r^4 - \frac{5}{2}f_4(r) - \frac{5}{3}f_3(r) + \oo{6}f_1(r)\\
-= 5r^4 - \frac{5}{2}\left(4r^3 - 6r^2 + 4r - 1\right) - \frac{5}{3}\left(3r^2 - 3r + 1\right) + \oo{6}\\
+f_5(r) = 5r^4 - \frac{5}{2}f_4(r) - \frac{5}{3}f_3(r) + \oo{6}f_1(r)\\[0.5em]
+= 5r^4 - \frac{5}{2}\left(4r^3 - 6r^2 + 4r - 1\right) - \frac{5}{3}\left(3r^2 - 3r + 1\right) + \oo{6}\\[0.5em]
 = 5r^4 - 10r^3 + 10r^2 - 5r + 1
 \end{gather*}
 
 This proves Conjecture~\ref{conj:f5}.
 
 However, to prove Conjecture~\ref{conj:fa_sum}, we need to find more patterns.
+
+\vspace{\fill} % This just puts the footnote at the bottom of the page
 
 \section{Finding Patterns (again)}
 
@@ -218,9 +221,9 @@ I can't see much of a pattern here, but the first term of $\sn r^b$ always seems
 
 I don't think I would able to find a formula for $\sn r^b$ on my own, but in doing some research on this topic, I found Faulhaber's formula on a wiki page on brilliant.org\cite{brilliant.org-sums-wiki}. I shall rewrite the formula here. $$\sn r^b = \oo{b+1} \sum_{j=0}^b (-1)^j \binom{b+1}{j} B_j n^{b+1-j}$$ where $B_j$ is the $j$th Bernoulli number.
 
-In doing further research, I found that this is where the Bernoulli numbers were originally found by Jacob Bernoulli in \textit{Ars Conjectandi}, published in 1713. He was trying to find a general formula for $\sn r^b$ and found these numbers. He could not relate them to any previously known sequence, and de Moivre named them after him.\cite{wikipedia-bernoulli-numbers}
+In doing further research, I found that this is where the Bernoulli numbers were originally found by Jacob Bernoulli in \textit{Ars Conjectandi}, published in 1713. He was trying to find a general formula for $\sn r^b$ and found these numbers. He could not relate them to any previously known sequence, and de Moivre named them after him. And Jacob Bernoulli mentioned Faulhaber by name in \textit{Ars Conjectandi}.\cite{wikipedia-bernoulli-numbers}
 
-Not only that, but Jacob Bernoulli mentioned Faulhaber by name in \textit{Ars Conjectandi}. People have wondered about this problem long before me, and this is where the famous Bernoulli numbers originally came from.
+People have wondered about this problem long before me, and this is where the famous Bernoulli numbers originally came from.
 
 Bernoulli might have written $\sn r^b$ as $$\sn r^b = \sum_{r=0}^b \frac{B_r}{r!} b^{\underline{r-1}} n^{b-r+1}$$ where $p^{\underline{q}}$ is the falling factorial $p \times (p-1) \times (p-2) \times \cdots \times (p-q+1)$.
 
@@ -244,8 +247,8 @@ To find $S_3$, we look at $(r-1)^4$. This expands to give $r^4 - 4r^3 + 6r^2 - 4
 
 We can now substitute different values for $r$ and get a list of equations.
 \begin{gather*}
-4 \cdot 1^3 - 6 \cdot 1^2 + 4 \cdot 1^1 - 1 \cdot 1^0 = 1^4 - \cancel{(1-1)^4}\\
-4 \cdot 2^3 - 6 \cdot 2^2 + 4 \cdot 2^1 - 1 \cdot 2^0 = 2^4 - (2-1)^4\\
+4 \cdot 1^3 - 6 \cdot 1^2 + 4 \cdot 1^1 - 1 \cdot 1^0 = 1^4 - \cancel{(1-1)^4}\\[0.3em]
+4 \cdot 2^3 - 6 \cdot 2^2 + 4 \cdot 2^1 - 1 \cdot 2^0 = 2^4 - (2-1)^4\\[0.3em]
 4 \cdot 3^3 - 6 \cdot 3^2 + 4 \cdot 3^1 - 1 \cdot 3^0 = 3^4 - (3-1)^4\\
 \vdots\\
 4 \cdot n^3 - 6 \cdot n^2 + 4 \cdot n^1 - 1 \cdot n^0 = n^4 - (n-1)^4
@@ -269,37 +272,35 @@ It can be seen that this process continues and can be used to generate $S_b\ \fo
 
 We can expand a general $(r-1)^{b+1}$ like so,
 \begin{gather*}
-(r-1)^{b+1} = r^{b+1} - \binom{b+1}{1}r^b + \binom{b+1}{2}r^{b-1} - \cdots \pm \binom{b+1}{b-1}r^2 \mp \binom{b+1}{b}r \pm 1\\[0.5em]
-\implies \binom{b+1}{1}r^b - \binom{b+1}{2}r^{b-1} + \cdots \mp \binom{b+1}{b-1}r^2 \pm \binom{b+1}{b}r \mp 1 = r^{b+1} - (r-1)^{b+1}
+(r-1)^{b+1} = r^{b+1} - (b+1)r^b + \binom{b+1}{2}r^{b-1} - \cdots \pm \binom{b+1}{b-1}r^2 \mp (b+1)r \pm 1\\[0.5em]
+\implies (b+1)r^b - \binom{b+1}{2}r^{b-1} + \cdots \mp \binom{b+1}{b-1}r^2 \pm (b+1)r \mp 1 = r^{b+1} - (r-1)^{b+1}
 \end{gather*}
 
 We can then sum up many substitutions up to $n$.
 \begin{gather*}
-\binom{b+1}{1}1^b - \binom{b+1}{2}1^{b-1} + \cdots \mp \binom{b+1}{b-1}1^2 \pm \binom{b+1}{b}1 \mp 1 = 1^{b+1} - \cancel{(1-1)^{b+1}}\\[0.5em]
-\binom{b+1}{1}2^b - \binom{b+1}{2}2^{b-1} + \cdots \mp \binom{b+1}{b-1}2^2 \pm \binom{b+1}{b}2 \mp 1 = 2^{b+1} - (2-1)^{b+1}\\[0.5em]
-\binom{b+1}{1}3^b - \binom{b+1}{2}3^{b-1} + \cdots \mp \binom{b+1}{b-1}3^2 \pm \binom{b+1}{b}3 \mp 1 = 3^{b+1} - (3-1)^{b+1}\\[0.5em]
-\vdots\\[0.5em]
-\binom{b+1}{1}n^b - \binom{b+1}{2}n^{b-1} + \cdots \mp \binom{b+1}{b-1}n^2 \pm \binom{b+1}{b}n \mp 1 = n^{b+1} - (n-1)^{b+1}
+(b+1)1^b - \binom{b+1}{2}1^{b-1} + \cdots \mp \binom{b+1}{b-1}1^2 \pm (b+1)1 \mp 1 = 1^{b+1} - \cancel{(1-1)^{b+1}}\\[0.5em]
+(b+1)2^b - \binom{b+1}{2}2^{b-1} + \cdots \mp \binom{b+1}{b-1}2^2 \pm (b+1)2 \mp 1 = 2^{b+1} - (2-1)^{b+1}\\[0.5em]
+(b+1)3^b - \binom{b+1}{2}3^{b-1} + \cdots \mp \binom{b+1}{b-1}3^2 \pm (b+1)3 \mp 1 = 3^{b+1} - (3-1)^{b+1}\\[0.2em]
+\vdots\\[0.2em]
+(b+1)n^b - \binom{b+1}{2}n^{b-1} + \cdots \mp \binom{b+1}{b-1}n^2 \pm (b+1)n \mp 1 = n^{b+1} - (n-1)^{b+1}
 \end{gather*}
 
 Again, all but one term on the RHS cancel out and we just get $n^{b+1}$.
 
-On the LHS, we get $$\binom{b+1}{1}S_b - \binom{b+1}{2}S_{b-1} + \cdots \mp \binom{b+1}{b-1}S_2 \pm \binom{b+1}{b}S_1 \mp S_0$$
+On the LHS, we get $$(b+1)S_b - \binom{b+1}{2}S_{b-1} + \cdots \mp \binom{b+1}{b-1}S_2 \pm (b+1)S_1 \mp S_0$$
 
 Then, knowing all $S_c$ for $c < b$, we can solve for $S_b$.
 
 \begin{gather*}
-\binom{b+1}{1}S_b - \binom{b+1}{2}S_{b-1} + \cdots \mp \binom{b+1}{b-1}S_2 \pm \binom{b+1}{b}S_1 \mp S_0 = n^{b+1}\\[0.5em]
-\implies S_b  = \frac{n^{b+1} + \binom{b+1}{2}S_{b-1} - \cdots \pm \binom{b+1}{b-1}S_2 \mp b S_1 \pm S_0}{b+1}
+(b+1)S_b - \binom{b+1}{2}S_{b-1} + \cdots \mp \binom{b+1}{b-1}S_2 \pm (b+1)S_1 \mp S_0 = n^{b+1}\\[0.5em]
+\implies S_b  = \frac{n^{b+1} + \binom{b+1}{2}S_{b-1} - \cdots \pm \binom{b+1}{b-1}S_2 \mp (b+1) S_1 \pm S_0}{b+1}
 \end{gather*}
 
 Now that we have a way of generating every $S_b$, we can use that to prove Conjecture~\ref{conj:fa_sum}. It's actually remarkably simple.
 
-\subsection{Proving Conjecture~\ref{conj:fa_sum}}
+\subsection{Proving The Conjecture}
 
-Let's reuse our example and backtrack a little to when we had $4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4$. This equation is all we need. We don't even need to know any sum formulas.
-
-We can just expand the $S_b$ terms to their equivalent sums and use Lemmas~\ref{lem:add}~and~\ref{lem:mult} to manipulate this.
+Let's reuse our example and backtrack a little to when we had $4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4$. This equation is all we need. We don't even need to know any sum formulas. We can just expand the $S_b$ terms to their equivalent sums and use Lemmas~\ref{lem:add}~and~\ref{lem:mult} to manipulate this.
 \begin{gather*}
 4S_3 - 6S_2 + 4S_1 - 1S_0 = n^4\\[0.5em]
 \implies 4 \sn r^3 - 6 \sn r^2 + 4 \sn r^1 - 1 \sn r^0 = n^4\\[0.5em]
@@ -311,10 +312,10 @@ This is exactly $f_4(r)$. This process can be used to find any $S_b$, and thus w
 
 In our process of generating $S_b$, $a = b + 1$. We can use this to rewrite the equation in terms of $a$.
 \begin{gather*}
-\binom{a}{1}S_{a-1} - \binom{a}{2}S_{a-2} + \cdots \mp \binom{a}{a-2}S_2 \pm \binom{a}{a-1}S_1 \mp S_0 = n^a\\[0.5em]
-\implies \binom{a}{1} \sn r^{a-1} - \binom{a}{2} \sn r^{a-2} + \cdots \mp \binom{a}{a-2} \sn r^2 \pm \binom{a}{a-1} \sn r \mp \sn 1 = n^a\\[0.5em]
-\implies \sn \binom{a}{1} r^{a-1} + \sn -\binom{a}{2} r^{a-2} + \cdots + \sn \mp \binom{a}{a-2} r^2 + \sn \pm \binom{a}{a-1} r + \sn \mp 1 = n^a\\[0.5em]
-\implies \sn \left( \binom{a}{1} r^{a-1} - \binom{a}{2} r^{a-2} + \cdots \mp \binom{a}{a-2} r^2 \pm \binom{a}{a-1} r \mp 1 \right) = n^a\\[0.5em]
+aS_{a-1} - \binom{a}{2}S_{a-2} + \cdots \mp \binom{a}{a-2}S_2 \pm aS_1 \mp S_0 = n^a\\[0.5em]
+\implies a \sn r^{a-1} - \binom{a}{2} \sn r^{a-2} + \cdots \mp \binom{a}{a-2} \sn r^2 \pm a \sn r \mp \sn 1 = n^a\\[0.5em]
+\implies \sn a r^{a-1} + \sn -\binom{a}{2} r^{a-2} + \cdots + \sn \mp \binom{a}{a-2} r^2 + \sn \pm a r + \sn \mp 1 = n^a\\[0.5em]
+\implies \sn \left( a r^{a-1} - \binom{a}{2} r^{a-2} + \cdots \mp \binom{a}{a-2} r^2 \pm a r \mp 1 \right) = n^a\\[0.5em]
 \therefore \sn (r^a - (r-1)^a) = n^a
 \end{gather*}
 
@@ -324,7 +325,7 @@ Thus, we have proven Conjecture~\ref{conj:fa_sum}.
 
 \section{Conclusion}
 
-I first did that challenge question months ago. This conjecture has bugged me since I first posited it, but I hadn't properly looked into it until recently, and when I did, I could prove it quite quickly. I quite like this proof, and it is quite elegant in my eyes. I think the reason I didn't find it sooner was because I assumed the problem to be harder than it was. I assumed I'd have to find a general formula for $\sn r^b$, and then I'd have to manipulate it in quite a complicated proof, but this recurrence relation thing to generate $S_b$ is beautiful, because $f_a(r)$ just falls out of it.
+I first did that challenge question months ago. This conjecture has bugged me since I first posited it, but I hadn't properly looked into it until recently, and when I did, I could prove it quite easily. I quite like this proof, and it is quite elegant in my eyes. I think the reason I didn't find it sooner was because I assumed the problem to be harder than it was. I assumed I'd have to find a general formula for $\sn r^b$, and then I'd have to manipulate it in quite a complicated proof, but this recurrence relation thing to generate $S_b$ is beautiful, because $f_a(r)$ just falls out of it.
 
 I assume there's a name for this polynomial $f_a(r)$ in the context of these sums, where $\sn f_a(r) = n^a$, but I don't know what it's called. So for now, I'm going to call it the Dyson Sum Function.
 

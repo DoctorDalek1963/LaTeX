@@ -1,0 +1,258 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{gensymb}
+\usepackage[nodayofweek]{datetime}
+
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usetikzlibrary{decorations.pathreplacing}
+
+\usetikzlibrary{math}
+\tikzmath{
+	\rt = sqrt(3);
+}
+\tikzset{/tkzmkangle/mark=none}
+
+% Set size of text area with total parameter
+\usepackage[a4paper, total={135mm, 255mm}]{geometry}
+
+\title{A Circle and a Hexagon}
+\author{Dyson}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% Set paragraph spacing here to avoid messing with title
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+This question places a unit circle tangent to a hexagon and a line, and asks for the side length $\ell$ of the hexagon.
+
+\vspace{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\coordinate (A) at (0,0);
+\coordinate (B) at (2,0);
+\coordinate (C) at (3,{\rt});
+\coordinate (D) at (2,{2*\rt});
+\coordinate (E) at (0,{2*\rt});
+\coordinate (F) at (-1,{\rt});
+
+\coordinate (G) at ({6*cos(30)},{6*sin(30)});
+\coordinate (H) at (6,0);
+\coordinate (I) at ({2+\rt},1);
+\coordinate (J) at ({2+\rt},0);
+
+\coordinate (K) at ({2+\rt/2},1.5);
+\coordinate (L) at ({3+(-3+2*\rt)/2},{(2+\rt)/2});
+
+\draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
+\draw (G) -- (A);
+\draw (B) -- (H);
+
+\draw (I) circle[radius=1];
+\draw (I) -- node[above] {1} ({1+\rt},1);
+
+\draw[decorate,decoration={brace,amplitude=10pt,mirror,raise=3pt}] (A) -- node[below,yshift=-0.38cm] {$\ell$} (B);
+\end{tikzpicture}
+\hspace{\fill}
+\vspace{0.5em}
+
+We can begin by drawing some of the radii of this circle. We can observe that the interior angle of the hexagon is $120\degree$ and thus find the other angle on the straight line to be $60\degree$.
+
+\vspace{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=1.5]
+\draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
+\draw (G) -- (A);
+\draw (B) -- (H);
+
+\draw (I) circle[radius=1];
+
+\draw (I) -- (J);
+\draw (I) -- (K);
+\draw (I) -- (L);
+
+\tkzMarkAngle[size=0.2](C,B,A);
+\tkzLabelAngle[pos=0.37](C,B,A){$120\degree$};
+\tkzMarkAngle[size=0.2](J,B,C);
+\tkzLabelAngle[pos=0.42](J,B,C){$60\degree$};
+\end{tikzpicture}
+\hspace{\fill}
+\vspace{0.5em}
+
+We can get rid of the hexagon and the circle, because we now only care about the kites and triangles.
+
+\vspace{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=2.5]
+% We're redefining the coordinates again here ∵ we're changing the scale option of the tikzpicture
+\coordinate (A) at (0,0);
+\coordinate (B) at (2,0);
+\coordinate (C) at (3,{\rt});
+\coordinate (D) at (2,{2*\rt});
+\coordinate (E) at (0,{2*\rt});
+\coordinate (F) at (-1,{\rt});
+
+\coordinate (I) at ({2+\rt},1);
+\coordinate (J) at ({2+\rt},0);
+
+\coordinate (K) at ({2+\rt/2},1.5);
+\coordinate (L) at ({3+(-3+2*\rt)/2},{(2+\rt)/2});
+
+\draw (A) -- (B) -- (C);
+\draw (L) -- (A);
+\draw (B) -- (J);
+
+\draw (I) -- (J);
+\draw (I) -- (K);
+\draw (I) -- (L);
+
+\tkzMarkAngle[size=0.2](C,B,A);
+\tkzLabelAngle[pos=0.33](C,B,A){$120\degree$};
+\tkzMarkAngle[size=0.2](J,B,C);
+\tkzLabelAngle[pos=0.38](J,B,C){$60\degree$};
+
+\tkzMarkRightAngle[size=0.1](I,J,B);
+\tkzMarkRightAngle[size=0.1](I,K,B);
+\tkzMarkRightAngle[size=0.1](I,L,C);
+\tkzMarkRightAngle[size=0.1](I,K,C);
+\end{tikzpicture}
+\hspace{\fill}
+\vspace{0.5em}
+
+We know that the two line segments either side of the $120\degree$ angle are $\ell$, so this triangle is isosceles. That means the other two angles are $30\degree$.
+
+We can also find the angle opposite $60\degree$ to be $120\degree$ because we know all the other angles in the kite.
+
+At the top, we know the angle in the isosceles triangle is $30\degree$, so the other angle on this straight line must be $150\degree$. We can also then find its opposite angle to be $30\degree$ by angles in a kite again.
+
+\vspace{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=2.5]
+\draw (A) --     (B) -- (C);
+\draw (L) -- (A);
+\draw (B) -- (J);
+
+\draw (I) -- node[right]{1} (J);
+\draw (I) -- node[xshift=-0.15cm,yshift=-0.15cm]{1} (K);
+\draw (I) -- node[xshift=0.15cm,yshift=0.15cm]{1} (L);
+
+\tkzMarkAngle[size=0.2](C,B,A);
+\tkzLabelAngle[pos=0.33](C,B,A){$120\degree$};
+\tkzMarkAngle[size=0.2](J,B,C);
+\tkzLabelAngle[pos=0.38](J,B,C){$60\degree$};
+
+\tkzMarkRightAngle[size=0.1](I,J,B);
+\tkzMarkRightAngle[size=0.1](I,K,B);
+\tkzMarkRightAngle[size=0.1](I,L,C);
+\tkzMarkRightAngle[size=0.1](I,K,C);
+
+\tkzMarkAngle[size=0.3](B,A,C);
+\tkzLabelAngle[pos=0.47](B,A,C){$30\degree$};
+\tkzMarkAngle[size=0.3](A,C,B);
+\tkzLabelAngle[pos=0.47](A,C,B){$30\degree$};
+
+\tkzMarkAngle[size=0.2](K,I,J);
+\tkzLabelAngle[pos=0.37](K,I,J){$120\degree$};
+
+\tkzMarkAngle[size=0.1](K,C,L);
+\tkzLabelAngle[pos=0.22](K,C,L){$150\degree$};
+\tkzMarkAngle[size=0.24](L,I,K);
+\tkzLabelAngle[pos=0.4](L,I,K){$30\degree$};
+\end{tikzpicture}
+\hspace{\fill}
+\vspace{0.5em}
+
+We can then split the larger kite into two identical triangles and examine one.
+
+\vspace{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=2.5]
+\draw (A) -- (B) -- (C);
+\draw (L) -- (A);
+\draw (B) -- node[below]{$a$} (J);
+
+\draw (I) -- node[right]{1} (J);
+\draw (I) -- (K);
+\draw (I) -- (L);
+
+\draw[dashed] (B) -- node[above]{$b$} (I);
+
+\tkzMarkRightAngle[size=0.1](I,J,B);
+
+\tkzMarkAngle[size=0.3](J,B,I);
+\tkzLabelAngle[pos=0.44](J,B,I){$30\degree$};
+\tkzMarkAngle[size=0.25](B,I,J);
+\tkzLabelAngle[pos=0.36](B,I,J){$60\degree$};
+\end{tikzpicture}
+\hspace{\fill}
+\vspace{0.5em}
+
+We can use the sine rule to find $a$ and $b$ like so.
+\begin{gather*}
+\frac{1}{\sin 30\degree} = \frac{a}{\sin 60\degree} = \frac{b}{\sin 90\degree}\\[0.5em]
+\implies a = \frac{\sin 60\degree}{\sin 30\degree} = \sqrt{3}\\[0.5em]
+\implies b = \frac{\sin 90\degree}{\sin 30\degree} = 2
+\end{gather*}
+
+Now, we can examine our diagram once more and see that we have the length $\ell$ split between two line segments. We can call these two smaller lengths $\ell_1$ and $\ell_2$.
+
+\vspace{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=2.5]
+\draw (B) -- node[right,yshift=-0.1cm]{$\ell_1$} (K) -- node[right,yshift=-0.1cm]{$\ell_2$} (C);
+\draw (L) -- (C);
+\draw (B) -- (J);
+
+\draw (I) -- (J);
+\draw (I) -- (K);
+\draw (I) -- (L);
+
+\draw[decorate,decoration={brace,amplitude=10pt,raise=4pt}] (B) -- node[xshift=-0.57cm,yshift=0.37cm]{$\ell$} (C);
+
+\draw[dashed] (B) -- (I);
+\end{tikzpicture}
+\hspace{\fill}
+\vspace{0.5em}
+
+Since the two triangles of the larger kite are identical, we know that $\ell_1 = \sqrt{3}$. We can find $\ell_2$ by the same process with the other kite.
+
+\vspace{0.5em}
+\hspace{\fill}
+\begin{tikzpicture}[scale=5]
+% We're redefining the coordinates again here ∵ we're changing the scale option of the tikzpicture
+\coordinate (C) at (3,{\rt});
+
+\coordinate (I) at ({2+\rt},1);
+
+\coordinate (K) at ({2+\rt/2},1.5);
+\coordinate (L) at ({3+(-3+2*\rt)/2},{(2+\rt)/2});
+
+\draw (I) -- node[xshift=-0.15cm,yshift=-0.15cm]{1} (K) -- node[xshift=-0.2cm,yshift=0.2cm]{$\ell_2$} (C) -- (L) -- cycle;
+
+\draw[dashed] (I) -- (C);
+
+\tkzMarkRightAngle[size=0.06](C,K,I);
+
+\tkzMarkAngle[size=0.08](K,C,I);
+\tkzLabelAngle[pos=0.13](K,C,I){$75\degree$};
+\tkzMarkAngle[size=0.35](C,I,K);
+\tkzLabelAngle[pos=0.42](C,I,K){$15\degree$};
+\end{tikzpicture}
+\hspace{\fill}
+\vspace{0.5em}
+
+Again, using the sine rule, we find that
+\begin{gather*}
+\frac{1}{\sin 75\degree} = \frac{\ell_2}{\sin 15\degree}\\[0.5em]
+\implies \ell_2 = \frac{\sin 15\degree}{\sin 75\degree} = 2 - \sqrt{3}
+\end{gather*}
+
+Therefore, $$\ell = \ell_1 + \ell_2 = \sqrt{3} + 2 - \sqrt{3} = 2$$
+\hspace{\fill}$\square$
+
+\end{document}

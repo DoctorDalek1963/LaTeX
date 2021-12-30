@@ -34,7 +34,7 @@
 
 \section{The Problem}
 
-The challenge question in Exercise 3B of the Edexcel AS and A Level Further Maths Core book is about polynomials that sum to pure powers of $n$.
+The challenge question in Exercise 3B of the Edexcel AS and A Level Further Maths Core Pure 1 book is about polynomials that sum to pure powers of $n$.
 
 Part $a$ of this question asks for polynomials $f_2(x)$, $f_3(x)$, $f_4(x)$ such that for every $n \inn$, $n > 1$,
 \begin{gather*}
@@ -118,6 +118,14 @@ We know that $\sn f_2(r) = n^2$, so we simply need to subtract $\frac{3}{2}f_2(r
 \therefore f_3(r) = 3r^2 - 3r + 1
 \end{gather*}
 
+We can show that this is true, just to be sure of it.
+\begin{gather*}
+\sn (3r^2 - 3r + 1) = 3 \sn r^2 - 3 \sn r + \sn 1\\[0.5em]
+= \frac{1}{2} n(n + 1)(2n + 1) - \frac{3}{2} n(n+1) + n\\[0.5em]
+= \frac{1}{2} \left( 2n^3 + 3n^2 + n - 3n^2 - 3n + 2n \right)\\[0.5em]
+= \frac{1}{2} \left( 2n^3  \right) = n^3
+\end{gather*}
+
 \subsection{Finding $f_4(r)$}
 
 Next, we want a polynomial $f_4(r)$ such that $\sn f_4(r) = n^4$.
@@ -138,7 +146,18 @@ We can then get $n^4$ on its own by subtracting $2f_3(r)$ and $f_2(r)$ from $4r^
 \therefore f_4(r) = 4r^3 - 6r^2 + 4r - 1
 \end{gather*}
 
-\section{Finding Patterns}
+Likewise, we can show that this is true to convince ourselves that this process works.
+\begin{gather*}
+\sn (4r^3 - 6r^2 + 4r - 1) = 4 \sn r^3 - 6 \sn r^2 + 4 \sn r - \sn 1\\[0.5em]
+= n^2(n + 1)^2 - n(n + 1)(2n + 1) + 2n(n + 1) - n\\[0.5em]
+= n^4 + 2n^3 + n^2 - 2n^3 - 3n^2 - n + 2n^2 + 2n - n\\[0.5em]
+= n^4 + \cancel{2n^3} - \cancel{2n^3} + \cancel{3n^2} - \cancel{3n^2} + \cancel{2n} - \cancel{2n}\\[0.5em]
+= n^4
+\end{gather*}
+
+\newpage
+
+\section{Conjectures}
 
 We can find $f_1(r)$, where $\sn f_1(r) = n^1 = n$ to trivially be $1$.
 
@@ -154,32 +173,19 @@ After looking at these for a while, we can notice a few things. Firstly, the con
 
 Secondly, we can notice that the first term of $f_a(r)$ is always of the form $ar^{a-1}$.
 
-However, the most interesting thing to notice with these polynomials is that the coefficients look like binomial expansions of $(r-1)^a$, albeit with the leading term removed and the signs flipped.
+However, the most interesting thing to notice with these polynomials is that the coefficients look like binomial expansions of $(r-1)^a$, albeit with the leading term removed and all the signs flipped.
 
-We can continue this pattern to make a conjecture about $f_5(r)$.
+We can continue this pattern to make a conjecture about $f_5(r)$. However, this notation of $f_a(r)$ is just for convenience and it doesn't make sense to directly conjecture about what $f_5(r)$ should be, so let's conjecture about its sum to $n$.
 \begin{conjecture}
-$f_5(r) = 5r^4 - 10r^3 + 10r^2 - 5r + 1$
+$\forall n \inn,\ n > 1,\ \sn (5r^4 - 10r^3 + 10r^2 - 5r + 1) = n^5$
 \label{conj:f5}
 \end{conjecture}
 
-To conjecture a general form, we have to think about how we go from $(r-1)^a$ to these polynomials.
-
-Lets look at the example of $f_4(r)$. $$(r-1)^4 = r^4 - 4r^3 + 6r^2 - 4r + 1$$
-
-We have the change the signs of all of these, so we get $$-(r-1)^4 = -r^4 + 4r^3 - 6r^2 + 4r - 1$$ Then we have to remove the leading $-r^4$ and we get $-(r-1)^4 + r^4$, or more simply, $r^4 - (r-1)^4$.
-
-This form of $r^a - (r-1)^a$ gives the results seen previously for $f_a(r)$, so we can conjecture that this pattern continues for all $a \in \zp$.\footnote{$\zp$ is simply the set of positive integers, not including 0. This is simpler than writing $a \inn,\ a > 0$.}
-
-Rather than conjecturing about $f_a(r)$, we want to conjecture about its sum to $n$.
-\begin{conjecture}
-$\displaystyle \forall\ a, n \in \zp,\ n > 1,\ \sn \left(r^a - (r - 1)^a\right) = n^a$
-\label{conj:fa_sum}
-\end{conjecture}
+Let's first try to prove this conjecture, and if it's true, then we can form a general conjecture for any $f_a(r)$.
 
 \subsection{Proving Conjecture~\ref{conj:f5}}
 
 In order to prove Conjecture~\ref{conj:f5}, we need to know the formula for $\sn r^4$. Wolfram Alpha says:
-
 \begin{lemma}
 $\displaystyle \sn r^4 = \oo{30}n(n + 1)(2n + 1)\left(3n^2 + 3n - 1\right)$
 \label{lem:sum_r4}
@@ -200,13 +206,35 @@ f_5(r) = 5r^4 - \frac{5}{2}f_4(r) - \frac{5}{3}f_3(r) + \oo{6}f_1(r)\\[0.5em]
 = 5r^4 - 10r^3 + 10r^2 - 5r + 1
 \end{gather*}
 
-This proves Conjecture~\ref{conj:f5}.
+This shows that our previous process generates the same polynomial as the pattern would suggest. To actually prove Conjecture~\ref{conj:f5}, let's test its sum and see if it gives $n^5$, as predicted.
+\begin{gather*}
+\sn (5r^4 - 10r^3 + 10r^2 - 5r + 1) = 5 \sn r^4 - 10 \sn r^3 + 10 \sn r^2 - 5 \sn r + \sn 1\\[0.5em]
+= \frac{1}{6} n(n + 1)(2n + 1)\left(3n^2 + 3n - 1\right) - \frac{10}{4} n^2(n + 1)^2 + \frac{10}{6} n(n + 1)(2n + 1) - \frac{5}{2} n(n + 1) + n\\[0.5em]
+= \frac{1}{6}\left( n(n + 1)(2n + 1)\left(3n^2 + 3n - 1\right) - 15n^2(n + 1)^2 + 10n(n + 1)(2n + 1) - 15n(n+1) + 6n \right)\\[0.5em]
+= \frac{1}{6}\left( 6n^5 + \cancel{15n^4} + 10n^3 - n - \cancel{15n^4} - 30n^3 - 15n^2 + 20n^3 + 30n^2 + 10n - 15n^2 - 15n + 6n \right)\\[0.5em]
+= \frac{1}{6}\left( 6n^5 + \cancel{30n^3} - \cancel{30n^3} + \cancel{30n^2} - \cancel{30n^2} + \cancel{16n} - \cancel{16n} \right)\\[0.5em]
+= \frac{1}{6}\left( 6n^5 \right) = n^5
+\end{gather*}
 
-However, to prove Conjecture~\ref{conj:fa_sum}, we need to find more patterns.
+\subsection{A general conjecture}
 
-\vspace{\fill} % This just puts the footnote at the bottom of the page
+To conjecture a general form, we have to think about how we go from $(r-1)^a$ to these polynomials.
 
-\section{Finding Patterns (again)}
+Lets look at the example of $f_4(r)$. We want $$4r^3 - 6r^2 + 4r - 1$$ but $(r-1)^4$ gives us $$r^4 - 4r^3 + 6r^2 - 4r + 1$$
+
+We have the change the signs of every term, so we get $$-(r-1)^4 = -r^4 + 4r^3 - 6r^2 + 4r - 1$$ Then we have to remove the leading $-r^4$ and we get $-(r-1)^4 + r^4$, or more simply, $r^4 - (r-1)^4$.
+
+This form of $r^a - (r-1)^a$ gives the results seen previously for $f_a(r)$, so we can conjecture that this pattern continues for all $a \in \zp$.\footnote{$\zp$ is simply the set of positive integers, not including 0. This is simpler than writing $a \inn,\ a > 0$.}
+
+But again, we don't want to directly conjecture about $f_a(r)$,  so we conjecture about its sum to $n$.
+\begin{conjecture}
+$\displaystyle \forall\ a, n \in \zp,\ n > 1,\ \sn \left(r^a - (r - 1)^a\right) = n^a$
+\label{conj:fa_sum}
+\end{conjecture}
+
+\vspace*{\fill} % Put the footnote at the bottom of the page
+
+\section{Finding Patterns}
 
 Let's look at sums of powers of $r$. By Lemmas~\ref{lem:sum_1}~to~\ref{lem:sum_r4}, we have
 \begin{alignat*}{3}
@@ -219,9 +247,9 @@ Let's look at sums of powers of $r$. By Lemmas~\ref{lem:sum_1}~to~\ref{lem:sum_r
 
 I can't see much of a pattern here, but the first term of $\sn r^b$ always seems to be $\oo{b+1}n^{b+1}$ and the second term always seems to be $\oo{2}n^{b}$, except in the case of $b = 0$.
 
-I don't think I would able to find a formula for $\sn r^b$ on my own, but in doing some research on this topic, I found Faulhaber's formula on a wiki page on brilliant.org\cite{brilliant.org-sums-wiki}. I shall rewrite the formula here. $$\sn r^b = \oo{b+1} \sum_{j=0}^b (-1)^j \binom{b+1}{j} B_j n^{b+1-j}$$ where $B_j$ is the $j$th Bernoulli number.
+I don't think I would able to find a formula for $\sn r^b$ on my own, but in doing some research on this topic, I first came across Faulhaber's formula on a wiki page on brilliant.org\cite{brilliant.org-sums-wiki}. I shall rewrite the formula here. $$\sn r^b = \oo{b+1} \sum_{j=0}^b (-1)^j \binom{b+1}{j} B_j n^{b+1-j}$$ where $B_j$ is the $j$th Bernoulli number.
 
-In doing further research, I found that this is where the Bernoulli numbers were originally found by Jacob Bernoulli in \textit{Ars Conjectandi}, published in 1713. He was trying to find a general formula for $\sn r^b$ and found these numbers. He could not relate them to any previously known sequence, and de Moivre named them after him. And Jacob Bernoulli mentioned Faulhaber by name in \textit{Ars Conjectandi}.\cite{wikipedia-bernoulli-numbers}
+In doing further research, I found that this is where the Bernoulli numbers were originally found by Jacob Bernoulli in \textit{Ars Conjectandi}, published in 1713. He was trying to find a general formula for $\sn r^b$ and found these numbers. He could not relate them to any previously known sequence, and de Moivre named them after him. And Jacob Bernoulli mentioned Faulhaber by name in \textit{Ars Conjectandi}, referencing his previous work in the area.\cite{wikipedia-bernoulli-numbers}
 
 People have wondered about this problem long before me, and this is where the famous Bernoulli numbers originally came from.
 
@@ -229,7 +257,7 @@ Bernoulli might have written $\sn r^b$ as $$\sn r^b = \sum_{r=0}^b \frac{B_r}{r!
 
 \section{Proving Conjecture~\ref{conj:fa_sum}}
 
-I expected proving Conjecture~\ref{conj:fa_sum} to be hard, but it's actually quite easy and doesn't require the Bernoulli numbers at all. I got these ideas from a phenomenal Mathologer video\cite{mathologer-power-sums}, in which Burkard talks about Bernoulli's attempts to find a general formula for $\sn r^b$, but not before showing off a beautiful recurrence relation for finding these formulas.
+I expected proving Conjecture~\ref{conj:fa_sum} to be hard, but it's actually quite easy and doesn't require the Bernoulli numbers at all. I got these ideas from a phenomenal Mathologer video\cite{mathologer-power-sums}, in which Burkard (the presenter) talks about Bernoulli's attempts to find a general formula for $\sn r^b$, but not before showing off a beautiful recurrence relation for finding these formulas.
 
 I am incredibly thankful for Burkard and the people at Mathologer for producing such wonderful and engaging mathematical content. They have definitely helped to foster my love of mathematics, and I highly recommend the channel to anyone with an interest in maths. Anyway, onto the proof.
 
@@ -315,8 +343,14 @@ In our process of generating $S_b$, $a = b + 1$. We can use this to rewrite the 
 aS_{a-1} - \binom{a}{2}S_{a-2} + \cdots \mp \binom{a}{a-2}S_2 \pm aS_1 \mp S_0 = n^a\\[0.5em]
 \implies a \sn r^{a-1} - \binom{a}{2} \sn r^{a-2} + \cdots \mp \binom{a}{a-2} \sn r^2 \pm a \sn r \mp \sn 1 = n^a\\[0.5em]
 \implies \sn a r^{a-1} + \sn -\binom{a}{2} r^{a-2} + \cdots + \sn \mp \binom{a}{a-2} r^2 + \sn \pm a r + \sn \mp 1 = n^a\\[0.5em]
-\implies \sn \left( a r^{a-1} - \binom{a}{2} r^{a-2} + \cdots \mp \binom{a}{a-2} r^2 \pm a r \mp 1 \right) = n^a\\[0.5em]
-\therefore \sn (r^a - (r-1)^a) = n^a
+\implies \sn \left( a r^{a-1} - \binom{a}{2} r^{a-2} + \cdots \mp \binom{a}{a-2} r^2 \pm a r \mp 1 \right) = n^a
+\end{gather*}
+
+We want to show that this expression in the sum on the LHS is $r^a - (r-1)^a$, so we can just expand this binomial and show that it's equal to the expression in the sum.
+\begin{gather*}
+r^a - (r-1)^a = \cancel{r^a} - \cancel{r^a} + ar^{a-1} - \binom{a}{2} r^{a-2} + \cdots \mp \binom{a}{a-2} r^2 \pm a r \mp 1\\[0.5em]
+\therefore \sn \left( a r^{a-1} - \binom{a}{2} r^{a-2} + \cdots \mp \binom{a}{a-2} r^2 \pm a r \mp 1 \right) = \sn \left( r^a - (r-1)^a \right)\\[0.5em]
+\therefore \sn \left( r^a - (r-1)^a \right) = n^a
 \end{gather*}
 
 Thus, we have proven Conjecture~\ref{conj:fa_sum}.
@@ -325,11 +359,9 @@ Thus, we have proven Conjecture~\ref{conj:fa_sum}.
 
 \section{Conclusion}
 
-I first did that challenge question months ago. This conjecture has bugged me since I first posited it, but I hadn't properly looked into it until recently, and when I did, I could prove it quite easily. I quite like this proof, and it is quite elegant in my eyes. I think the reason I didn't find it sooner was because I assumed the problem to be harder than it was. I assumed I'd have to find a general formula for $\sn r^b$, and then I'd have to manipulate it in quite a complicated proof, but this recurrence relation thing to generate $S_b$ is beautiful, because $f_a(r)$ just falls out of it.
+This challenge question is the first question that's inspired me to do proper research on a topic that I didn't know much about at the time, and then write up a full paper on it. Originally, this paper just answered the original question and posited Conjecture~\ref{conj:fa_sum}, and I was going to leave it at that because I assumed I didn't have the tools to prove it at the time. But then when I actually looked into it, the proof basically fell out of a recurrence relationship between sums. All I had to do was make that proof rigorous.
 
-I assume there's a name for this polynomial $f_a(r)$ in the context of these sums, where $\sn f_a(r) = n^a$, but I don't know what it's called. So for now, I'm going to call it the Dyson Sum Function.
-
-Humility? Sorry, I don't know what that is.
+I assume there's a name for this polynomial $f_a(r)$ in the context of these sums, where $\sn f_a(r) = n^a$, but I don't know what it's called. So for now, I'm going to claim this little corner of mathematics for myself. In the context of these sums, I will call it the \textit{Dyson Sum Function}.
 
 \printbibliography
 

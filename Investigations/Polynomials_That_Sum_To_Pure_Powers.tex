@@ -363,6 +363,36 @@ This challenge question is the first question that's inspired me to do proper re
 
 I assume there's a name for this polynomial $f_a(r)$ in the context of these sums, where $\sn f_a(r) = n^a$, but I don't know what it's called. So for now, I'm going to claim this little corner of mathematics for myself. In the context of these sums, I will call it the \textit{Dyson Sum Function}.
 
+\section{Post Conclusion}
+
+Maybe this section should be a separate paper. But it should be quite short, so I'm going to try to fit it here.
+
+I put this post\cite{math-stackex-post} on the Mathematics StackExchange forum to see if this function had a name, and I ended up learning about finite differences\cite{wikipedia-finite-difference} on Wikipedia and after some playing around, I discovered what feels like a very fundamental fact: $$\sn (f(r) - f(r-1)) \equiv f(n) - f(0)\ \forall\ n \in \zp,\ n > 1$$ And, more generally: $$\sum\limits_{r=j}^{k} (f(r) - f(r-1)) \equiv f(k) - f(j - 1)\ \forall\ j, k \in \mathbb{Z},\ k > j$$
+
+I will prove this identity, but we can see that if it's true, then Conjecture~\ref{conj:fa_sum} must also be true. If we let $f(r) = r^a$, then this fact would show that its sum to $n$ equals $n^a - 0^a = n^a$. Simple. So, let's prove this general identity.
+
+First, we will simply write out the sum.
+\begin{gather*}
+\sum\limits_{r=j}^{k} (f(r) - f(r-1))\\[0.5em]
+= f(j) - f(j-1) + f(j+1) - f(j) + f(j+2) - f(j+1) + f(j+3) - f(j+2) + \cdots\\[0.5em]
++ f(k-3) - f(k-4) + f(k-2) - f(k-3) + f(k-1) - f(k-2) + f(k) - f(k-1)
+\end{gather*}
+
+This sum is an example of a finite telescoping series\cite{wikipedia-telescoping-series}, meaning all the terms in the middle will cancel with each other, which we can see.
+\begin{gather*}
+\cancel{f(j)} - f(j-1) + \cancel{f(j+1)} - \cancel{f(j)} + \cancel{f(j+2)} - \cancel{f(j+1)} + \cancel{f(j+3)} - \cancel{f(j+2)} + \cdots\\[0.5em]
++ \cancel{f(k-3)} - \cancel{f(k-4)} + \cancel{f(k-2)} - \cancel{f(k-3)} + \cancel{f(k-1)} - \cancel{f(k-2)} + f(k) - \cancel{f(k-1)}\\[0.5em]
+= f(k) - f(j-1)
+\end{gather*}
+
+What remains is $f(k) - f(j-1)$, which is exactly what we wanted.
+
+This identity is true for any function with a single real input. I assume it's useful somewhere, and I'm probably not the first person to find this, but it is a really nice identity.
+
+Also, the obfuscated form of my initial Conjecture~\ref{conj:fa_sum} is really pretty. It's the kind of really nerdy thing that I'd get a tattoo of. $$\sn \nabla_1[\lambda x.x^a](r) \equiv n^a$$
+
+I just wanted to put that in somewhere even though it's not really relevant. It just looks really nice, and uses some lambda calculus\cite{wikipedia-lambda-calculus} notation, which I really like. Anyway, I think I've now proven the most general form of this conjecture, so I'm going to leave it here.
+
 \printbibliography
 
 \end{document}

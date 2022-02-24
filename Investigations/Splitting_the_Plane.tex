@@ -112,7 +112,7 @@ We will now assume that if $k$ non-parallel lines cut the plane into $r$ regions
 
 We will start by showing the minimum number of regions for $k + 1$ lines. We are going to start with $k$ lines and add one more, so we start with $2k$ regions, as shown in the left circle here with $k = 3$.
 
-Note that all the lines pass through a central point. This intersection point is shared by all the lines and is the only intersection point here. When we add our $(k + 1)$th line, we also want it to pas through this point to minimise how many new regions we create. When it does, it must cut through exactly two regions, turning two regions into four and giving us two new regions. Therefore, the minimum number of regions for $k + 1$ lines is $2k + 2 = 2(k + 1)$, as expected.
+Note that all the lines pass through a central point. This intersection point is shared by all the lines and is the only intersection point here. When we add our $(k + 1)$th line, we also want it to pass through this point to minimise how many new regions we create. When it does, it must cut through exactly two regions, turning two regions into four and giving us two new regions. Therefore, the minimum number of regions for $k + 1$ lines is $2k + 2 = 2(k + 1)$, as expected.
 
 \begin{figure}[h]
 \centering
@@ -242,7 +242,7 @@ So when we combine these two to create a diagram with 3 total lines, we could re
 \end{tikzpicture}
 \end{center}
 
-This line of reasoning continues to hold as we increase the number of lines, so the number of new regions given by the $(k + 1)$th line is $k + 1$. Since the maximum number of regions for $k$ lines is $\half(k^2 + k + 2)$, the maximum number for $k + 1$ lines is $\hexpr{k} + k + 1$.
+This line of reasoning continues to hold as we increase the number of lines, so the number of new regions given by the $(k + 1)$th line is $k + 1$. Since the maximum number of regions for $k$ lines is $\half(k^2 + k + 2)$, the maximum number for $k + 1$ lines is $\hexpr{k} + (k + 1)$.
 
 This can be simplified down like so: \[\half(k^2 + k + 2 + 2(k + 1)) = \half(k^2 + 3k + 4) = \half((k + 1)^2 + k + 3) = \hexpr{(k + 1)}\] And now we have exactly what we wanted, with $k + 1$ in place of $k$ in the expressions for the minimum and the maximum.
 

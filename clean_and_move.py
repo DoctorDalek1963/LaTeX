@@ -6,7 +6,27 @@ from glob import glob
 from typing import List, Callable, Optional
 import sys
 
-GLOB_EXTENSIONS = ('*.log', '*.aux', '*.dvi', '*.lof', '*.lot', '*.bit', '*.idx', '*.glo', '*.bbl', '*.bcf', '*.ilg', '*.toc', '*.ind', '*.out', '*.blg', '*.fdb_latexmk', '*.fls', '*.run.xml', '*.synctex.gz')
+GLOB_EXTENSIONS = (
+    '*.log',
+    '*.aux',
+    '*.dvi',
+    '*.lof',
+    '*.lot',
+    '*.bit',
+    '*.idx',
+    '*.glo',
+    '*.bbl',
+    '*.bcf',
+    '*.ilg',
+    '*.toc',
+    '*.ind',
+    '*.out',
+    '*.blg',
+    '*.fdb_latexmk',
+    '*.fls',
+    '*.run.xml',
+    '*.synctex.gz'
+)
 
 
 def clean_files(directory: str = None) -> None:
@@ -27,7 +47,7 @@ def move_pdfs(directory: str = None) -> None:
     pdfs = glob(direc + '*.pdf')
 
     for pdf in pdfs:
-        new = direc + 'PDFs' + os.sep + os.path.split(pdf)[-1]
+        new = os.path.join(direc + 'pdfs', os.path.split(pdf)[-1])
 
         try:
             os.remove(new)
@@ -47,10 +67,13 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:  # If no args
         do_all(clean_files)
         do_all(move_pdfs)
+
     elif sys.argv[1] == 'clean':
         do_all(clean_files)
+
     elif sys.argv[1] == 'move':
         do_all(move_pdfs)
+
     else:
         print(f'Unrecognised argument "{sys.argv[1]}"')
         print(f'Usage: ./{sys.argv[0].split(os.sep)[-1]} [ clean | move ]')

@@ -12,6 +12,9 @@
 	\rtwot = sqrt(2)/2;
 	\rthot = sqrt(3)/2;
 }
+\tikzset{
+	asymptote/.style={dashed,semithick}
+}
 
 \usepackage{pgfplots}
 \pgfplotsset{
@@ -106,13 +109,13 @@
 
 			\begin{scope}[thick]
 				\addplot [domain=-6.28:-4.72] {tan(deg(x))};
-				\draw [dashed,semithick] (-4.7124,-4.2) -- (-4.7124,4.2);
+				\draw [asymptote] (-4.7124,-4.2) -- (-4.7124,4.2);
 				\addplot [domain=-4.70:-1.58] {tan(deg(x))};
-				\draw [dashed,semithick] (-1.5708,-4.2) -- (-1.5708,4.2);
+				\draw [asymptote] (-1.5708,-4.2) -- (-1.5708,4.2);
 				\addplot [domain=-1.56:1.56] {tan(deg(x))};
-				\draw [dashed,semithick] (1.5708,-4.2) -- (1.5708,4.2);
+				\draw [asymptote] (1.5708,-4.2) -- (1.5708,4.2);
 				\addplot [domain=1.58:4.70] {tan(deg(x))};
-				\draw [dashed,semithick] (4.7124,-4.2) -- (4.7124,4.2);
+				\draw [asymptote] (4.7124,-4.2) -- (4.7124,4.2);
 				\addplot [domain=4.72:6.28] {tan(deg(x))};
 			\end{scope}
 

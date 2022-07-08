@@ -16,6 +16,9 @@
 	asymptote/.style={dashed,semithick}
 }
 
+% \asymptote command only good for "vertical asymptote axis"
+\newcommand{\asymptote}[1]{\draw [asymptote] (#1,-4.2) -- (#1,4.2);}
+
 \usepackage{pgfplots}
 \pgfplotsset{
 	compat=1.18,
@@ -60,7 +63,14 @@
 			$\frac{1}{2}$,
 			1}
 	},
-	sin cos plot/.style={
+	vertical asymptote axis/.style={
+		normal trig axis,
+		ymax=4.2,
+		ymin=-4.2,
+		ytick={-4,-3,...,4},
+		restrict y to domain=-4.5:4.5
+	},
+	trig plot/.style={
 		domain=-2*\npi:2*\npi,
 		thick
 	}
@@ -88,7 +98,7 @@
 \begin{minipage}{0.5\linewidth}
 	\begin{tikzpicture}
 		\begin{axis}[sin cos axis]
-			\addplot [sin cos plot] {sin(deg(x))};
+			\addplot [trig plot] {sin(deg(x))};
 			\coordinate (title) at (axis cs:0,1.2) {};
 		\end{axis}
 
@@ -98,7 +108,7 @@
 \begin{minipage}{0.5\linewidth}
 	\begin{tikzpicture}
 		\begin{axis}[sin cos axis]
-			\addplot [sin cos plot] {cos(deg(x))};
+			\addplot [trig plot] {cos(deg(x))};
 			\coordinate (title) at (axis cs:0,1.2) {};
 		\end{axis}
 
@@ -108,33 +118,22 @@
 \end{figure}
 
 \begin{figure}[h]
-	\centering
+\centering
+\begin{minipage}{0.5\linewidth}
 	\begin{tikzpicture}
-		\begin{axis}[
-			normal trig axis,
-			ymax=4.2,
-			ymin=-4.2,
-			ytick={-4,-3,...,4},
-			width=0.5\textwidth,
-			height=0.4\textwidth]
-
-			\begin{scope}[thick]
-				\addplot [domain=-6.28:-4.72] {tan(deg(x))};
-				\draw [asymptote] (-4.7124,-4.2) -- (-4.7124,4.2);
-				\addplot [domain=-4.70:-1.58] {tan(deg(x))};
-				\draw [asymptote] (-1.5708,-4.2) -- (-1.5708,4.2);
-				\addplot [domain=-1.56:1.56] {tan(deg(x))};
-				\draw [asymptote] (1.5708,-4.2) -- (1.5708,4.2);
-				\addplot [domain=1.58:4.70] {tan(deg(x))};
-				\draw [asymptote] (4.7124,-4.2) -- (4.7124,4.2);
-				\addplot [domain=4.72:6.28] {tan(deg(x))};
-			\end{scope}
+		\begin{axis}[vertical asymptote axis]
+			\asymptote{-4.7124}
+			\asymptote{-1.5708}
+			\asymptote{1.5708}
+			\asymptote{4.7124}
+			\addplot [trig plot] {tan(deg(x))};
 
 			\coordinate (title) at (axis cs:0,4.2) {};
 		\end{axis}
 
 		\node at (title) [above] {$y = \tan(x)$};
 	\end{tikzpicture}
+\end{minipage}\hfill
 \end{figure}
 
 \end{document}

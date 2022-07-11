@@ -91,6 +91,46 @@
 	\Huge\textbf{Trig Crib Sheet}\normalsize
 \end{center}
 
+\sectitle{Definitions}
+
+\begin{figure}[h]
+\begin{minipage}{0.65\linewidth}
+\centering
+\resizebox{0.8\linewidth}{!}{%
+\begin{tikzpicture}[scale=2.7]
+	\clip (1.5,1.5) rectangle (-0.49,-0.49);
+
+	\coordinate (O) at (0,0);
+	\coordinate (P) at (38:1);
+	\coordinate (I) at (P |- O);
+
+	\draw [step=0.5, gray, ultra thin] (1.49,1.49) grid (-1.49,-1.49);
+
+	\draw (-1.5,0) -- (1.5,0) (0,1.5) -- (0,-1.5);
+	\draw (0,0) circle[radius=1];
+
+	\draw (0,0) -- (P);
+	\draw (P) -- (I);
+
+	\draw (0.2,0) arc[start angle=0, end angle=38, radius=0.2];
+	%\draw (0.1,0) node [anchor=south west] {$\theta$};
+
+	\draw [decorate, decoration={brace, amplitude=8pt, raise=2pt}] (P) -- node [right, xshift=10pt] {$\sin(\theta)$} (I);
+	\draw [decorate, decoration={brace, amplitude=8pt, mirror, raise=2pt}] (O) -- node [below, yshift=-10pt] {$\cos(\theta)$} (I);
+\end{tikzpicture}
+}\end{minipage}\hspace{3ex}
+\begin{minipage}{0.25\linewidth}
+	\large
+	$$\tan\theta = \frac{\sin\theta}{\cos\theta}$$
+	\vspace{1em}
+	$$\sec\theta = \frac{1}{\cos\theta}$$
+	\vspace{1em}
+	$$\csc\theta = \frac{1}{\sin\theta}$$
+	\vspace{1em}
+	$$\cot\theta = \frac{1}{\tan\theta} = \frac{\cos\theta}{\sin\theta}$$
+\end{minipage}
+\end{figure}
+
 \sectitle{Graphs}
 
 \begin{figure}[h]

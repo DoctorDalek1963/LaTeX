@@ -15,8 +15,11 @@
 	asymptote/.style={dashed,semithick}
 }
 
-% \asymptote command only good for "vertical asymptote axis"
+% \verticalAsymptote command only good for "vertical asymptote axis"
 \newcommand{\verticalAsymptote}[1]{\draw [asymptote] (#1,-4.2) -- (#1,4.2);}
+
+\def\cosec{\mathop{\rm cosec}\nolimits}
+
 \newcommand{\diff}[1]{\frac{d}{d #1}}
 \newcommand{\inte}[2]{\int #1 \ d #2}
 
@@ -126,7 +129,7 @@
 	\vspace{1em}
 	$$\sec\theta = \frac{1}{\cos\theta}$$
 	\vspace{1em}
-	$$\csc\theta = \frac{1}{\sin\theta}$$
+	$$\cosec\theta = \frac{1}{\sin\theta}$$
 	\vspace{1em}
 	$$\cot\theta = \frac{1}{\tan\theta} = \frac{\cos\theta}{\sin\theta}$$
 \end{minipage}
@@ -144,7 +147,7 @@
 	$$1 + \tan^2\theta = \sec^2\theta$$
 \end{minipage}\hfill
 \begin{minipage}{0.3\linewidth}
-	$$1 + \cot^2\theta = \csc^2\theta$$
+	$$1 + \cot^2\theta = \cosec^2\theta$$
 \end{minipage}
 \normalsize
 \end{figure}
@@ -161,22 +164,22 @@
 	\vspace{0.5em}
 	$$\diff{x}\sec x = \sec x\tan x$$
 	\vspace{0.5em}
-	$$\diff{x}\csc x = -\csc x\cot x$$
+	$$\diff{x}\cosec x = -\cosec x\cot x$$
 	\vspace{0.5em}
-	$$\diff{x}\cot x = -\csc^2 x$$
+	$$\diff{x}\cot x = -\cosec^2 x$$
 \end{minipage}\hfill
 \begin{minipage}{0.49\linewidth}
 	$$\inte{\sin x}{x} = -\cos x + C$$
 	\vspace{0.5em}
 	$$\inte{\cos x}{x} = \sin x + C$$
 	\vspace{0.5em}
-	$$\inte{\tan x}{x} = \ln(\sec x)+ C$$
+	$$\inte{\tan x}{x} = \ln|\sec x|+ C$$
 	\vspace{0.5em}
-	$$\inte{\sec x}{x} = \ln(\tan x + \sec x) + C$$
+	$$\inte{\sec x}{x} = \ln|\tan x + \sec x| + C$$
 	\vspace{0.5em}
-	$$\inte{\csc x}{x} = -\ln(\cot x + \csc x) + C$$
+	$$\inte{\cosec x}{x} = -\ln|\cot x + \cosec x| + C$$
 	\vspace{0.5em}
-	$$\inte{\cot x}{x} = \ln(\sin x) + C$$
+	$$\inte{\cot x}{x} = \ln|\sin x| + C$$
 \end{minipage}
 \end{figure}
 
@@ -215,7 +218,7 @@
 			\coordinate (title) at (axis cs:0,4.2) {};
 		\end{axis}
 
-		\node at (title) [above] {$y = \csc(x)$};
+		\node at (title) [above] {$y = \cosec(x)$};
 	\end{tikzpicture}
 \end{minipage}
 \end{figure}

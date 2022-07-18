@@ -3,7 +3,9 @@
 \usepackage[UKenglish]{babel}  % UK writing style
 
 % Set size of text area with total parameter
-\usepackage[a4paper, total={185mm, 270mm}]{geometry}
+\usepackage[a4paper, top=15mm, bottom=18mm, left=15mm, right=15mm]{geometry}
+
+\usepackage{float}
 
 \usepackage{tikz}
 \usetikzlibrary{math}
@@ -79,6 +81,12 @@
 		domain=-2*\npi:2*\npi,
 		thick
 	}
+}
+
+\newcommand{\topictitle}[1]{%
+	\begin{center}
+		\Huge\textbf{#1}\normalsize
+	\end{center}
 }
 
 \newcommand{\sectitle}[1]{%

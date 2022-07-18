@@ -1,98 +1,12 @@
 \documentclass[a4paper]{article}
-\usepackage[utf8]{inputenc}
 
 % Set size of text area with total parameter
 \usepackage[a4paper, total={185mm, 270mm}]{geometry}
 
-\usepackage{tikz}
-\usetikzlibrary{math}
-\tikzmath{
-	\npi = 3.1415926535897;
-	\rtwot = sqrt(2)/2;
-	\rthot = sqrt(3)/2;
-}
-\tikzset{
-	asymptote/.style={dashed,semithick}
-}
-
-% \verticalAsymptote command only good for "vertical asymptote axis"
-\newcommand{\verticalAsymptote}[1]{\draw [asymptote] (#1,-4.2) -- (#1,4.2);}
-
-\def\cosec{\mathop{\rm cosec}\nolimits}
-
-\newcommand{\diff}[1]{\frac{d}{d #1}}
-\newcommand{\inte}[2]{\int #1 \ d #2}
-
-\usepackage{pgfplots}
-\pgfplotsset{
-	compat=1.18,
-	normal trig axis/.style={
-		grid=both,
-		samples=1000,
-		no marks,
-		xmax=6.48,
-		xmin=-6.48,
-		xlabel=$x$,
-		ylabel=$y$,
-		xtick={-2*\npi,-1.5*\npi,...,2*\npi},
-		xticklabels={%
-			$-2\pi$,
-			$-\frac{3\pi}{2}$,
-			$-\pi$,
-			$-\frac{\pi}{2}$,
-			0,
-			$\frac{\pi}{2}$,
-			$\pi$,
-			$\frac{3\pi}{2}$,
-			$2\pi$},
-		axis lines=middle
-	},
-	sin cos axis/.style={
-		normal trig axis,
-		% Meant to be used in minipage, so full width
-		width=\textwidth,
-		height=0.8\textwidth,
-		ymax=1.2,
-		ymin=-1.2,
-		ytick={%
-			-1,
-			-0.5,
-			0,
-			0.5,
-			1},
-		yticklabels={%
-			-1,
-			$-\frac{1}{2}$,
-			0,
-			$\frac{1}{2}$,
-			1}
-	},
-	vertical asymptote axis/.style={
-		normal trig axis,
-		ymax=4.2,
-		ymin=-4.2,
-		ytick={-4,-3,...,4},
-		restrict y to domain=-4.5:4.5
-	},
-	trig plot/.style={
-		domain=-2*\npi:2*\npi,
-		thick
-	}
-}
-
-\newcommand{\sectitle}[1]{%
-	\vspace*{0.8em}
-	\begin{center}
-		\Large
-		\textsl{\underline{#1}}
-		\normalsize
-	\end{center}
-	\vspace*{0.5em}}
-
 \begin{document}
 
 \begin{center}
-	\Huge\textbf{Trig Crib Sheet}\normalsize
+	\Huge\textbf{Trigonometry}\normalsize
 \end{center}
 
 \sectitle{Definitions}

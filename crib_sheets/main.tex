@@ -5,6 +5,8 @@
 % Set size of text area with total parameter
 \usepackage[a4paper, top=15mm, bottom=18mm, left=15mm, right=15mm]{geometry}
 
+\usepackage{amsmath}
+
 \usepackage{float}
 
 \usepackage{tikz}
@@ -98,11 +100,18 @@
 	\end{center}
 	\vspace*{0.5em}}
 
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
 % This is used to allow for separate files for each section
 % It should be the last thing imported in the preamble
 \usepackage{subfiles}
 
 \begin{document}
+
+\subfile{sections/calc.tex}
+
+\newpage
 
 \subfile{sections/trig.tex}
 

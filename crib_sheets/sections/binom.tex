@@ -1,0 +1,33 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Binomial Expansion}
+
+\sectitle{Definitions}
+
+\vspace{-0.8em}
+\begin{center}
+The factorial $n! \equiv n \times (n - 1) \times (n - 2) \times \cdots \times 3 \times 2 \times 1$.
+
+The falling factorial $n^{\underline{k}} \equiv n \times (n - 1) \times (n - 2) \times \cdots \times (n - (k - 2)) \times (n - (k - 1))$. It has $k$ terms.
+
+$\boxed{0! = n^{\underline{0}} = 1}$
+
+The choose function $\displaystyle ^n C_r \equiv \boxed{\binom{n}{r} \equiv \frac{n!}{r! (n - r)!}}$
+\end{center}
+
+\sectitle{Expansions}
+
+\vspace{-0.8em}
+\begin{center}
+For a natural number $n$, the expansion of $(a + b)^n$ is $$a^n + n a^{n - 1} b + \binom{n}{2} a^{n - 2} b^2 + \cdots \binom{n}{r} a^{n - r} b^r + \cdots b^n$$
+
+In general, $\boxed{\displaystyle (a + b)^n = \sum_{r = 0}^n \binom{n}{r} a^{n - r} b^r\ (n \in \mathbb{N})}$
+
+That's true if $n$ is a natural number, but there is a version that works for all real numbers. For an expression $(a + bx)^n$, it should first be normalised to $a^n (1 + \frac{b}{a} x)^n$. Let $y = \frac{b}{a} x$. Then the expansion of $(1 + y)^n$ is given by $$1 + ny + \frac{n (n - 1)}{2!} y^2 + \frac{n (n - 1) (n - 2)}{3!} y^3 + \cdots + \frac{n (n - 1) (n - 2) \cdots (n - (r - 1))}{r!} y^r + \cdots$$
+
+In general, $\boxed{\displaystyle (a + bx)^n = a^n \sum_{r = 0}^\infty \frac{n^{\underline{r}}}{r!} \left(\frac{b}{a} x\right)^r\ (n \in \mathbb{R})}$
+\end{center}
+
+\end{document}

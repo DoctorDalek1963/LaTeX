@@ -7,6 +7,7 @@
 
 \usepackage{amsmath, amssymb}
 
+\usepackage[hidelinks]{hyperref}
 \usepackage{float}
 
 \usepackage{tikz}
@@ -89,19 +90,24 @@
 }
 
 \newcommand{\topictitle}[1]{%
+	\phantomsection
 	\begin{center}
 		\Huge\textbf{#1}\normalsize
 	\end{center}
+	\addcontentsline{toc}{section}{\protect\numberline{}#1}
 }
 
 \newcommand{\sectitle}[1]{%
+	\phantomsection
 	\vspace*{0.8em}
 	\begin{center}
 		\Large
 		\textsl{\underline{#1}}
 		\normalsize
 	\end{center}
-	\vspace*{0.5em}}
+	\vspace*{0.5em}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
@@ -111,6 +117,13 @@
 \usepackage{subfiles}
 
 \begin{document}
+
+\begin{center}
+	\Huge\textbf{Maths Crib Sheets}\normalsize
+\end{center}
+
+\tableofcontents
+\newpage
 
 \subfile{sections/binom.tex}
 \newpage

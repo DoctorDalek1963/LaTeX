@@ -109,9 +109,6 @@
 	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
 
-\setlength{\parindent}{0em}
-\setlength{\parskip}{1em}
-
 % This is used to allow for separate files for each section
 % It should be the last thing imported in the preamble
 \usepackage{subfiles}
@@ -123,6 +120,10 @@
 \end{center}
 
 \tableofcontents
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
 \newpage
 
 \subfile{sections/binom.tex}

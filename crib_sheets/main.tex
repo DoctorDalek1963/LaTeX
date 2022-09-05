@@ -94,7 +94,7 @@
 	\begin{center}
 		\Huge\textbf{#1}\normalsize
 	\end{center}
-	\addcontentsline{toc}{section}{\protect\numberline{}#1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
 
 \newcommand{\sectitle}[1]{%
@@ -106,7 +106,7 @@
 		\normalsize
 	\end{center}
 	\vspace*{0.5em}
-	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+	\addcontentsline{toc}{subsubsection}{\protect\numberline{}#1}
 }
 
 % This is used to allow for separate files for each section
@@ -126,14 +126,23 @@
 
 \newpage
 
-\subfile{sections/binom.tex}
+\addcontentsline{toc}{section}{Year 1 Pure}
+\subfile{sections/y1p/binom.tex}
 \newpage
-\subfile{sections/calc.tex}
+\subfile{sections/y1p/calc.tex}
 \newpage
-\subfile{sections/exp.tex}
+\subfile{sections/y1p/exp.tex}
 \newpage
-\subfile{sections/trig.tex}
+\subfile{sections/y1p/trig.tex}
 \newpage
-\subfile{sections/psm.tex}
+
+\addcontentsline{toc}{section}{Stats}
+\addcontentsline{toc}{section}{Mechanics}
+\addcontentsline{toc}{section}{FM: Core Pure}
+\addcontentsline{toc}{section}{Decision 1}
+\addcontentsline{toc}{section}{Further Stats 1}
+
+\addcontentsline{toc}{section}{Admissions Tests}
+\subfile{sections/at/psm.tex}
 
 \end{document}

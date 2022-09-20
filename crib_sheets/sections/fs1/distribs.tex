@@ -1,0 +1,44 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Probability Distributions}
+
+\sectitle{Poisson}
+
+The Poisson distribution is used to model a situation where an event occurs at a fixed rate.
+
+You can model $X$ as a Poisson distribution if:
+\begin{itemize}
+	\item The events must occur independently
+	\item They must occur singly in space or time
+	\item The events must occur at a constant average rate
+\end{itemize}
+
+\begin{center}
+	If $X \sim Po(\lambda)$, then $\boxed{P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}}\ \constraint{x \geq 0}$
+\end{center}
+
+\sectitle{Geometric}
+
+The Geometric distribution is used to model a situation where you try an event several times until a success occurs, and you want to know how many tries it will take.
+
+You can model $X$ as a Geometric distribution if:
+\begin{itemize}
+	\item Each attempt is independent
+	\item Each attempt has the same probability
+\end{itemize}
+
+\begin{center}
+	If $X \sim Geo(p)$, then $\boxed{P(X = x) = p(1 - p)^{x - 1}}\ \constraint{x > 0}$
+
+\end{center}
+
+\begin{itemize}
+	\item $\boxed{P(X \leq x) = 1 - (1 - p)^x}$
+	\item $P(X > x) = (1 - p)^x$
+	\item $\boxed{P(X \geq x) = (1 - p)^{x - 1}}$
+	\item $P(X < x) = 1 - (1 - p)^{x - 1}$
+\end{itemize}
+
+\end{document}

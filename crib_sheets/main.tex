@@ -10,6 +10,9 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{float}
 
+\usepackage{xcolor}
+\newcommand{\constraint}[1]{\textcolor{darkgray}{(\ensuremath#1)}}
+
 \usepackage{tikz}
 \usetikzlibrary{math}
 \tikzmath{
@@ -143,7 +146,10 @@
 \addcontentsline{toc}{section}{Mechanics}
 \addcontentsline{toc}{section}{FM: Core Pure}
 \addcontentsline{toc}{section}{Decision 1}
+
 \addcontentsline{toc}{section}{Further Stats 1}
+\subfile{sections/fs1/distribs.tex}
+\newpage
 
 \addcontentsline{toc}{section}{Admissions Tests}
 \subfile{sections/at/psm.tex}

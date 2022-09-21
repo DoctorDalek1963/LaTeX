@@ -16,7 +16,7 @@ You can model $X$ as a Poisson distribution if:
 \end{itemize}
 
 \begin{center}
-	If $X \sim Po(\lambda)$, then $\boxed{P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}}\ \constraint{x \geq 0}$
+	If $X \sim \text{Po}(\lambda)$, then $\boxed{P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}}\ \constraint{x \geq 0}$
 \end{center}
 
 \sectitle{Geometric}
@@ -30,15 +30,25 @@ You can model $X$ as a Geometric distribution if:
 \end{itemize}
 
 \begin{center}
-	If $X \sim Geo(p)$, then $\boxed{P(X = x) = p(1 - p)^{x - 1}}\ \constraint{x > 0}$
+	If $X \sim \text{Geo}(p)$, then $\boxed{P(X = x) = p(1 - p)^{x - 1}}\ \constraint{x > 0}$
 
 \end{center}
 
+\begin{figure}[H]
+\hspace{0.15\linewidth}
+\begin{minipage}{0.3\linewidth}
 \begin{itemize}
 	\item $\boxed{P(X \leq x) = 1 - (1 - p)^x}$
 	\item $P(X > x) = (1 - p)^x$
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}{0.3\linewidth}
+\begin{itemize}
 	\item $\boxed{P(X \geq x) = (1 - p)^{x - 1}}$
 	\item $P(X < x) = 1 - (1 - p)^{x - 1}$
 \end{itemize}
+\end{minipage}
+\hspace{0.15\linewidth}
+\end{figure}
 
 \end{document}

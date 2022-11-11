@@ -1,5 +1,3 @@
-\documentclass[a4paper]{article}
-
 \usepackage[UKenglish]{babel}  % UK writing style
 
 % Set size of text area with total parameter
@@ -92,6 +90,18 @@
 	}
 }
 
+
+\newcommand{\booktitle}[1]{%
+	\begin{center}
+		\Huge\textbf{\underline{#1}}\normalsize
+	\end{center}
+
+	\tableofcontents
+	\setlength{\parindent}{0em}
+	\setlength{\parskip}{1em}
+	\newpage
+}
+
 \newcommand{\topictitle}[1]{%
 	\phantomsection
 	\begin{center}
@@ -115,43 +125,3 @@
 % This is used to allow for separate files for each section
 % It should be the last thing imported in the preamble
 \usepackage{subfiles}
-
-\begin{document}
-
-\begin{center}
-	\Huge\textbf{Maths Crib Sheets}\normalsize
-\end{center}
-
-\tableofcontents
-
-\setlength{\parindent}{0em}
-\setlength{\parskip}{1em}
-
-\newpage
-
-\addcontentsline{toc}{section}{Pure}
-\subfile{sections/pure/binom.tex}
-\newpage
-\subfile{sections/pure/calc.tex}
-\newpage
-\subfile{sections/pure/exp.tex}
-\newpage
-\subfile{sections/pure/trig.tex}
-\newpage
-
-\addcontentsline{toc}{section}{Stats}
-\subfile{sections/stats/distribs.tex}
-\newpage
-
-\addcontentsline{toc}{section}{Mechanics}
-\addcontentsline{toc}{section}{FM: Core Pure}
-\addcontentsline{toc}{section}{Decision 1}
-
-\addcontentsline{toc}{section}{Further Stats 1}
-\subfile{sections/fs1/distribs.tex}
-\newpage
-
-\addcontentsline{toc}{section}{Admissions Tests}
-\subfile{sections/at/psm.tex}
-
-\end{document}

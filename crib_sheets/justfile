@@ -1,15 +1,29 @@
 sections := "pure stats fs1 misc"
 
+# build all sections
 build-all: (_do-all "build")
+
+# clean aux files from all sections
 clean-all: (_do-all "clean")
 
+# build the specified target section
 build target:
 	TEXINPUTS=:{{justfile_directory()}}/styles latexmk -lualatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -synctex=1 -cd sections/{{target}}/main.tex
 	cp sections/{{target}}/main.pdf pdfs/{{target}}.pdf
 
+# clean aux files from the specified target section
 clean target:
 	fd -I -e log -e aux -e dvi -e lof -e lot -e bit -e idx -e glo -e bbl -e bcf -e ilg -e toc -e ind -e out -e blg -e fdb_latexmk -e fls -e run.xml -e synctex.gz . 'sections/{{target}}' | xargs rm -f
 	rm -f pdfs/{{target}}.pdf
 
+# watch the given target section and build it whenever it changes
+watch target:
+	while inotifywait -r -e modify sections/{{target}}/ -qq; do just build {{target}}; done
+
+# watch all sections and run `build-all` whenever any of them changes
+watch-all:
+	while inotifywait -r -e modify sections/ -qq; do just build-all; done
+
+# execute the given `just` recipe for every section
 _do-all recipe:
 	@for sec in {{sections}}; do just {{recipe}} $sec; done

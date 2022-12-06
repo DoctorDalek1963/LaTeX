@@ -1,0 +1,109 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Graphs}
+
+\vspace{-1em}
+
+\begin{center}
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis}[sin cos axis]
+			\addplot [trig plot] {sin(deg(x))};
+			\coordinate (title) at (axis cs:0,1.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \sin(x)$};
+	\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis}[vertical asymptote axis]
+			\addplot [trig plot] {1/sin(deg(x))};
+
+			\verticalAsymptote{-6.2832}
+			\verticalAsymptote{-3.1416}
+			\verticalAsymptote{0}
+			\verticalAsymptote{3.1416}
+			\verticalAsymptote{6.2832}
+
+			\coordinate (title) at (axis cs:0,4.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \cosec(x)$};
+	\end{tikzpicture}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis}[sin cos axis]
+			\addplot [trig plot] {cos(deg(x))};
+			\coordinate (title) at (axis cs:0,1.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \cos(x)$};
+	\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis}[vertical asymptote axis]
+			\addplot [trig plot] {1/cos(deg(x))};
+
+			\verticalAsymptote{-4.7124}
+			\verticalAsymptote{-1.5708}
+			\verticalAsymptote{1.5708}
+			\verticalAsymptote{4.7124}
+
+			\coordinate (title) at (axis cs:0,4.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \sec(x)$};
+	\end{tikzpicture}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis}[vertical asymptote axis]
+			\addplot [trig plot] {tan(deg(x))};
+
+			\verticalAsymptote{-4.7124}
+			\verticalAsymptote{-1.5708}
+			\verticalAsymptote{1.5708}
+			\verticalAsymptote{4.7124}
+
+			\coordinate (title) at (axis cs:0,4.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \tan(x)$};
+	\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis}[vertical asymptote axis]
+			\addplot [trig plot] {1/tan(deg(x))};
+
+			\verticalAsymptote{-6.2832}
+			\verticalAsymptote{-3.1416}
+			\verticalAsymptote{0}
+			\verticalAsymptote{3.1416}
+			\verticalAsymptote{6.2832}
+
+			\coordinate (title) at (axis cs:0,4.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \cot(x)$};
+	\end{tikzpicture}
+\end{minipage}
+\end{figure}
+\end{center}
+
+\end{document}

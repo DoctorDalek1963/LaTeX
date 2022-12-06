@@ -1,0 +1,59 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Calculus}
+
+\vspace{10ex}
+
+\begin{figure}[h]
+\centering
+\large
+\begin{minipage}{0.49\linewidth}
+	$$\diff{x}\sin x = \cos x$$
+	\vspace{0.5em}
+	$$\diff{x}\cos x = -\sin x$$
+	\vspace{0.5em}
+	$$\diff{x}\tan x = \sec^2 x$$
+	\vspace{0.5em}
+	$$\diff{x}\sec x = \sec x\tan x$$
+	\vspace{0.5em}
+	$$\diff{x}\cosec x = -\cosec x\cot x$$
+	\vspace{0.5em}
+	$$\diff{x}\cot x = -\cosec^2 x$$
+\end{minipage}\hfill
+\begin{minipage}{0.49\linewidth}
+	$$\inte{\sin x}{x} = -\cos x + C$$
+	\vspace{0.5em}
+	$$\inte{\cos x}{x} = \sin x + C$$
+	\vspace{0.5em}
+	$$\inte{\tan x}{x} = \ln|\sec x| + C$$
+	\vspace{0.5em}
+	$$\inte{\sec x}{x} = \ln|\tan x + \sec x| + C$$
+	\vspace{0.5em}
+	$$\inte{\cosec x}{x} = -\ln|\cot x + \cosec x| + C$$
+	\vspace{0.5em}
+	$$\inte{\cot x}{x} = \ln|\sin x| + C$$
+\end{minipage}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\large
+\begin{minipage}{0.49\linewidth}
+	$$\diff{x}\arcsin x = \frac{1}{\sqrt{1 - x^2}}$$
+	\vspace{0.5em}
+	$$\diff{x}\arccos x = -\frac{1}{\sqrt{1 - x^2}}$$
+	\vspace{0.5em}
+	$$\diff{x}\arctan x = \frac{1}{x^2 + 1}$$
+\end{minipage}\hfill
+\begin{minipage}{0.49\linewidth}
+	$$\inte{\arcsin x}{x} = x \arcsin x + \sqrt{1 - x^2} + C$$
+	\vspace{0.5em}
+	$$\inte{\arccos x}{x} = x \arccos x - \sqrt{1 - x^2} + C$$
+	\vspace{0.5em}
+	$$\inte{\arctan x}{x} = x \arctan x - \frac{\ln(x^2 + 1)}{2} + C$$
+\end{minipage}
+\end{figure}
+
+\end{document}

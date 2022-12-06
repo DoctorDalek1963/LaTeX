@@ -4,18 +4,54 @@
 
 \topictitle{Integration}
 
-\begin{center}
-For integrals of the form on the left, consider the function on the right.
-\end{center}
-\vspace{-1em}
+\begin{tikzpicture}[
+	trick/.style={rectangle, minimum size=6mm, draw=black, align=center, thick},
+	>={Stealth[round]},
+	words/.style={text width=14cm},
+	connection arrow/.style={->, thick, decorate, decoration={snake, amplitude=1pt, post length=0.5em}},
+]
+	\node (t1-words) [words] {
+		If it's a pattern that you know, then just use the pattern. Here are some examples:
 
-{\large\renewcommand{\arraystretch}{1.8}
-$$\begin{array}{|c|c|}
-	\hline
-	\inte{k f' f^n}{x} & f^{n + 1} \\
-	\hline
-	\inte{k \frac{f'}{f}}{x} & \ln|f| \\
-	\hline
-\end{array}$$}
+		{\large\renewcommand{\arraystretch}{1.8}
+		$$\begin{array}{|c|c|}
+			\hline
+			\inte{k f' f^n}{x} & f^{n + 1} \\
+			\hline
+			\inte{k \frac{f'}{f}}{x} & \ln|f| \\
+			\hline
+		\end{array}$$}
+	};
+	\node (t2-words) [words, below=of t1-words] {
+		Some integrals are given in the formula book. These include many common trig-based integrals, as well as some fractions. Check the formula book before spending ages on a tricky integral.
+	};
+	\node (t3-words) [words, below=of t2-words] {
+		Many integrals benefit from transforming their insides using trig identities. Integrating a trig function to a power is very hard. Try to apply identities to reduce it.
+	};
+	\node (t4-words) [words, below=of t3-words] {
+		Large algebraic fractions are very awkward. Simplify them into partial fractions. These should then become natural logs and/or and inverse trig functions when integrated.
+	};
+	\node (t5-words) [words, below=of t4-words] {
+		Integrals can often be simplified by using an appropriate substitution. Always remember to find d$x$ in terms of d$u$ and exchange the bounds of the integral.
+	};
+	\node (t6-words) [words, below=of t5-words] {
+		Integrating by parts is the most complicated method, and should be avoided wherever possible. Use the following formula: \[\int u \frac{\diffd v}{\diffd x} \diffd x = uv - \int v \frac{\diffd u}{\diffd x} \diffd x\]
+
+		Since the second integral involves $\dfrac{\diffd u}{\diffd x}$, we should choose $u$ to be the function in the original integral that reduces the fastest. To find the function that reduces fastest, follow the acronym \textbf{LATE} - \textbf{L}ogs, \textbf{A}lgebra, \textbf{T}rig, \textbf{E}xponentials. Pick the function that comes first in the acronym.
+	};
+
+	\node (t1) [trick, left=of t1-words] {Set patterns};
+	\node (t2) [trick, left=of t2-words] {Formula book};
+	\node (t3) [trick, left=of t3-words] {Trig};
+	\node (t4) [trick, left=of t4-words] {Partial fractions};
+	\node (t5) [trick, left=of t5-words] {Substitution};
+	\node (t6) [trick, left=of t6-words] {By parts};
+
+	\draw [connection arrow] (t1) -- (t2);
+	\draw [connection arrow] (t2) -- (t3);
+	\draw [connection arrow] (t3) -- (t4);
+	\draw [connection arrow] (t4) -- (t5);
+	\draw [connection arrow] (t5) -- (t6);
+\end{tikzpicture}
 
 \end{document}

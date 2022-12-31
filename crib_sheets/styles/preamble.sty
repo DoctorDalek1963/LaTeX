@@ -1,20 +1,29 @@
 \usepackage[UKenglish]{babel}  % UK writing style
+\usepackage{inputenc}
 
 % Set size of text area with total parameter
 \usepackage[a4paper, top=15mm, bottom=18mm, left=15mm, right=15mm]{geometry}
 
 \usepackage{amsmath, amssymb}
 
+% Taken from: https://tex.stackexchange.com/a/14072/269413
+% This allows me to add a custom arraystretch for a specific matrix
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+	\edef\arraystretch{#1}%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{*\c@MaxMatrixCols c}}
+\makeatother
+
 \usepackage[hidelinks]{hyperref}
 \usepackage{float}
 
 \usepackage{xcolor}
-\newcommand{\constraint}[1]{\textcolor{darkgray}{\ensuremath\left(#1\right)}}
-
-\newcommand{\diffd}{\ensuremath{\operatorname{d}\!}}
+\usepackage{graphicx}
 
 \usepackage{tikz}
-\usetikzlibrary{math, positioning, arrows.meta}
+\usetikzlibrary{math, positioning, arrows.meta, matrix, calc, fit}
 \tikzmath{
 	\npi = 3.1415926535897;
 	\rtwot = sqrt(2)/2;
@@ -29,8 +38,10 @@
 
 \def\cosec{\mathop{\rm cosec}\nolimits}
 
-\newcommand{\diff}[1]{\frac{d}{d #1}}
-\newcommand{\inte}[2]{\int #1 \ d #2}
+\newcommand{\diffd}{\ensuremath{\operatorname{d}\!}}
+\newcommand{\diff}[1]{\frac{\diffd}{\diffd #1}}
+\newcommand{\inte}[2]{\int #1 \ \diffd #2}
+\newcommand{\constraint}[1]{\textcolor{darkgray}{\ensuremath\left(#1\right)}}
 
 \usepackage{pgfplots}
 \pgfplotsset{
@@ -122,6 +133,11 @@
 	\end{center}
 	\vspace*{0.5em}
 	\addcontentsline{toc}{subsubsection}{\protect\numberline{}#1}
+}
+
+\newcommand{\steptitle}[1]{%
+	\textbf{\underline{Step #1}}
+	\vspace{-0.5ex}
 }
 
 % This is used to allow for separate files for each section

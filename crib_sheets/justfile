@@ -1,4 +1,4 @@
-sections := "pure stats fs1 misc trig calc"
+sections := "pure stats fs1 misc trig calc core-pure-1"
 
 # build all sections
 build-all: (_do-all "build")

@@ -1,0 +1,38 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Hypothesis Testing}
+
+Every hypothesis test has two hypotheses:
+\begin{align*}
+	H_0 & \text{ : The null hypothesis - this is what you assume to be true by default}\\
+	H_1 & \text{ : The alternative hypothesis}
+\end{align*}
+
+The hypotheses are written in different forms depending on whether the test is one- or two-tailed.
+
+\begin{minipage}{0.49\linewidth}
+	\begin{center}
+		\underline{One-tailed:}
+		\begin{align*}
+			H_0:&\ p = k\\
+			H_1:&\ p \lessgtr k
+		\end{align*}
+	\end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.49\linewidth}
+	\begin{center}
+		\underline{Two-tailed:}
+		\begin{align*}
+			H_0:&\ p = k\\
+			H_1:&\ p \ne k
+		\end{align*}
+	\end{center}
+\end{minipage}
+
+If the question says that someone measured and got a value, then you plug that value into a probability calculation with the parameters from the null hypothesis, with the inequality sign in the same direction as the alternative hypothesis. If the probability of the event happening when assuming $H_0$ is less than the level of significance, then we reject $H_0$ and accept the alternative hypothesis.
+
+A critical value is the smallest or largest value (depending on the direction of the inequality) obtained by a random variable such that $H_0$ would be rejected. Finding a critical value is often best done with the tables in the back of the book.
+
+\end{document}

@@ -1,0 +1,39 @@
+\documentclass[a4paper]{article}
+
+\usepackage{preamble}
+
+\newcommand{\labeledDiagram}[2]{%
+	\begin{tabular}{|c|c|}
+		\hline #2\\
+		\hline #1\\
+		\hline
+	\end{tabular}
+}
+
+\newcommand{\figureWithThreeThings}[3]{%
+	\begin{figure}[H]
+		\hspace{0.02\linewidth}
+		\begin{minipage}{0.30\linewidth}
+			\begin{center}#1\end{center}
+		\end{minipage}
+		\hspace{0.03\linewidth}
+		\begin{minipage}{0.30\linewidth}
+			\begin{center}#2\end{center}
+		\end{minipage}
+		\hspace{0.03\linewidth}
+		\begin{minipage}{0.30\linewidth}
+			\begin{center}#3\end{center}
+		\end{minipage}
+		\hspace{0.02\linewidth}
+	\end{figure}
+}
+
+\begin{document}
+
+\booktitle{Polar Coordinates}
+
+\subfile{basics.tex}
+\vspace{5ex}
+\subfile{graphs.tex}
+
+\end{document}

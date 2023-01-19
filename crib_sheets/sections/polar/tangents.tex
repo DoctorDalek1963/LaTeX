@@ -1,0 +1,39 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Tangents}
+
+\begin{figure}[H]
+\hspace{0.02\linewidth}
+\begin{minipage}{0.3\linewidth}
+	\begin{tikzpicture}[scale=2]
+		\draw[dashed, gray, opacity=0.8] (-1,0) -- (0,0);
+		\draw[gray, opacity=0.8] (0,0) -- (2.7,0);
+		\draw[dashed, gray, opacity=0.8] (0,-1.8) -- (0,1.8);
+
+		\draw[domain=0:360, smooth, samples=500] plot (\x:{1 + cos(\x)});
+
+		\draw[red, thick] (0:2) +(0, -0.5) -- +(0, 0.5);
+		\draw[red, thick] (120:0.5) +(0, -0.3) -- +(0, 0.5);
+		\draw[red, thick] (240:0.5) +(0, -0.5) -- +(0, 0.3);
+
+		\draw[blue, thick] (60:1.5) +(-0.5, 0) -- +(0.5, 0);
+		\draw[blue, thick] (180:0) +(-0.5, 0) -- +(0.5, 0);
+		\draw[blue, thick] (300:1.5) +(-0.5, 0) -- +(0.5, 0);
+
+		\node[red] (diff x) at (2.4, 0.3) {$\dfrac{\diffd x}{\diffd \theta} = 0$};
+		\node[blue] (diff y) at (0.8, 1.6) {$\dfrac{\diffd y}{\diffd \theta} = 0$};
+
+		\node (r equals) at (2.1, -1.15) {$r = 1 + \cos\theta$};
+	\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+	\setlength{\parskip}{1em}
+	We often want to find tangents to polar curves. In this chapter, it is important to note that we care only about the \textit{points} at which a line is tangent, and we only care about tangent lines which are parallel or perpendicular to the initial line $\theta = 0$.
+
+	Let $r = f(\theta)$. Then we can use the formulas $x = f(\theta)\cos\theta$ and $y = f(\theta)\cos\theta$ to find $\dfrac{\diffd x}{\diffd \theta}$ and $\dfrac{\diffd y}{\diffd \theta}$ respectively. We can then just set $\dfrac{\diffd y}{\diffd \theta} = 0$ to find a parallel tangent, and $\dfrac{\diffd x}{\diffd \theta} = 0$ to find a perpendicular tangent.
+\end{minipage}\hspace{0.02\linewidth}
+\end{figure}
+
+\end{document}

@@ -24,7 +24,7 @@
 # Ignore pdf files in main directories
 *.pdf
 # But not in PDFs directories
-!*/pdfs/*.pdf
+!**/pdfs/**/*.pdf
 
 .mypy_cache/
 __pycache__/

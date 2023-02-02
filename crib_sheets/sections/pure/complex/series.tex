@@ -1,0 +1,65 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Sums of Series}
+
+Questions in this topic give you a geometric series with complex terms. You have to use the geometric series formulae and then simplify the result.
+
+Here's an example:
+
+$$S = e^{i\theta} + e^{2i\theta} + e^{3i\theta} + \cdots + e^{8i\theta}\ \constraint{\theta \ne 2n\pi}$$
+
+We want to condense the series into a single expression, so we start by applying the geometric series formula.
+
+$$S_n = \dfrac{a(r^n - 1)}{r - 1}
+\implies S = \frac{e^{i\theta} \big( (e^{i\theta})^8 - 1 \big)}{e^{i\theta} - 1}
+= \frac{e^{i\theta} \big( e^{8i\theta} - 1 \big)}{e^{i\theta} - 1}$$
+
+We're going to use Technique~\ref{technique:Denominators} to simplify this, so we multiply the top and bottom by $\displaystyle e^{-\frac{i\theta}{2}}$.
+
+$$\frac{e^{\frac{i\theta}{2}} \big(e^{8i\theta} - 1\big)}{e^{\frac{i\theta}{2}} - e^{\frac{i\theta}{2}}}
+= \frac{e^{\frac{i\theta}{2}} \big(e^{8i\theta} - 1\big)}{2i\sin \frac{\theta}{2}}$$
+
+Now we can factorise the numerator using Technique~\ref{technique:Numerators} and simplify it.
+
+$$\frac{e^{\frac{i\theta}{2}} e^{4i\theta} \big(e^{4i\theta} - e^{-4i\theta}\big)}{2i\sin \frac{\theta}{2}}
+= \frac{e^{\frac{9i\theta}{2}} (2i\sin 4\theta)}{2i\sin \frac{\theta}{2}}
+= \frac{e^{\frac{9i\theta}{2}} \sin 4\theta}{\sin \frac{\theta}{2}}$$
+
+Now you could split the numerator into real and imaginary parts if the questions asked for it.
+
+\sectitle{Techniques}
+
+The aim of the process is normally to get something of the form $z^n \pm z^{-n}$.
+
+When $z = e^{i\theta}$, we know that $z^n = e^{ni\theta}$ and $$\boxed{z^n + z^{-n} = 2\cos n\theta}\ \ \ \ \ \boxed{z^n - z^{-n} = 2i\sin n\theta}$$
+
+\technique{Denominators}
+
+$$\Large \boxed{\frac{\cdots}{e^{ni\theta} \pm 1}
+= \frac{\cdots}{e^{ni\theta} \pm 1} \times \frac{e^\frac{-ni\theta}{2}}{e^\frac{-ni\theta}{2}}
+= \frac{e^\frac{-ni\theta}{2} (\cdots)}{e^\frac{ni\theta}{2} \pm e^\frac{-ni\theta}{2}}}$$
+
+When the denominator is of the form $\displaystyle e^{ni\theta} \pm 1$, we can multiply the top and bottom of the fraction by the negative half power of $e$. This gives us $z^n \pm z^{-n}$ in the denominator, which we can get rid of with ease.
+
+\technique{Denominator General Case}
+
+$$\Large \boxed{\frac{\cdots}{e^{ni\theta} + k}
+= \frac{\cdots}{e^{ni\theta} + k} \times \frac{e^{-ni\theta} + k}{e^{-ni\theta} + k}
+= \frac{(e^{-ni\theta} + k) (\cdots)}{(e^{ni\theta} + k) (e^{-ni\theta} + k)}}$$
+
+Always factor the denominator to be of the form $e^{ni\theta} + k$. If $k = \pm 1$, then use Technique~\ref{technique:Denominators}. Otherwise, multiply the top and bottom by the bottom, but with the sign of the power flipped. The sign between terms stays the same, but the power of $e$ gets negated (and not halved).
+
+The denominator will then expand to create something that can be simplified with little difficulty.
+
+\technique{Numerators}
+
+$$\Large \boxed{\frac{e^{ni\theta} \pm 1}{\cdots}
+= \frac{e^\frac{ni\theta}{2} \big(e^\frac{ni\theta}{2} \pm e^\frac{-ni\theta}{2}\big)}{\cdots}}$$
+
+Once the denominator is in a manageable form, we can then apply this technique to the numerator.
+
+When you've got something of the form $\displaystyle e^{ni\theta} \pm 1$, you can factor out $e$ to half of the power to get $\displaystyle e^\frac{ni\theta}{2} \big(e^\frac{ni\theta}{2} \pm e^\frac{-ni\theta}{2}\big)$. The inside of the bracket is now of the form $z^n \pm z^{-n}$, so we can simplify it.
+
+\end{document}

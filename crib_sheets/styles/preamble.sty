@@ -5,6 +5,7 @@
 \usepackage[a4paper, top=15mm, bottom=18mm, left=15mm, right=15mm]{geometry}
 
 \usepackage{amsmath, amssymb}
+\newtheorem{theorem}{Theorem}[section]
 
 % Taken from: https://tex.stackexchange.com/a/14072/269413
 % This allows me to add a custom arraystretch for a specific matrix
@@ -147,6 +148,14 @@
 
 \newcommand{\steptitle}[1]{%
 	\textbf{\underline{Step #1}}
+	\vspace{-0.5ex}
+}
+
+\newcounter{techniquecounter}
+
+\newcommand{\technique}[1]{
+	\refstepcounter{techniquecounter}
+	\textbf{\underline{Technique \arabic{techniquecounter}: #1\label{technique:#1}}}
 	\vspace{-0.5ex}
 }
 

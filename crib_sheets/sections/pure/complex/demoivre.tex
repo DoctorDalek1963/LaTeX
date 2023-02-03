@@ -1,0 +1,46 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{De~Moivre's Theorem}
+
+De~Moivre's theorem can be used to convert between sines and cosines with multiples of $\theta$, and power series of sines and cosines. The theorem itself is:
+$$\Large \boxed{\big( r (\cos\theta + i\sin\theta) \big)^n = r^n (\cos n\theta + i\sin n\theta)}$$
+
+A special case, where $r = 1$,
+$$\Large \boxed{(\cos\theta + i\sin\theta)^n = \cos n\theta + i\sin n\theta}$$
+
+If we let $z = e^{i\theta} = \cos\theta + i\sin\theta$, then we can derive the identities $$\Large \boxed{z^n + z^{-n} = 2\cos n\theta}\ \ \ \ \ \boxed{z^n - z^{-n} = 2i\sin n\theta}$$
+
+\sectitle{Multiple to Power Series}
+
+When we want to show something like $\cos 6\theta = 32\cos^6 \theta - 48\cos^4 \theta + 18\cos^2 \theta - 1$, then we know that $(\cos\theta + i\sin\theta)^6 = \cos 6\theta + i\sin 6\theta$, so we can expand the bracket on the left and then take the real part to get $\cos 6\theta$.
+
+For this example, that goes as follows:
+\begin{eqnarray*}
+	(\cos\theta + i\sin\theta)^6 &=& \cos^6\theta + 6i\cos^5\theta\sin\theta - 15\cos^4\theta\sin^2\theta - 20i\cos^3\theta\sin^3\theta\\
+	& & + 15\cos^2\theta\sin\theta + 6i\cos\theta\sin^5\theta - \sin^6\theta\\
+	\implies \cos 6\theta &=& \cos^6\theta - 15\cos^4\theta\sin^2\theta + 15\cos^2\theta\sin^4\theta - \sin^6\theta\\
+	&=& \cos^6\theta - 15\cos^4\theta(1 - \cos^2\theta) + 15\cos^2\theta(1 - \cos^2\theta)^2 - (1 - \cos^2\theta)^3\\
+	&=& 32\cos^6 \theta - 48\cos^4 \theta + 18\cos^2 \theta - 1
+\end{eqnarray*}
+
+Of course, you could this with other powers, or you could take the imaginary part to get $\sin$.
+
+\sectitle{Power to Multiple Series}
+
+When we want to show something like $\cos^5\theta = \frac{1}{16}\cos 5\theta + \frac{5}{16}\cos 3\theta + \frac{5}{8}\cos\theta$, then we know that $(z + z^{-1})^5 = (2\cos\theta)^5 = 32\cos^5\theta$, so we can expand the bracket and collect pairs, then divide everything by 32.
+
+For this example, that goes as follows:
+\begin{eqnarray*}
+	(z + z^{-1})^5 &=& z^5 + 5z^3 + 10z + 10z^{-1} + 5z^{-3} + z^{-5}\\
+	&=& (z^5 + z^{-5}) + 5(z^3 + z^{-3}) + 10(z + z^{-1})\\
+	\implies 32\cos^5\theta &=& 2\cos 5\theta + 10\cos 3\theta + 20\cos\theta\\
+	\implies \cos^5\theta &=& \frac{1}{16}\cos 5\theta + \frac{5}{16}\cos 3\theta + \frac{5}{8}\cos\theta
+\end{eqnarray*}
+
+Of course, you can do this with other multiples and powers, or use $(z - z^{-1})^n$ for $\sin$.
+
+This form of de~Moivre's theorem is especially useful for computing integrals which involve higher powers of trig functions.
+
+\end{document}

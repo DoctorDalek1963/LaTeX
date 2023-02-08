@@ -21,12 +21,12 @@ Much like trig, we also have $\sech x = \dfrac{1}{\cosh x}$, $\cosech x = \dfrac
 	\hspace{0.03\linewidth}
 	\begin{minipage}{0.45\linewidth}
 		The inverse hyperbolic functions are derived from the exponential forms of the hyperbolic functions. These definitions are given in the formula book, but you may be asked to derive one in the exam. The proof will involve completing the square at some point.
-	\end{minipage}\hspace{0.08\linewidth}
+	\end{minipage}\hspace{0.06\linewidth}
 	\begin{minipage}{0.35\linewidth}
 	\begin{empheq}[box=\formulaBookBox]{align*}
-		\arsinh x = \ln\left(x + \sqrt{x^2 + 1}\right)\\
-		\arcosh x = \ln\left(x + \sqrt{x^2 - 1}\right) \constraint{x \geq 1}\\
-		\artanh x = \frac{1}{2}\ln\left(\frac{1 + x}{1 - x}\right) \constraint{x < 1}
+		\arsinh x &= \ln\left(x + \sqrt{x^2 + 1}\right)\\
+		\arcosh x &= \ln\left(x + \sqrt{x^2 - 1}\right) \constraint{x \geq 1}\\
+		\artanh x &= \frac{1}{2}\ln\left(\frac{1 + x}{1 - x}\right) \constraint{x < 1}
 	\end{empheq}
 	\end{minipage}
 	\hfill
@@ -35,13 +35,30 @@ Much like trig, we also have $\sech x = \dfrac{1}{\cosh x}$, $\cosech x = \dfrac
 \sectitle{Where do they come from?}
 
 We saw two key identities in the complex numbers topic:
-
 $$e^{i\theta} + e^{-i\theta} = 2\cos\theta \text{ and } e^{i\theta} - e^{-i\theta} = 2i\sin\theta$$
 
 These can be rearranged to get definitions for $\cos$ and $\sin$ in terms of complex powers of $e$.
-
 $$\cos\theta = \frac{e^{i\theta} + e^{-i\theta}}{2} \text{ and } \sin\theta = \frac{e^{i\theta} - e^{-i\theta}}{2i}$$
 
 If we get rid of all mentions of $i$, then we get a similar pair of functions, although they're no longer related to normal angles\footnote{They're now related to \href{https://en.wikipedia.org/wiki/Hyperbolic_angle}{Hyperbolic angles}, which we don't think about at A Level.}. We then get the definitions of $\cosh$ and $\sinh$ at the top of this page.
+
+\sectitle{Osborn's Rule}
+\vspace{-2ex}
+
+\begin{figure}[H]
+	\hspace{0.03\linewidth}
+	\begin{minipage}{0.5\linewidth}
+		Osborn's rule is a rule that can be used to convert any true trigonometric identity to a hyperbolic one. You can replace any trig function by its hyperbolic equivalent, but any product of two $\sin$ terms becomes negative. This also implies things like $\tan^2 A \rightarrow -\tanh^2 A$, since $\tan^2$ involves a product of two sines.
+	\end{minipage}\hspace{0.06\linewidth}
+	\begin{minipage}{0.3\linewidth}
+	\begin{empheq}[box=\rememberBox]{align*}
+		\cos A &\rightarrow \cosh A\\
+		\sin A &\rightarrow \sinh A\\
+		\cos A \cos B &\rightarrow \cosh A \cosh B\\
+		\sin A \sin B &\rightarrow -\sinh A \sinh B
+	\end{empheq}
+	\end{minipage}
+	\hfill
+\end{figure}
 
 \end{document}

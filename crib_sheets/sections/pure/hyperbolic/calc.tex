@@ -1,0 +1,19 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Calculus}
+
+\begin{empheq}[box=\formulaBookBox]{alignat*=2}
+	\diff{x}\sinh x &= \cosh x\ \ \ & \diff{x}\arsinh x &= \frac{1}{\sqrt{x^2 + 1}}\\
+	\diff{x}\cosh x &= \sinh x\ \ \ & \diff{x}\arcosh x &= \frac{1}{\sqrt{x^2 - 1}}\\
+	\diff{x}\tanh x &= \sech^2 x\ \ \ & \diff{x}\artanh x &= \frac{1}{1 - x^2}
+\end{empheq}
+
+\begin{alignat*}{2}
+	\diff{x}\sech x &= -\sech x\tanh x\ \ \ & \inte{\sinh x}{x} &= \cosh x + C\\
+	\diff{x}\cosech x &= -\cosech x\coth x\ \ \ & \inte{\cosh x}{x} &= \sinh x + C\\
+	\diff{x}\coth x &= -\cosech^2 x\ \ \ & \inte{\tanh x}{x} &= \ln(\cosh x) + C
+\end{alignat*}
+
+\end{document}

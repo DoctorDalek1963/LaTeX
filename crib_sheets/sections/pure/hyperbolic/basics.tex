@@ -1,0 +1,47 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Basics}
+
+\sectitle{Definitions}
+\vspace{-2ex}
+
+\begin{empheq}[box=\rememberBox]{align*}
+	\cosh x = \frac{e^x + e^{-x}}{2}\ \ \ \ \ \sinh x = \frac{e^x - e^{-x}}{2}\\[1em]
+	\tanh x = \frac{\sinh x}{\cosh x} = \frac{e^x - e^{-x}}{e^x + e^{-x}} = \frac{e^{2x} - 1}{e^{2x} + 1}
+\end{empheq}
+
+Much like trig, we also have $\sech x = \dfrac{1}{\cosh x}$, $\cosech x = \dfrac{1}{\sinh x}$, and $\coth x = \dfrac{1}{\tanh x}$, but these are rarely used.
+
+\sectitle{Inverses}
+\vspace{-2ex}
+
+\begin{figure}[H]
+	\hspace{0.03\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		The inverse hyperbolic functions are derived from the exponential forms of the hyperbolic functions. These definitions are given in the formula book, but you may be asked to derive one in the exam. The proof will involve completing the square at some point.
+	\end{minipage}\hspace{0.08\linewidth}
+	\begin{minipage}{0.35\linewidth}
+	\begin{empheq}[box=\formulaBookBox]{align*}
+		\arsinh x = \ln\left(x + \sqrt{x^2 + 1}\right)\\
+		\arcosh x = \ln\left(x + \sqrt{x^2 - 1}\right) \constraint{x \geq 1}\\
+		\artanh x = \frac{1}{2}\ln\left(\frac{1 + x}{1 - x}\right) \constraint{x < 1}
+	\end{empheq}
+	\end{minipage}
+	\hfill
+\end{figure}
+
+\sectitle{Where do they come from?}
+
+We saw two key identities in the complex numbers topic:
+
+$$e^{i\theta} + e^{-i\theta} = 2\cos\theta \text{ and } e^{i\theta} - e^{-i\theta} = 2i\sin\theta$$
+
+These can be rearranged to get definitions for $\cos$ and $\sin$ in terms of complex powers of $e$.
+
+$$\cos\theta = \frac{e^{i\theta} + e^{-i\theta}}{2} \text{ and } \sin\theta = \frac{e^{i\theta} - e^{-i\theta}}{2i}$$
+
+If we get rid of all mentions of $i$, then we get a similar pair of functions, although they're no longer related to normal angles\footnote{They're now related to \href{https://en.wikipedia.org/wiki/Hyperbolic_angle}{Hyperbolic angles}, which we don't think about at A Level.}. We then get the definitions of $\cosh$ and $\sinh$ at the top of this page.
+
+\end{document}

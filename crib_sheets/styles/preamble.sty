@@ -49,10 +49,18 @@
 
 \def\cosec{\mathop{\rm cosec}\nolimits}
 
+\def\sech{\mathop{\rm sech}\nolimits}
+\def\cosech{\mathop{\rm cosech}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+
+\def\arsinh{\mathop{\rm arsinh}\nolimits}
+\def\arcosh{\mathop{\rm arcosh}\nolimits}
+\def\artanh{\mathop{\rm artanh}\nolimits}
+
 \newcommand{\diffd}{\ensuremath{\operatorname{d}\!}}
 \newcommand{\diff}[1]{\frac{\diffd}{\diffd #1}}
 \newcommand{\inte}[2]{\int #1 \ \diffd #2}
-\newcommand{\constraint}[1]{\textcolor{darkgray}{\ensuremath\left(#1\right)}}
+\newcommand{\constraint}[1]{\textcolor{darkgray}{\ensuremath\left( #1 \right)}}
 
 \usepackage{pgfplots}
 \pgfplotsset{
@@ -158,6 +166,36 @@
 	\textbf{\underline{Technique \arabic{techniquecounter}: #1\label{technique:#1}}}
 	\vspace{-0.5ex}
 }
+
+\usepackage{fancybox}
+\usepackage{empheq}
+
+\newsavebox{\saveboxM} % Maths
+\newsavebox{\saveboxT} % Text
+% name, colour, content
+\newcommand*\genericNamedBox[3]{%
+	\sbox{\saveboxM}{#3}%
+	\sbox{\saveboxT}{\fcolorbox{black}{#2}{#1}}%
+	\sbox{\saveboxM}{%
+		\parbox[b][\ht\saveboxM + 0.5\ht\saveboxT + 0.5\dp\saveboxT][b]{%
+		\wd\saveboxM}{#3}%
+	}%
+	\sbox{\saveboxM}{%
+		\fbox{%
+			\makebox[\wd\saveboxM + 2em]{\usebox{\saveboxM}}%
+		}%
+	}%
+	\usebox{\saveboxM}%
+	\makebox[0pt][r]{%
+		\makebox[\wd\saveboxM][c]{%
+			\raisebox{\ht\saveboxM - 0.5\ht\saveboxT
+			+ 0.5\dp\saveboxT-0.5\fboxrule}{\usebox{\saveboxT}}%
+		}%
+	}%
+}
+
+\newcommand{\formulaBookBox}[1]{\genericNamedBox{Formula Book}{blue!25}{#1}}
+\newcommand{\rememberBox}[1]{\genericNamedBox{Remember This}{red!65}{#1}}
 
 % This is used to allow for separate files for each section
 % It should be the last thing imported in the preamble

@@ -1,0 +1,172 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Graphs}
+
+\vspace{-1em}
+
+\begin{center}
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis} [sinh tanh axis]
+			\addplot [sinh tanh plot] {sinh(x)};
+			\coordinate (title) at (axis cs:0,4.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \sinh(x)$};
+	\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis} [sinh tanh axis]
+			\addplot [sinh tanh plot] {ln(x + sqrt(x * x + 1)))};
+
+			\coordinate (title) at (axis cs:0,4.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \arsinh(x)$};
+	\end{tikzpicture}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis} [
+			default axis,
+			xmax=3.2, xmin=-3.2,
+			ymax=5.2, ymin=-0.2,
+			xtick={-3,-2,...,3},
+			ytick={0,1,...,5},
+		]
+			\addplot [domain=-3:3] {cosh(x)};
+			\coordinate (title) at (axis cs:0,5.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \cosh(x)$};
+	\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis} [
+			default axis,
+			xmax=5.2, xmin=-0.2,
+			ymax=3.2, ymin=-0.2,
+			xtick={0,1,...,5},
+			ytick={0,1,2,3},
+		]
+			\addplot [domain=1:5.2] {ln(x + sqrt(x * x - 1)))};
+
+			\coordinate (title) at (axis cs:2.5,3.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \arcosh(x)$};
+	\end{tikzpicture}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis} [sinh tanh axis]
+			\addplot [sinh tanh plot] {tanh(x)};
+
+			\horizontalAsymptote{1};
+			\horizontalAsymptote{-1};
+
+			\coordinate (title) at (axis cs:0,4.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \tanh(x)$};
+	\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+		\begin{axis} [sinh tanh axis, samples=5000]
+			\addplot [domain=-1:1] {0.5 * ln((1 + x) / (1 - x)))};
+
+			\verticalAsymptote{1};
+			\verticalAsymptote{-1};
+
+			\coordinate (title) at (axis cs:0,4.2) {};
+		\end{axis}
+
+		\node at (title) [above] {$y = \artanh(x)$};
+	\end{tikzpicture}
+\end{minipage}
+\end{figure}
+
+%\begin{figure}[H]
+%\centering
+%\begin{minipage}{0.5\linewidth}
+	%\begin{tikzpicture}
+		%\begin{axis}[sin cos axis]
+			%\addplot [trig plot] {cos(deg(x))};
+			%\coordinate (title) at (axis cs:0,1.2) {};
+		%\end{axis}
+
+		%\node at (title) [above] {$y = \cos(x)$};
+	%\end{tikzpicture}
+%\end{minipage}\hfill
+%\begin{minipage}{0.5\linewidth}
+	%\begin{tikzpicture}
+		%\begin{axis}[vertical asymptote axis]
+			%\addplot [trig plot] {1/cos(deg(x))};
+
+			%\verticalAsymptote{-4.7124}
+			%\verticalAsymptote{-1.5708}
+			%\verticalAsymptote{1.5708}
+			%\verticalAsymptote{4.7124}
+
+			%\coordinate (title) at (axis cs:0,4.2) {};
+		%\end{axis}
+
+		%\node at (title) [above] {$y = \sec(x)$};
+	%\end{tikzpicture}
+%\end{minipage}
+%\end{figure}
+
+%\begin{figure}[H]
+%\centering
+%\begin{minipage}{0.5\linewidth}
+	%\begin{tikzpicture}
+		%\begin{axis}[vertical asymptote axis]
+			%\addplot [trig plot] {tan(deg(x))};
+
+			%\verticalAsymptote{-4.7124}
+			%\verticalAsymptote{-1.5708}
+			%\verticalAsymptote{1.5708}
+			%\verticalAsymptote{4.7124}
+
+			%\coordinate (title) at (axis cs:0,4.2) {};
+		%\end{axis}
+
+		%\node at (title) [above] {$y = \tan(x)$};
+	%\end{tikzpicture}
+%\end{minipage}\hfill
+%\begin{minipage}{0.5\linewidth}
+	%\begin{tikzpicture}
+		%\begin{axis}[vertical asymptote axis]
+			%\addplot [trig plot] {1/tan(deg(x))};
+
+			%\verticalAsymptote{-6.2832}
+			%\verticalAsymptote{-3.1416}
+			%\verticalAsymptote{0}
+			%\verticalAsymptote{3.1416}
+			%\verticalAsymptote{6.2832}
+
+			%\coordinate (title) at (axis cs:0,4.2) {};
+		%\end{axis}
+
+		%\node at (title) [above] {$y = \cot(x)$};
+	%\end{tikzpicture}
+%\end{minipage}
+%\end{figure}
+\end{center}
+
+\end{document}

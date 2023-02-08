@@ -2,6 +2,22 @@
 
 \usepackage{preamble}
 
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\pgfplotsset{
+	compat=1.18,
+	default axis/.style={
+		grid=both,
+		samples=1000,
+		no marks,
+		axis lines=middle,
+		xlabel=$x$,
+		ylabel=$y$,
+	},
+}
+
 \begin{document}
 
 \booktitle{Pure}

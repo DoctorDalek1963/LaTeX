@@ -13,7 +13,7 @@ build target:
 
 # clean aux files from the specified target section
 clean target:
-	fd -I -e log -e aux -e dvi -e lof -e lot -e bit -e idx -e glo -e bbl -e bcf -e ilg -e toc -e ind -e out -e blg -e fdb_latexmk -e fls -e run.xml -e synctex.gz . 'sections/{{target}}' | xargs rm -f
+	fd -I -e log -e aux -e dvi -e lof -e lot -e bit -e idx -e glo -e bbl -e bcf -e ilg -e toc -e ind -e out -e blg -e fdb_latexmk -e fls -e run.xml -e synctex.gz -e dpth -e md5 -e auxlock -e pdf . 'sections/{{target}}' | xargs rm -f
 	rm -f pdfs/{{target}}.pdf
 
 # watch the given target section and build it whenever it changes

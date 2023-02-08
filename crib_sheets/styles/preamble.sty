@@ -40,88 +40,13 @@
 	\rtwot = sqrt(2)/2;
 	\rthot = sqrt(3)/2;
 }
-\tikzset{
-	asymptote/.style={dashed,semithick}
-}
-
-% \verticalAsymptote command only good for "vertical asymptote axis"
-\newcommand{\verticalAsymptote}[1]{\draw [asymptote] (#1,-4.2) -- (#1,4.2);}
 
 \def\cosec{\mathop{\rm cosec}\nolimits}
-
-\def\sech{\mathop{\rm sech}\nolimits}
-\def\cosech{\mathop{\rm cosech}\nolimits}
-\def\coth{\mathop{\rm coth}\nolimits}
-
-\def\arsinh{\mathop{\rm arsinh}\nolimits}
-\def\arcosh{\mathop{\rm arcosh}\nolimits}
-\def\artanh{\mathop{\rm artanh}\nolimits}
 
 \newcommand{\diffd}{\ensuremath{\operatorname{d}\!}}
 \newcommand{\diff}[1]{\frac{\diffd}{\diffd #1}}
 \newcommand{\inte}[2]{\int #1 \ \diffd #2}
 \newcommand{\constraint}[1]{\textcolor{darkgray}{\ensuremath\left( #1 \right)}}
-
-\usepackage{pgfplots}
-\pgfplotsset{
-	compat=1.18,
-	default axis/.style={
-		grid=both,
-		samples=1000,
-		no marks,
-		axis lines=middle,
-		xlabel=$x$,
-		ylabel=$y$,
-	},
-	normal trig axis/.style={
-		default axis,
-		xmax=6.48,
-		xmin=-6.48,
-		xtick={-2*\npi,-1.5*\npi,...,2*\npi},
-		xticklabels={%
-			$-2\pi$,
-			$-\frac{3\pi}{2}$,
-			$-\pi$,
-			$-\frac{\pi}{2}$,
-			0,
-			$\frac{\pi}{2}$,
-			$\pi$,
-			$\frac{3\pi}{2}$,
-			$2\pi$},
-	},
-	sin cos axis/.style={
-		normal trig axis,
-		% Meant to be used in minipage, so full width
-		width=\textwidth,
-		height=0.8\textwidth,
-		ymax=1.2,
-		ymin=-1.2,
-		ytick={%
-			-1,
-			-0.5,
-			0,
-			0.5,
-			1},
-		yticklabels={%
-			-1,
-			$-\frac{1}{2}$,
-			0,
-			$\frac{1}{2}$,
-			1}
-	},
-	vertical asymptote axis/.style={
-		normal trig axis,
-		ymax=4.2,
-		ymin=-4.2,
-		ytick={-4,-3,...,4},
-		restrict y to domain=-4.5:4.5
-	},
-	trig plot/.style={
-		domain=-2*\npi:2*\npi,
-		thick
-	}
-}
-
 
 \newcommand{\booktitle}[1]{%
 	\begin{center}

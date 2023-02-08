@@ -28,7 +28,12 @@ The normal distribution $X \sim \text{N}(\mu, \sigma^2)$ is symmetrical, meaning
 \begin{center}
 \begin{tikzpicture}
 	\begin{axis}[
-		default axis,
+		grid=both,
+		samples=1000,
+		no marks,
+		axis lines=middle,
+		xlabel=$x$,
+		ylabel=$y$,
 		axis lines*=middle,
 		xmin=-5,
 		xmax=5,

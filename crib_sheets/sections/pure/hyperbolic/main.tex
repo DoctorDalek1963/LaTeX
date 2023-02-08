@@ -2,10 +2,62 @@
 
 \usepackage{preamble}
 
+\tikzset{
+	asymptote/.style={dashed,semithick}
+}
+
+% Asymptote commands only good for "sinh tanh axis"
+\newcommand{\verticalAsymptote}[1]{\draw [asymptote] (#1,-4.2) -- (#1,4.2);}
+\newcommand{\horizontalAsymptote}[1]{\draw [asymptote] (-4.2,#1) -- (4.2,#1);}
+
+\def\sech{\mathop{\rm sech}\nolimits}
+\def\cosech{\mathop{\rm cosech}\nolimits}
+\def\coth{\mathop{\rm coth}\nolimits}
+
+\def\arsinh{\mathop{\rm arsinh}\nolimits}
+\def\arcosh{\mathop{\rm arcosh}\nolimits}
+\def\artanh{\mathop{\rm artanh}\nolimits}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\pgfplotsset{
+	compat=1.18,
+	every plot/.style={
+		thick
+	},
+	default axis/.style={
+		grid=both,
+		samples=1000,
+		no marks,
+		axis lines=middle,
+		xlabel=$x$,
+		ylabel=$y$,
+		% Meant to be used in minipage, so full width
+		width=\textwidth,
+		height=0.8\textwidth,
+	},
+	sinh tanh axis/.style={
+		default axis,
+		xmax=4.2,
+		xmin=-4.2,
+		ymax=4.2,
+		ymin=-4.2,
+		xtick={-4,-3,...,4},
+		ytick={-4,-3,...,4},
+	},
+	sinh tanh plot/.style={
+		domain=-4.2:4.2,
+	},
+}
+
 \begin{document}
 
 \booktitle{Hyperbolic Functions}
 
 \subfile{basics.tex}
+\newpage
+\subfile{graphs.tex}
 
 \end{document}

@@ -21,6 +21,11 @@
 *.run.xml
 *.synctex.gz
 
+# Externalized images
+*.dpth
+*.md5
+*.auxlock
+
 # Ignore pdf files in main directories
 *.pdf
 # But not in PDFs directories

@@ -12,6 +12,7 @@
 	\begin{tikzpicture}
 		\begin{axis}[
 			default axis,
+			samples=2200,
 			xmin=-3.5,
 			xmax=7.5,
 			ymin=-3.5,
@@ -35,12 +36,12 @@
 	\end{tikzpicture}
 \end{minipage}\hfill
 \begin{minipage}{0.39\linewidth}
-\large\centering
-$$\diff{x} e^x = e^x$$
-
-$$\diff{x} e^{kx} = k e^{kx}$$
-
-$$\diff{x} e^{f(x)} = f'(x) e^{f(x)}$$
+\large
+\begin{empheq}[box=\rememberBox]{align*}
+	\diff{x} e^x &= e^x\\[2ex]
+	\diff{x} e^{kx} &= k e^{kx}\\[2ex]
+	\diff{x} e^{f(x)} &= f'(x) e^{f(x)}
+\end{empheq}
 
 \vspace{1em}
 $\ln x$ is the inverse of $e^x$, meaning its graph is reflected in the line $y = x$.
@@ -49,27 +50,20 @@ $\ln x$ is the inverse of $e^x$, meaning its graph is reflected in the line $y =
 
 \sectitle{Log Laws}
 
-{\large $$\log_a b \equiv \frac{\ln b}{\ln a}$$}
+\vspace{-3ex}
+{\large \begin{empheq}[box=\formulaBookBox]{align*}
+	\log_a b \equiv \frac{\ln b}{\ln a}
+\end{empheq}}
 
-\begin{figure}[h]
-{\centering\large
-\begin{minipage}{0.33\linewidth}
-	$$\log xy \equiv \log x + \log y$$
-	\vspace{0.5em}
-	$$\log_a a \equiv 1$$
-\end{minipage}\hfill
-\begin{minipage}{0.33\linewidth}
-	$$\log \frac{x}{y} \equiv \log x - \log y$$
-	\vspace{0.5em}
-	$$\log 1 \equiv 0$$
-\end{minipage}\hfill
-\begin{minipage}{0.33\linewidth}
-	$$\log x^y \equiv y \log x$$
-	\vspace{0.5em}
-	$$\log \frac{1}{x} \equiv -\log x$$
-\end{minipage}
-}
-\end{figure}
+\vspace{-1ex}
+{\large \begin{empheq}[box=\rememberBox]{alignat*=3}
+	\log xy &\equiv \log x + \log y\ \ \ \ \ &
+		\log \frac{x}{y} &\equiv \log x - \log y\ \ \ \ \ &
+		\log x^y &\equiv y \log x \\
+	\log_a a &\equiv 1\ \ \ \ \ &
+		\log 1 &\equiv 0\ \ \ \ \ &
+		\log \frac{1}{x} &\equiv -\log x
+\end{empheq}}
 
 \sectitle{Log Plots}
 

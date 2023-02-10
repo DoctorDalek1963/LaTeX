@@ -6,11 +6,11 @@
 
 \sectitle{Elementary Derivatives}
 
-\begin{center}
-\vspace{-2.8em}\large
-$$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$$
-\normalsize
-\end{center}
+{\large
+\begin{empheq}[box=\formulaBookBox]{align*}
+	f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+\end{empheq}
+}
 
 {\large\renewcommand{\arraystretch}{1.5}
 $$\begin{array}{|*{7}{c|}}
@@ -34,19 +34,11 @@ The $\circ$ symbol denotes function composition, so $(f \circ g)(x) = f(g(x))$.
 \end{center}
 \vspace{0.5em}
 
-\begin{figure}[h]
-{\centering\large
-\begin{minipage}{0.49\linewidth}
-	$$(f \pm g)' = f' \pm g'$$
-	\vspace{0.5em}
-	$$(f \circ g)' = (f' \circ g) g'$$
-\end{minipage}\hfill
-\begin{minipage}{0.49\linewidth}
-	$$(fg)' = fg' + f'g$$
-	\vspace{0.5em}
-	$$\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$$
-\end{minipage}
+{\large
+\begin{empheq}[box=\rememberBox]{alignat*=2}
+	(f \pm g)' &= f' \pm g'\ \ \ \ \ & (fg)' &= fg' + f'g\\
+	(f \circ g)' &= (f' \circ g) g'\ \ \ \ \ & \left(\frac{f}{g}\right)' &= \frac{f'g - fg'}{g^2}
+\end{empheq}
 }
-\end{figure}
 
 \end{document}

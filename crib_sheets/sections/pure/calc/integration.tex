@@ -35,7 +35,10 @@
 		Integrals can often be simplified by using an appropriate substitution. Always remember to find d$x$ in terms of d$u$ and exchange the bounds of the integral.
 	};
 	\node (t6-words) [words, below=of t5-words] {
-		Integrating by parts is the most complicated method, and should be avoided wherever possible. Use the following formula: \[\int u \frac{\diffd v}{\diffd x} \diffd x = uv - \int v \frac{\diffd u}{\diffd x} \diffd x\]
+		Integrating by parts is the most complicated method, and should be avoided wherever possible. Use the following formula:
+		\begin{empheq}[box=\formulaBookBox]{align*}
+			\int u \frac{\diffd v}{\diffd x} \diffd x = uv - \int v \frac{\diffd u}{\diffd x} \diffd x
+		\end{empheq}
 
 		Since the second integral involves $\dfrac{\diffd u}{\diffd x}$, we should choose $u$ to be the function in the original integral that reduces the fastest. To find the function that reduces fastest, follow the acronym \textbf{LATE} - \textbf{L}ogs, \textbf{A}lgebra, \textbf{T}rig, \textbf{E}xponentials. Pick the function that comes first in the acronym.
 	};

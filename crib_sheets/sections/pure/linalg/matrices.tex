@@ -354,31 +354,32 @@ The determinant of a $3 \times 3$ matrix is a little more complicated, but still
 
 \sectitle{Standard results}
 
-\vspace*{-2ex}
-\begin{center}
-\begin{tabular}{c c}
-	Reflection in $y = x$ & $\begin{pmatrix}0 & 1\\ 1 & 0\end{pmatrix}$\\
+\begin{empheq}[box=\formulaBookBox]{align*}
+	\text{2D rotation}\ \ \ \ \ & \begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix}
+\end{empheq}
+
+\begin{empheq}[box=\rememberBox]{align*}
+	\text{Reflection in }y = x\ \ \ \ \ & \begin{pmatrix}0 & 1\\ 1 & 0\end{pmatrix}\\
 	\hphantom{} & \hphantom{}\\
-	Reflection in $y = -x$ & $\begin{pmatrix}0 & -1\\ -1 & 0\end{pmatrix}$\\
+	\text{Reflection in }y = -x\ \ \ \ \ & \begin{pmatrix}0 & -1\\ -1 & 0\end{pmatrix}\\
 	\hphantom{} & \hphantom{}\\
-	2D rotation & $\begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix}$\\
+	\text{3D rotation around x-axis}\ \ \ \ \ & \begin{pmatrix}1 & 0 & 0\\ 0 & \cos\theta & -\sin\theta\\ 0 & \sin\theta & \cos\theta\end{pmatrix}\\
 	\hphantom{} & \hphantom{}\\
-	3D rotation around $x$-axis & $\begin{pmatrix}1 & 0 & 0\\ 0 & \cos\theta & -\sin\theta\\ 0 & \sin\theta & \cos\theta\end{pmatrix}$\\
+	\text{3D rotation around y-axis}\ \ \ \ \ & \begin{pmatrix}\cos\theta & 0 & \sin\theta\\ 0 & 1 & 0\\ -\sin\theta & 0 & \cos\theta\end{pmatrix}\\
 	\hphantom{} & \hphantom{}\\
-	3D rotation around $y$-axis & $\begin{pmatrix}\cos\theta & 0 & \sin\theta\\ 0 & 1 & 0\\ -\sin\theta & 0 & \cos\theta\end{pmatrix}$\\
-	\hphantom{} & \hphantom{}\\
-	3D rotation around $z$-axis & $\begin{pmatrix}\cos\theta & -\sin\theta & 0\\ \sin\theta & \cos\theta & 0\\ 0 & 0 & 1\end{pmatrix}$\\
-\end{tabular}
-\end{center}
+	\text{3D rotation around z-axis}\ \ \ \ \ & \begin{pmatrix}\cos\theta & -\sin\theta & 0\\ \sin\theta & \cos\theta & 0\\ 0 & 0 & 1\end{pmatrix}
+\end{empheq}
 
 \newpage
 
 \sectitle{Inverses}
 
 The inverse of a $2 \times 2$ matrix is quite easy to find. Remember that $\mathbf{I}^{-1} = \mathbf{I}$, not $-\mathbf{I}$, so flip the leading diagonal and negate the opposite diagonal.
-$$\boxed{\begin{pmatrix}a & b\\ c & d\end{pmatrix}^{-1} = \frac{1}{\det}\begin{pmatrix}d & -b\\ -c & a\end{pmatrix}}$$
+\begin{empheq}[box=\rememberBox]{align*}
+	\begin{pmatrix}a & b\\ c & d\end{pmatrix}^{-1} = \frac{1}{\det}\begin{pmatrix}d & -b\\ -c & a\end{pmatrix}
+\end{empheq}
 
-The inverse of a $3 \times 3$ matrix is significantly more complicated. For a $3 \times 3$ matrix $\mathbf{A}$, $\boxed{\mathbf{A}^{-1} = \dfrac{1}{\det\mathbf{A}} \mathbf{C}^\text{T}}$, where $\mathbf{C}$ is the matrix of cofactors, formed by the matrix of minors $\mathbf{M}$.
+The inverse of a $3 \times 3$ matrix is significantly more complicated. For a $3 \times 3$ matrix $\mathbf{A}$, \rememberBox{$\mathbf{A}^{-1} = \dfrac{1}{\det\mathbf{A}} \mathbf{C}^\text{T}$}, where $\mathbf{C}$ is the matrix of cofactors, formed by the matrix of minors $\mathbf{M}$.
 
 Here's an example:
 

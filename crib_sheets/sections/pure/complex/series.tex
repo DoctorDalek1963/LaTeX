@@ -35,17 +35,21 @@ The aim of the process is normally to get something of the form $z^n \pm z^{-n}$
 
 \technique{Denominators}
 
-$$\Large \boxed{\frac{\cdots}{e^{ni\theta} \pm 1}
+{\Large \begin{empheq}[box=\rememberBox]{align*}
+\frac{\cdots}{e^{ni\theta} \pm 1}
 = \frac{\cdots}{e^{ni\theta} \pm 1} \times \frac{e^\frac{-ni\theta}{2}}{e^\frac{-ni\theta}{2}}
-= \frac{e^\frac{-ni\theta}{2} (\cdots)}{e^\frac{ni\theta}{2} \pm e^\frac{-ni\theta}{2}}}$$
+= \frac{e^\frac{-ni\theta}{2} (\cdots)}{e^\frac{ni\theta}{2} \pm e^\frac{-ni\theta}{2}}
+\end{empheq}}
 
 When the denominator is of the form $\displaystyle e^{ni\theta} \pm 1$, we can multiply the top and bottom of the fraction by the negative half power of $e$. This gives us $z^n \pm z^{-n}$ in the denominator, which we can get rid of with ease.
 
 \technique{Denominator General Case}
 
-$$\Large \boxed{\frac{\cdots}{e^{ni\theta} + k}
-= \frac{\cdots}{e^{ni\theta} + k} \times \frac{e^{-ni\theta} + k}{e^{-ni\theta} + k}
-= \frac{(e^{-ni\theta} + k) (\cdots)}{(e^{ni\theta} + k) (e^{-ni\theta} + k)}}$$
+{\Large \begin{empheq}[box=\rememberBox]{align*}
+	\frac{\cdots}{e^{ni\theta} + k}
+	= \frac{\cdots}{e^{ni\theta} + k} \times \frac{e^{-ni\theta} + k}{e^{-ni\theta} + k}
+	= \frac{(e^{-ni\theta} + k) (\cdots)}{(e^{ni\theta} + k) (e^{-ni\theta} + k)}
+\end{empheq}}
 
 Always factor the denominator to be of the form $e^{ni\theta} + k$. If $k = \pm 1$, then use Technique~\ref{technique:Denominators}. Otherwise, multiply the top and bottom by the bottom, but with the sign of the power flipped. The sign between terms stays the same, but the power of $e$ gets negated (and not halved).
 
@@ -53,8 +57,10 @@ The denominator will then expand to create something that can be simplified with
 
 \technique{Numerators}
 
-$$\Large \boxed{\frac{e^{ni\theta} \pm 1}{\cdots}
-= \frac{e^\frac{ni\theta}{2} \big(e^\frac{ni\theta}{2} \pm e^\frac{-ni\theta}{2}\big)}{\cdots}}$$
+{\Large \begin{empheq}[box=\rememberBox]{align*}
+	\frac{e^{ni\theta} \pm 1}{\phantom{(}\cdots\phantom{)}}
+	= \frac{e^\frac{ni\theta}{2} \big(e^\frac{ni\theta}{2} \pm e^\frac{-ni\theta}{2}\big)}{\cdots}
+\end{empheq}}
 
 Once the denominator is in a manageable form, we can then apply this technique to the numerator.
 

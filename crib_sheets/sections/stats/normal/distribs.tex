@@ -27,34 +27,45 @@ The normal distribution $X \sim \text{N}(\mu, \sigma^2)$ is symmetrical, meaning
 
 \begin{figure}[h]
 \begin{center}
-\begin{tikzpicture}
-	\begin{axis}[
-		grid=both,
-		samples=1000,
-		no marks,
-		axis lines=middle,
-		xlabel=$x$,
-		ylabel=$y$,
-		axis lines*=middle,
-		xmin=-5,
-		xmax=5,
-		ymin=0,
-		ymax=0.42,
-		width=0.8\linewidth,
-		grid=none,
-		xlabel={},
-		ylabel={},
-		xtick={-5,-4,-3,-2,-1,1,2,3,4,5},
-		xticklabels={
-			$-5\sigma$, $-4\sigma$, $-3\sigma$, $-2\sigma$, $-\sigma$,
-			$\sigma$, $2\sigma$, $3\sigma$, $4\sigma$, $5\sigma$,
-		},
-		ytick style={draw=none},
-		yticklabels={},
-	]
-		\addplot [thick] {(2*\npi)^(-1/2)*exp(-(x^2)/2};
-	\end{axis}
-\end{tikzpicture}
+\begin{minipage}{0.5\linewidth}
+	\setlength{\parskip}{1ex}
+	When doing questions that involve the normal distribution, sketching the bell curve on the right is always a good idea.\\
+
+	The standard normal distribution $Z \sim \text{N}(0, 1^2)$ is very useful, since it allows you to find values for $\mu$ and $\sigma$ when they're unknown. The normal random variable $X$ can be coded using \rememberBox{$\displaystyle Z = \frac{X - \mu}{\sigma}$} and you can use this equation to find the unknown parameters of $X$.\\
+
+	The \enquote{Normal CD} function on your calculator will calculate the area between an upper and lower bound on the bell curve. The \enquote{Inverse Normal} function will find a value for which the area to the \underline{\textit{left}} of that value is the area you specify.
+\end{minipage}\hfill
+\begin{minipage}{0.48\linewidth}
+	\begin{tikzpicture}
+		\begin{axis}[
+			grid=both,
+			samples=1000,
+			no marks,
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			axis lines*=middle,
+			xmin=-5,
+			xmax=5,
+			ymin=0,
+			ymax=0.42,
+			width=\linewidth,
+			height=0.65\linewidth,
+			grid=none,
+			xlabel={},
+			ylabel={},
+			xtick={-5,-4,-3,-2,-1,1,2,3,4,5},
+			xticklabels={
+				$-5\sigma$, $-4\sigma$, $-3\sigma$, $-2\sigma$, $-\sigma$,
+				$\sigma$, $2\sigma$, $3\sigma$, $4\sigma$, $5\sigma$,
+			},
+			ytick style={draw=none},
+			yticklabels={},
+		]
+			\addplot [thick] {(2*\npi)^(-1/2)*exp(-(x^2)/2};
+		\end{axis}
+	\end{tikzpicture}
+\end{minipage}
 \end{center}
 \end{figure}
 

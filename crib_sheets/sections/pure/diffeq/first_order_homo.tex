@@ -1,0 +1,53 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{First Order Homogeneous}
+
+\sectitle{Separation of variables\label{sec:first-order-homo:separation-of-variables}}
+
+The simplest technique for solving first order homogeneous differential equations is to separate the variables. This involves treating the $\diffd x$ and $\diffd y$ as their own variables, rearranging everything to get all $y$ terms on one side and all $x$ terms on the other, and then adding integral signs. For example,
+\begin{gather*}
+	\dd{y}{x} = -\frac{y}{x}
+	\implies \frac{1}{y} \diffd y = -\frac{1}{x} \diffd x
+	\implies \inte{\frac{1}{y}}{y} = \inte{-\frac{1}{x}}{x}\\[1.2ex]
+	\implies \ln|y| = -\ln|x| + c
+	\implies \ln|y| + \ln|x| = c
+	\implies \ln|xy| = c\\[1.2ex]
+	\implies xy = \pm A
+	\implies y = \pm \frac{A}{x}
+\end{gather*}
+
+This technique is easy, but very very rarely possible.
+
+\sectitle{Reverse product rule\label{sec:first-order-homo:reverse-product-rule}}
+
+Sometimes the LHS (the $y$ and $y'$ terms in this case) can be seen as the result of the product rule applied to some function of $x$ and $y$. For example,
+\begin{gather*}
+	x^3 y' + 3x^2 y = \sin x
+	\implies \diff{x} (x^3 y) = \sin x
+	\implies x^3 y = \inte{\sin x}{x}\\[1.2ex]
+	\implies x^3 y = -\cos x + c
+	\implies y = \frac{-\cos x + c}{x^3}
+\end{gather*}
+
+Again, this technique is easy, but very rarely possible.
+
+\sectitle{Integrating factor\label{sec:first-order-homo:integrating-factor}}
+
+The reverse product rule is not always applicable, but you can always multiply a first order linear homogeneous differential equation by some function of $x$, called an \textbf{integrating factor (IF)}, to make the reverse product rule applicable.
+
+This \textbf{IF} could be anything, and you may be able to find a simple one, but there is a general formula:
+{\Large \begin{empheq}[box=\rememberBox]{gather*}
+	y' + P(x)y = Q(x) \implies \textbf{IF} = e^{\int P(x) \diffd x}
+\end{empheq}}
+
+For example,
+\begin{gather*}
+	y' + \frac{3y}{x} = \frac{\sin x}{x^3}
+	\implies \textbf{IF} = x^3\text{ (by inspection) or } \textbf{IF} = e^{\inte{\frac{3}{x}}{x}} = e^{3\ln|x|} = x^3\\[1.2ex]
+	x^3 y' + 3x^2 y = \sin x
+	\implies y = \frac{-\cos x + c}{x^3}\text{ as shown above}
+\end{gather*}
+
+\end{document}

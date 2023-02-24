@@ -1,0 +1,28 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Second Order Homogeneous\label{sec:second-order-homo}}
+
+To solve a general second order homogeneous DE of the form $ay'' + by' + cy = 0$, you can use the \textbf{auxiliary equation} $am^2 + bm + c = 0$. Find the solutions to the auxiliary equation and they will tell you the general solutions to the differential equation.
+
+{\large
+\begin{empheq}[box=\rememberBox]{align*}
+	\text{2 real roots }\alpha\text{ and }\beta &\implies y = Ae^{\alpha x} + Be^{\beta x}\\
+	\text{1 real repeated root }\alpha &\implies y = (A + Bx)e^{\alpha x}\\
+	\text{2 complex roots }p \pm qi &\implies y = e^{px} (A\cos qx + B\sin qx)
+\end{empheq}}
+
+\topictitle{Second Order Non-homogeneous\label{sec:second-order-nohomo}}
+
+To solve a DE of the form $ay'' + by' + cy = f(x)$, first solve the corresponding homogeneous equation $ay'' + by' + c = 0$. The general solution to this equation is know as the \textbf{complementary function (CF)}.
+
+You then need to find the \textbf{particular integral (PI)}, which is a function that satisfies the original DE. The form of the PI depends on the form of $f(x)$. The PI will typically be of the same form as $f(x)$ but with different coefficients. However, if $f(x)$ is a single trig function like $\sin kx$, then the PI should be of the form $\lambda \cos kx + \mu \sin kx$.
+
+If the \textbf{PI} is contained as a term in the \textbf{CF}, then you should multiply the \textbf{PI} by $x$.
+
+To find the coefficients of the PI, differentiate it twice and sub the derivatives into the original DE and equate coefficients to solve simultaneously.
+
+The general solution is {\large\rememberBox{$y = \textbf{CF} + \textbf{PI}$}}
+
+\end{document}

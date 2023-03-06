@@ -1,0 +1,66 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Diagrams}
+
+Boxes contain entities, or the fields of a record in that table. Relationship lines have a single line connection to the box for a \textit{one} connection, and a crow's foot connection for \textit{many}.
+
+In this example, there is an online revision service which provides textbooks. A customer can subscribe to different tiers. A customer has personal details; a product is a book with a name, subject, level, and price; and a subscription links these two together with foreign keys for each, as well as a start and end date.
+
+\begin{center}
+\begin{tikzpicture}[
+	every node/.style={font=\ttfamily},
+	node distance=1.25in
+]
+	\matrix [
+		entity=tblCustomer,
+		entity anchor=tblCustomer-custID,
+	] {
+		\pk{custID},
+		\properties{
+			firstName,
+			lastName,
+			emailAddress,
+			address,
+		}
+	};
+
+	\matrix [
+		entity=tblSubscription,
+		entity anchor=tblSubscription-subID,
+		right=of tblCustomer,
+		yshift=3em,
+	] {
+		\pk{subID},
+		\fk{custID},
+		\fk{prodID},
+		\properties{
+			startDate,
+			endDate,
+		}
+	};
+
+	\matrix [
+		entity=tblProduct,
+		entity anchor=tblProduct-prodID,
+		right=of tblSubscription,
+		yshift=3em,
+	] {
+		\pk{prodID},
+		\properties{
+			prodName,
+			subject,
+			level,
+			price,
+		}
+	};
+
+	\draw [one to many] (tblCustomer-custID) +(18.5ex, 0) -- +(3.5, 0) |- (tblSubscription-custID);
+	\draw [one to many] (tblProduct-prodID) +(-10ex, 0) -- +(-2.3, 0) |- ($(tblSubscription-prodID) +(18.5ex, 0)$);
+\end{tikzpicture}
+\end{center}
+
+The \texttt{tblCustomer} table has personal details and a unique ID, which is its primary key. The \texttt{tblProduct} table has details about the product and its own unique ID primary key. The \texttt{tblSubscription} table has a unique ID primary key, a start and end date, and two foreign keys. Each subscription references the customer that subscribes to it and the product they subscribe to, in the form of two primary keys.
+
+\end{document}

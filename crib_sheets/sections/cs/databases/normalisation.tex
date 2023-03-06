@@ -1,0 +1,29 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Normalisation}
+
+Normalisation is a process used to come up with the best possible design for a database. Tables should be organised so that data is not duplicated in the same table or different tables. The structure should allow complex queries to be made.
+
+A normalised database is much easier to maintain and change; there is no unnecessary duplication of data; integrity is maintained and updates are small; having smaller tables with fewer fields makes searching faster and saves storage.
+
+There are 3 main stages of normalisation:
+
+\sectitle{First Normal Form (1NF)}
+
+A table is 1NF normalised if it contains no repeating attributes or groups of attributes. \textbf{All attributes must be atomic (separate first and last names etc.)}. A field cannot be a composite data type. It must instead by a foreign key referencing another table which contains the desired data.
+
+\sectitle{Second Normal Form (2NF)}
+
+A table is 2NF if it's 1NF and \textbf{contains no partial dependencies}.
+
+Identify a table's purpose. Each column must describe the singular thing that the primary key identifies. If it doesn't, then it should belong in a different table. For example, in a \texttt{tblEmployee}, all columns should describe an attribute of the particular employee identified by the primary key.
+
+If a table has a composite primary key, then it is only in 2NF if each column directly relates to *both* parts of the primary key. The table must refer entirely to a singular entity.
+
+\sectitle{Third Normal Form (3NF)}
+
+A table is 3NF if it's 2NF and \textbf{contains no non-key dependencies}. All attributes are dependent entirely on the primary key and nothing else. This means that the primary key determines all other attributes in its record.
+
+\end{document}

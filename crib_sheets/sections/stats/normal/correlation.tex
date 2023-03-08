@@ -1,0 +1,48 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Correlation}
+
+\begin{figure}[H]
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[
+				scale=0.35,
+				cross/.style={
+					cross out, draw,
+					minimum size=2*(#1-\pgflinewidth),
+					inner sep=0pt, outer sep=0pt
+				},
+				cross/.default={4pt}
+			]
+				\draw (-1, 0) -- (20, 0);
+				\draw (0, -1) -- (0, 20);
+
+				\node[cross] at (4, 6.5) {};
+				\node[cross] at (4, 6) {};
+				\node[cross] at (8, 9.5) {};
+				\node[cross] at (7, 11.5) {};
+				\node[cross] at (12, 16.5) {};
+				\node[cross] at (12, 18.5) {};
+				\node[cross] at (3, 5) {};
+				\node[cross] at (10, 11.5) {};
+
+				\clip (1, 1) rectangle (19, 19);
+				\draw (0, 1.847826087) -- (20, {25.86956522});
+			\end{tikzpicture}
+			\caption{A strong positive correlation}
+		\end{figure}
+	\end{minipage}\hfill
+	\begin{minipage}{0.5\linewidth}
+		The \textbf{product moment correlation coefficient} or \enquote*{Pearson's correlation coefficient} is a measure of correlation between two variables. It is often called $r$ and is measured in the range $[-1, 1]$. $r = \pm 1$ means the data perfectly follows a positive or negative correlation respectively.
+
+		\vspace{5ex}
+		\sectitle{Hypothesis testing}
+
+		Use $H_0: \rho = 0$ and $H_1: \rho \lessgtr 0$ or $H_1: \rho \neq 0$. Get $r$ from your calculator (use section 6 and option 4 regression calc) and $\rho$ from the table in the formula book by finding the sample size and significance level. Remember to halve the significance level if the test is two-tailed.
+	\end{minipage}
+\end{figure}
+
+\end{document}

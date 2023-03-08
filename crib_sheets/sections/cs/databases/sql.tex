@@ -1,0 +1,51 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{SQL}
+
+SQL is a declarative language used for querying and updating tables in a relational database.
+
+The \texttt{SELECT} statement is used to extract fields from one or more tables. The syntax is the following:\\
+\texttt{SELECT (fields) FROM (tables) [WHERE (criteria)] [SELECTORS].. [ORDER BY (field) [ASC | DESC]];}
+
+An example would be:\\
+\texttt{SELECT (prodID, name, subject, price) FROM tblProduct WHERE level = 4 AND price BETWEEN 500 AND 1500 ORDER BY name;}
+
+Every SQL statement \textbf{MUST} end in a semicolon. A logical statement can span multiple physical lines, so the semicolon is needed to end the statement.
+
+\sectitle{\texttt{WHERE} clauses}
+
+Wild cards can be used, and act like they do in glob patterns. \texttt{*} matches anything. \texttt{LIKE} can be used in a \texttt{WHERE} clause to find fields by matching a pattern.
+
+\texttt{WHERE} clauses can also accept ranges with \texttt{BETWEEN} or \texttt{IN}. The \texttt{BETWEEN} selector finds values in an inclusive numerical range. \texttt{IN} finds values where they match one of several possibilities.
+
+All standard mathematical comparison operators can be used, as well as \texttt{AND}, \texttt{OR}, as well as \texttt{NOT}.
+
+\sectitle{Using multiple tables}
+
+Multiple tables can be selected from using a \texttt{SELECT} statement. This is most often useful for a \texttt{WHERE} clause. Consider this expression:\\
+\texttt{
+SELECT tblCustomer.firstName, tblCustomer.lastName, tblProduct.name\\
+    FROM tblCustomer, tblProduct, tblSubscription\\
+    WHERE tblSubscription.custID = tblCustomer.custID\\
+    AND tblSubscription.prodID = tblProduct.prodID;
+}
+
+This will select the customer name and product name for every subscription. There will be one row for each subscription and each row will contain the appropriate customer and product. This query can be made simpler by using the \texttt{JOIN} clause.
+
+\sectitle{\texttt{JOIN}-ing tables}
+
+Data can be extracted using the join clause. You can select from multiple tables and join them together by their foreign key relationships. This then treats the results as one table, which you can then use something like a \texttt{WHERE} clause with.
+
+Here is a \texttt{SELECT} statement equivalent to the previous one, but using \texttt{JOIN} clauses instead:\\
+\texttt{
+SELECT tblCustomer.firstName, tblCustomer.lastName, tblProduct.name\\
+    FROM tblSubscription\\
+    JOIN tblCustomer ON tblCustomer.custID = tblSubscription.custID\\
+    JOIN tblProduct ON tblProduct.prodID = tblSubscription.prodID;
+}
+
+The \texttt{JOIN} clause is used to match foreign keys between tables to search them together.
+
+\end{document}

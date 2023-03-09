@@ -1,0 +1,27 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Harmonic Motion\label{topic:harmonic-motion}}
+
+For basically all differential equations describing physical motion, we use $x$ for displacement, $\dot{x}$ for velocity, and $\ddot{x}$ for acceleration. All are functions of time $t$.
+
+\sectitle{Simple\label{sec:harmonic-motion:simple}}
+
+Simple harmonic motion means a particles oscillates around a fixed point $O$, always accelerating towards it. Taking $O$ as the origin of our reference frame, we get the fact that the displacement of any particle moving in simple harmonic motion can be described with
+{\large \begin{empheq}[box=\rememberBox]{gather*}
+	\ddot{x} = -\omega^2 x
+\end{empheq}}
+
+If you only need $\dot{x}$, then you can use the facts that $\dot{x} = v$ and $\displaystyle \ddot{x} = \frac{\diffd v}{\diffd t} = \frac{\diffd v}{\diffd x} \times \frac{\diffd x}{\diffd t} = v\frac{\diffd v}{\diffd x}$. \hfill \rememberBox{$\displaystyle \ddot{x} = v\frac{\diffd v}{\diffd x}$}\\[0ex]
+This equation will allow you to separate the variables and find $v$ quite easily.
+
+If you need to find $\ddot{x}$, however, you will need to use the techniques for \hyperref[topic:second-order-homo]{second order homogeneous ODEs}.
+
+The ODE $\ddot{x} = -\omega^2 x$ will have the general solution $x = A\sin\omega t + B \cos\omega t$. This proof is left as an exercise to the reader. Once you've found a particular solution, you can simplify it to $R\sin(\omega t + \alpha)$ using trig rules. Then we get:
+\begin{empheq}[box=\rememberBox]{align*}
+	\text{Amplitude} &= R = \sqrt{A^2 + B^2}\\
+	\text{Period} &= \frac{2\pi}{\omega}
+\end{empheq}
+
+\end{document}

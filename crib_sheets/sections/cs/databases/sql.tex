@@ -27,9 +27,9 @@ All standard mathematical comparison operators can be used, as well as \texttt{A
 Multiple tables can be selected from using a \texttt{SELECT} statement. This is most often useful for a \texttt{WHERE} clause. Consider this expression:\\
 \texttt{
 SELECT tblCustomer.firstName, tblCustomer.lastName, tblProduct.name\\
-    FROM tblCustomer, tblProduct, tblSubscription\\
-    WHERE tblSubscription.custID = tblCustomer.custID\\
-    AND tblSubscription.prodID = tblProduct.prodID;
+  FROM tblCustomer, tblProduct, tblSubscription\\
+  WHERE tblSubscription.custID = tblCustomer.custID\\
+  AND tblSubscription.prodID = tblProduct.prodID;
 }
 
 This will select the customer name and product name for every subscription. There will be one row for each subscription and each row will contain the appropriate customer and product. This query can be made simpler by using the \texttt{JOIN} clause.
@@ -41,9 +41,9 @@ Data can be extracted using the join clause. You can select from multiple tables
 Here is a \texttt{SELECT} statement equivalent to the previous one, but using \texttt{JOIN} clauses instead:\\
 \texttt{
 SELECT tblCustomer.firstName, tblCustomer.lastName, tblProduct.name\\
-    FROM tblSubscription\\
-    JOIN tblCustomer ON tblCustomer.custID = tblSubscription.custID\\
-    JOIN tblProduct ON tblProduct.prodID = tblSubscription.prodID;
+  FROM tblSubscription\\
+  JOIN tblCustomer ON tblCustomer.custID = tblSubscription.custID\\
+  JOIN tblProduct ON tblProduct.prodID = tblSubscription.prodID;
 }
 
 The \texttt{JOIN} clause is used to match foreign keys between tables to search them together.

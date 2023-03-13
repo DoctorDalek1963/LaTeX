@@ -1,0 +1,76 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Defining and updating tables with SQL}
+
+\sectitle{Creating tables}
+
+The \texttt{CREATE TABLE} command expects a table name and a comma-separated list of fields. Each field has a name, a type, and some extra information about the field, such as \texttt{NOT NULL} or \texttt{PRIMARY KEY}. For example:\\
+\texttt{CREATE TABLE tblProduct (\\
+    productID   CHAR(4) NOT NULL UNIQUE PRIMARY KEY,\\
+    description VARCHAR(20) NOT NULL,\\
+    price       CURRENCY\\
+);}
+
+\sectitle{Data types}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+	\hline
+	\texttt{CHAR(}$n$\texttt{)} & String of fixed length $n$\\
+	\hline
+	\texttt{VARCHAR(}$n$\texttt{)} & Variable length string of max length $n$\\
+	\hline
+	\texttt{BOOLEAN} & True or false\\
+	\hline
+	\texttt{INTEGER} or \texttt{INT} & Integer\\
+	\hline
+	\texttt{FLOAT} & Floating point decimal number\\
+	\hline
+	\texttt{DATE} & Date in local format\\
+	\hline
+	\texttt{TIME} & Time in local format\\
+	\hline
+	\texttt{CURRENCY} & Currency in local format\\
+	\hline
+\end{tabular}
+\end{center}
+
+\sectitle{Defining links between tables}
+
+When defining a new table with foreign keys, we want to ensure that foreign keys always reference valid keys in other tables. We also want to be able to specify composite primary keys. These things can both be done by adding extra lines to the initial table definition.
+
+For example, to link products and components with a many-to-many relationship, you can use a linking table in the middle like so:\\
+\texttt{CREATE TABLE productComponent (\\
+    productID   CHAR(4) NOT NULL,\\
+    componentID CHAR(6) NOT NULL,\\
+    quantity    INTEGER,\\
+    FOREIGN KEY productID REFERENCES tblProduct(productID),\\
+    FOREIGN KEY componentID REFERENCES tblComponent(componentID),\\
+    PRIMARY KEY (productID, componentID)\\
+);}
+
+\sectitle{Altering a table}
+
+The \texttt{ALTER TABLE} command is used to alter tables by adding, deleting, or modifying the columns of the table. Some examples:\\
+\texttt{ALTER TABLE tblProduct ADD qtyInStock INTEGER;}\\
+\texttt{ALTER TABLE tblCustomer DROP COLUMN postcode;}\\
+\texttt{ALTER TABLE tblProduct MODIFY COLUMN productName NOT NULL;}
+
+\sectitle{Inserting, updating, and deleting data}
+
+The \texttt{INSERT INTO} command is used to insert a new record into a table. For example:\\
+\texttt{INSERT INTO tblCustomer (customerID, firstName, lastName, dateOfBirth, email)\\
+  VALUES ("JS3592", "John", "Smith", DATE "1982-04-16", "johnnyboysmith@gmail.com");}
+
+The \texttt{UPDATE} command can update a set of records (possibly a set of size 1, meaning a single record) and change fields of the selected records. For example:\\
+\texttt{UPDATE tblCustomer\\
+  SET email = "johnsmith1982@gmail.com"\\
+  WHERE customerID = "JS3592";}
+
+The \texttt{DROP} command is used to delete a whole table or a column of it, but \texttt{DELETE} is used to delete individual records from a table. For exmaple:\\
+\texttt{DELETE FROM tblCustomer\\
+  WHERE customerID = "JS3592";}
+
+\end{document}

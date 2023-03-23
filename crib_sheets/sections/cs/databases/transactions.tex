@@ -48,4 +48,16 @@ Record locking prevents simultaneous access to objects in a database in order to
 
 If Alice is trying to make a transfer from A to B and Bob is trying to make a transfer from B to A, then we get a deadlock. Neither can write their transaction because the target record is held by another user. This is a deadlock.
 
+\sectitle{Serialisation}
+
+Serialisation ensures that transactions do not overlap in time and therefore cannot interfere with each other or lead to updates being lost. Serialisation techniques include \textit{timestamp ordering} and \textit{commitment ordering}.
+
+In \textbf{timestamp ordering}, every object has a \textit{read timestamp} and a \textit{write timestamp}. These are updated whenever an object is read or written. When a user tries to save an update, if the write timestamp of the record in the DB is newer than the read timestamp of the transaction, then the DBMS knows another used has written to the same object since, so the update will fail.
+
+\textbf{Commitment ordering} ensures that no transactions are lost at all, even if two clients are simultaneously trying to update the same record. Transactions are ordered in terms of their \textit{dependencies} on each other as well as the time they were initiated. It can be used to prevent deadlock by blocking one request until another is completed.
+
+\sectitle{Redundancy}
+
+Many organisations cannot afford to have their computer systems go down for even a short time. Air traffic control, for example, normally has a full redundant system on standby if the system crashes. This is, however, very expensive. Duplicate hardware, located in a different location, mirrors every transaction that takes place on the main system. If the main system fails, then the company switches to the backup on-the-fly and the customer won't even notice.
+
 \end{document}

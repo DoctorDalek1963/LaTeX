@@ -1,0 +1,30 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Errors}
+
+The first step of an errors problem is always to find the critical region. The critical region is the region where $\text{H}_0$ would be \textit{rejected}.
+
+\begin{center}
+\large
+\begin{tabular}{|c|c|l|l|}
+	\hline
+	\phantom{} & \multicolumn{3}{c|}{Truth}\\
+	\hline
+	\multirow{3}{*}{\rotatebox[origin=c]{90}{Conc.}} & & $\text{H}_0$ & $\text{H}_1$ \\
+	\cline{2-4}
+	& $\text{H}_0$ & True negative & False negative (Type II error)\\
+	\cline{2-4}
+	& $\text{H}_1$ & False positive (Type I error) & True positive (Power)\\
+	\hline
+\end{tabular}
+\end{center}
+
+The \textbf{Type I error} or \textbf{size} is the probability of \textit{being in} the critical region with the \textit{original} parameter.
+
+The \textbf{Type II error} is the probability of \textit{not being in} the critical region with a \textit{new} parameter.
+
+The \textbf{Power} (true positive) is the probability of \textit{being in} the critical region with a \textit{new} parameter. The power function is a function to find the power given a specific new parameter.
+
+\end{document}

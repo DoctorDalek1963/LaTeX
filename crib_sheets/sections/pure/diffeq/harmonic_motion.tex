@@ -24,4 +24,26 @@ The ODE $\ddot{x} = -\omega^2 x$ will have the general solution $x = A\sin\omega
 	\text{Period} &= \frac{2\pi}{\omega}
 \end{empheq}
 
+\sectitle{Damped\label{sec:harmonic-motion:damped}}
+
+Damped harmonic motion is when a force acts to slow the particle down. It can be modelled with the equation
+{\large \begin{empheq}[box=\rememberBox]{gather*}
+		\ddot{x} + k\dot{x} + \omega^2 x = 0
+\end{empheq}}
+
+When $k^2 > 4\omega^2$, there are two real roots to the auxiliary equation and there is \textbf{heavy damping}.
+
+When $k^2 = 4\omega^2$, there are two repeated roots to the auxiliary equation and there is \textbf{critical damping}.
+
+When $k^2 < 4\omega^2$, there are two complex roots to the auxiliary equation and there is \textbf{light damping}.
+
+For light damping, the particle oscillates but gradually slows down. The period of oscillations can be calculated. For critical or heavy damping, the particle slows down and never oscillates.
+
+\sectitle{Forced\label{sec:harmonic-motion:forced}}
+
+Forced harmonic motion is when a force acts to force the particle to oscillate at a frequency other than a natural one. It can be modelled with the equation
+{\large \begin{empheq}[box=\rememberBox]{gather*}
+		\ddot{x} + k\dot{x} + \omega^2 x = f(t)
+\end{empheq}}
+
 \end{document}

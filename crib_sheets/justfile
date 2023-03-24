@@ -1,4 +1,4 @@
-sections := "cs/databases misc pure/calc pure/complex pure/diffeq pure/hyperbolic pure/linalg pure/misc pure/polar pure/trig stats/fs1 stats/normal"
+sections := "cs/databases cs/legal misc pure/calc pure/complex pure/diffeq pure/hyperbolic pure/linalg pure/misc pure/polar pure/trig stats/fs1 stats/normal"
 
 # build all sections
 build-all: (_do-all "build")

@@ -1,0 +1,36 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Coupled Simultaneous ODEs}
+
+In the real world, there are often multiple systems that depend on each other. These are best modelled by \textbf{coupled simultaneous differential equations}. For example, we can model the populations of grizzly bears $x$ and salmon $y$ with the equations:
+\begin{equation}
+	\dot{x} = ax + by + f(t)\label{eq:dotx}
+\end{equation}
+\begin{equation}
+	\dot{y} = cx + dy + g(t)\label{eq:doty}
+\end{equation}
+
+You can solve coupled first-order linear simultaneous ODEs by eliminating one of the dependent variables to form a second order ODE.
+\begin{align}
+	\intertext{When trying to find a second order ODE for $x$, solve (\ref{eq:dotx}) for $y$ and differentiate it.}\nonumber\\
+	\dot{x} &= ax + by + f(t)\nonumber\\[1.2ex]
+	y &= \frac{1}{b}(\dot{x} - ax - f(t))\label{eq:y}\\[1.2ex]
+	\dot{y} &= \frac{1}{b}(\ddot{x} - a\dot{x} - \dot{f}(t))\nonumber\\[1.2ex]%
+%
+	\intertext{Now replace the LHS with (\ref{eq:doty}).}\nonumber\\
+	cx + dy + g(t) &= \frac{1}{b}(\ddot{x} - a\dot{x} - \dot{f}(t))\nonumber\\[1.2ex]%
+%
+	\intertext{And sub in (\ref{eq:y}) in place of $y$ to get a second order ODE containing just $x$ and $t$.}\nonumber\\
+	cx + \frac{d}{b}\big(\dot{x} - ax - f(t)\big) + g(t) &=
+		\frac{1}{b}(\ddot{x} - a\dot{x} - \dot{f}(t))\nonumber\\[1.2ex]
+	\therefore\ \frac{1}{b}\ddot{x} - \frac{a + d}{b}\dot{x} + \left(\frac{ad}{b} - c\right)x &=
+		\frac{1}{b} \dot{f}(t) - \frac{d}{b}f(t) + g(t)\nonumber
+\end{align}
+
+Don't try to memorise this result; just learn the process.
+
+Once you've solved this to find $x$, don't repeat the whole process for $y$. Just use the $x$ you found, differentiate it to get $\dot{x}$ and plug those into (\ref{eq:y}).
+
+\end{document}

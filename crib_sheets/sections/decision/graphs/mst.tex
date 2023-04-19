@@ -1,0 +1,43 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Minimum Spanning Trees}
+
+A minimum spanning tree (MST) is a subgraph with contains all nodes but no cycles, and has the minimum total length.
+
+\sectitle{Kruskal's algorithm}
+
+An algorithm to find an MST is Kruskal's algorithm. It goes as follows:
+
+\begin{enumerate}
+	\item Sort all the edges into order of ascending weight
+	\item Select the edge of least weight to start the tree
+	\item\label{mst:kruskal:add-new-edge} Consider the next shortest edge. If it would form a cycle, then reject it, else add it to the tree
+	\item Repeat step \ref{mst:kruskal:add-new-edge} until all nodes have been added
+\end{enumerate}
+
+\sectitle{Prim's algorithm}
+
+Another algorithm to find an MST is Prim's algorithm. It goes as follows:
+
+\begin{enumerate}
+	\item Choose an arbitrary vertex to start the tree
+	\item\label{mst:prim:add-new-edge} Select the edge of least weight which joins a vertex in the tree to a vertex not yet in the tree
+	\item Repeat step \ref{mst:prim:add-new-edge} until all nodes have been added
+\end{enumerate}
+
+\sectitle{Prim's algorithm on a distance matrix}
+
+To apply Prim's algorithm to a distance matrix, use the following algorithm:
+
+\begin{enumerate}
+	\item Choose an arbitrary vertex to start the tree
+	\item\label{mst:prim-matrix:delete-row} Delete the \textbf{row} of the matrix for the chosen vertex
+	\item\label{mst:prim-matrix:number-column} Number the \textbf{column} of the matrix for the chosen vertex
+	\item\label{mst:prim-matrix:ring-entry} Put a ring around the smallest undeleted entry in the numbered columns
+	\item\label{mst:prim-matrix:next-edge} The ringed entry becomes the next edge to join the tree
+	\item Repeat steps \ref{mst:prim-matrix:delete-row} to \ref{mst:prim-matrix:next-edge} until all rows have been deleted
+\end{enumerate}
+
+\end{document}

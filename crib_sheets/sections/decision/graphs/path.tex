@@ -1,0 +1,53 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Shortest Path}
+
+\sectitle{Dijkstra's algorithm}
+
+Dijkstra's algorithm can be used to find the shortest path between two chosen vertices in a network.
+
+Dijkstra uses boxes like this in place of nodes to make the working clear:
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+	\hline
+	Vertex name & Order of labelling & Final label\\
+	\hline
+	\multicolumn{3}{|c|}{Working values}\\
+	\hline
+\end{tabular}
+\end{center}
+
+To find the shortest path from $S$ to $T$, use the following algorithm:
+
+\begin{enumerate}
+	\item Label the start vertex, $S$ with the final label 0
+	\item\label{path:dijkstra:iterate-working-values} The vertex which just received its final label is $X$. For every unlabelled vertex $Y$ which is connected to $X$: \begin{enumerate}
+			\item The new working value of $Y$ is the final label of $X$ plus the distance between $X$ and $Y$
+			\item But only replace $Y$'s working value if the new one is smaller
+	\end{enumerate}
+	\item\label{path:dijkstra:choose-new-vertex} Look at all vertices without final labels. Choose the one with the smallest working value. This becomes the final label for this vertex
+	\item Repeat steps \ref{path:dijkstra:iterate-working-values} and \ref{path:dijkstra:choose-new-vertex} until the destination vertex $T$ receives a final label
+	\item To find the shortest path, trace back from $T$ to $S$. Include an edge only when its weight is the difference of the final labels of the vertices on each end of it
+\end{enumerate}
+
+\sectitle{Floyd's algorithm}
+
+Floyd's algorithm can be used to find the shortest path between every pair of vertices in a network. It produces two tables - the first shows the minimum distance between any two vertices, and the second can be used to find the route.
+
+\begin{enumerate}
+	\item Complete an initial \textbf{distance table} for the network. If there is no direct route from one vertex to another, label the distance with $\infty$
+	\item Complete an initial \textbf{route table} by making every entry in a column the same as the label at the top of the column
+	\item For the first iteration, copy the values in the first row and column in the tables into a new pair of tables. Shade these values
+	\item\label{path:floyd:iterate-unshaded} Consider each unshaded position in turn: \begin{enumerate}
+		\item Compare the value in this position in the previous table to the sum of the corresponding shaded values. Choose the smaller of the two options
+		\item If you chose the sum, then copy the letter of this vertex into the corresponding position in the route table
+		\item Repeat until all unshaded cells have been filled in
+	\end{enumerate}
+	\item For the second iteration, copy the second row and column from the previous tables into a new pair of tables and shade them. Repeat step \ref{path:floyd:iterate-unshaded}
+	\item Continue iterating like this until you've done every row and column
+\end{enumerate}
+
+\end{document}

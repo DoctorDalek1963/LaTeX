@@ -2,6 +2,17 @@
 
 \usepackage{preamble}
 
+\tikzset{
+	dot/.style={
+		circle, fill, minimum size=#1,
+		inner sep=0pt, outer sep=0pt,
+	},
+	dot/.default=6pt,
+}
+
+\newcommand{\cir}[1]{\tikz[baseline]{%
+	\node[anchor=base, draw, circle, inner sep=0, minimum width=1.2em]{#1};}}
+
 \begin{document}
 
 \booktitle{Graphs}

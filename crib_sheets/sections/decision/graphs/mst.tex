@@ -6,6 +6,52 @@
 
 A minimum spanning tree (MST) is a subgraph with contains all nodes but no cycles, and has the minimum total length.
 
+Throughout this MST topic, we will use the following graph for all our examples:
+
+\begin{figure}[H]
+\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=2]
+			\node [dot, label=below left:$A$] (A) at (0, 0) {};
+			\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+			\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+			\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+			\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+			\draw (A) -- node[below] {$7$} (B);
+			\draw (A) -- node[above left] {$6$} (D);
+			\draw (A) -- node[below left] {$5$} (E);
+			\draw (B) -- node[above right] {$6$} (D);
+			\draw (B) -- node[below right] {$5$} (C);
+			\draw (C) -- node[above] {$8$} (D);
+			\draw (D) -- node[above] {$4$} (E);
+		\end{tikzpicture}
+		\label{fig:mst:graph}
+		\caption{The graph $\mathbf{G}$}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E\\
+			\hline
+			A & - & 7 & - & 6 & 5\\
+			B & 7 & - & 5 & 6 & -\\
+			C & - & 5 & - & 8 & -\\
+			D & 6 & 6 & 8 & - & 4\\
+			E & 5 & - & - & 4 & -
+		\end{tabular}}
+		\label{fig:mst:matrix}
+		\caption{The distance matrix of $\mathbf{G}$}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
+\end{figure}
+
 \sectitle{Kruskal's algorithm}
 
 An algorithm to find an MST is Kruskal's algorithm. It goes as follows:
@@ -17,6 +63,72 @@ An algorithm to find an MST is Kruskal's algorithm. It goes as follows:
 	\item Repeat step \ref{mst:kruskal:add-new-edge} until all nodes have been added
 \end{enumerate}
 
+Using the graph $\mathbf{G}$ as our example, we order the edges to get $DE(4), AE(5), BC(5), AD(6), BD(6), AB(7), CD(8)$, so we start with $DE$.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+	\node [dot, label=below left:$A$] (A) at (0, 0) {};
+	\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+	\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+	\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+	\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+	\draw (D) -- node[above] {$4$} (E);
+\end{tikzpicture}
+\end{center}
+
+$AE$ won't form a cycle, so we can add it next.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+	\node [dot, label=below left:$A$] (A) at (0, 0) {};
+	\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+	\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+	\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+	\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+	\draw (D) -- node[above] {$4$} (E);
+	\draw (A) -- node[below left] {$5$} (E);
+\end{tikzpicture}
+\end{center}
+
+$BC$ also won't form a cycle, so we can add it next.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+	\node [dot, label=below left:$A$] (A) at (0, 0) {};
+	\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+	\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+	\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+	\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+	\draw (D) -- node[above] {$4$} (E);
+	\draw (A) -- node[below left] {$5$} (E);
+	\draw (B) -- node[below right] {$5$} (C);
+\end{tikzpicture}
+\end{center}
+
+We can see here that the subgraph at this stage is not connected. This is fine, since the final MST will be all connected.
+
+$AD$ \textbf{would} form a cycle, so we reject it. $BD$ will not form a cycle, so we add it next.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+	\node [dot, label=below left:$A$] (A) at (0, 0) {};
+	\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+	\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+	\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+	\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+	\draw (D) -- node[above] {$4$} (E);
+	\draw (A) -- node[below left] {$5$} (E);
+	\draw (B) -- node[below right] {$5$} (C);
+	\draw (B) -- node[above right] {$6$} (D);
+\end{tikzpicture}
+\end{center}
+
+All the vertices are connected, so we've created an MST of $\mathbf{G}$.
+
 \sectitle{Prim's algorithm}
 
 Another algorithm to find an MST is Prim's algorithm. It goes as follows:
@@ -26,6 +138,68 @@ Another algorithm to find an MST is Prim's algorithm. It goes as follows:
 	\item\label{mst:prim:add-new-edge} Select the edge of least weight which joins a vertex in the tree to a vertex not yet in the tree
 	\item Repeat step \ref{mst:prim:add-new-edge} until all nodes have been added
 \end{enumerate}
+
+We will choose to start at $D$. The shortest edge from $D$ is $DE$, so we will add it.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+	\node [dot, label=below left:$A$] (A) at (0, 0) {};
+	\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+	\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+	\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+	\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+	\draw (D) -- node[above] {$4$} (E);
+\end{tikzpicture}
+\end{center}
+
+Now the shortest edge from the current subgraph is $EA$, so we will add it.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+	\node [dot, label=below left:$A$] (A) at (0, 0) {};
+	\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+	\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+	\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+	\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+	\draw (D) -- node[above] {$4$} (E);
+	\draw (A) -- node[below left] {$5$} (E);
+\end{tikzpicture}
+\end{center}
+
+The shortest edge from the current subgraph is $DA$ or $DB$ but $DA$ would create a cycle, so we will add $DB$.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+	\node [dot, label=below left:$A$] (A) at (0, 0) {};
+	\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+	\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+	\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+	\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+	\draw (D) -- node[above] {$4$} (E);
+	\draw (A) -- node[below left] {$5$} (E);
+	\draw (B) -- node[above right] {$6$} (D);
+\end{tikzpicture}
+\end{center}
+
+Now the shortest edge from the current subgraph is $BC$, so we will add it.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+	\node [dot, label=below left:$A$] (A) at (0, 0) {};
+	\node [dot, label=below right:$B$] (B) at (1.5, 0.2) {};
+	\node [dot, label=right:$C$] (C) at (2.7, 0.8) {};
+	\node [dot, label=above:$D$] (D) at (0.75, 1.5) {};
+	\node [dot, label=left:$E$] (E) at (-1.2, 0.7) {};
+
+	\draw (D) -- node[above] {$4$} (E);
+	\draw (A) -- node[below left] {$5$} (E);
+	\draw (B) -- node[above right] {$6$} (D);
+	\draw (B) -- node[below right] {$5$} (C);
+\end{tikzpicture}
+\end{center}
 
 \sectitle{Prim's algorithm on a distance matrix}
 
@@ -39,5 +213,102 @@ To apply Prim's algorithm to a distance matrix, use the following algorithm:
 	\item\label{mst:prim-matrix:next-edge} The ringed entry becomes the next edge to join the tree
 	\item Repeat steps \ref{mst:prim-matrix:delete-row} to \ref{mst:prim-matrix:next-edge} until all rows have been deleted
 \end{enumerate}
+
+We will do our example on the distance matrix of graph $\mathbf{G}$ and start at D. We will first delete its row and column, and then circle the smallest number in the numbered columns.
+
+\begin{center}
+	{\renewcommand{\arraystretch}{1.15}
+	\begin{tabular}{c|c c c c c c}
+		\multicolumn{1}{c}{} & & & & 1 &\\
+		& A & B & C & D & E\\
+		\hline
+		A & - & 7 & - & 6 & 5\\
+		B & 7 & - & 5 & 6 & -\\
+		C & - & 5 & - & 8 & -\\
+		D & 6 & 6 & 8 & - & 4\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		E & 5 & - & - & \cir{4} & -
+	\end{tabular}}
+\end{center}
+
+We will now delete the E row and find the smallest number in the columns.
+
+\begin{center}
+	{\renewcommand{\arraystretch}{1.15}
+	\begin{tabular}{c|c c c c c c}
+		\multicolumn{1}{c}{} & & & & 1 & 2\\
+		& A & B & C & D & E\\
+		\hline
+		A & - & 7 & - & 6 & \cir{5}\\
+		B & 7 & - & 5 & 6 & -\\
+		C & - & 5 & - & 8 & -\\
+		D & 6 & 6 & 8 & - & 4\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		E & 5 & - & - & \cir{4} & -\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+	\end{tabular}}
+\end{center}
+
+Now we will delete the A row and find the smallest number in the columns.
+
+\begin{center}
+	{\renewcommand{\arraystretch}{1.15}
+	\begin{tabular}{c|c c c c c c}
+		\multicolumn{1}{c}{} & 3 & & & 1 & 2\\
+		& A & B & C & D & E\\
+		\hline
+		A & - & 7 & - & 6 & \cir{5}\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		B & 7 & - & 5 & \cir{6} & -\\
+		C & - & 5 & - & 8 & -\\
+		D & 6 & 6 & 8 & - & 4\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		E & 5 & - & - & \cir{4} & -\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+	\end{tabular}}
+\end{center}
+
+Here, the smallest number in any of the numbered columns is the circled 6 above. When we look for the smallest number, we have to look at \textit{all} the numbered columns.
+
+We now delete the B row and, again, find the smallest number.
+
+\begin{center}
+	{\renewcommand{\arraystretch}{1.15}
+	\begin{tabular}{c|c c c c c c}
+		\multicolumn{1}{c}{} & 3 & 4 & & 1 & 2\\
+		& A & B & C & D & E\\
+		\hline
+		A & - & 7 & - & 6 & \cir{5}\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		B & 7 & - & 5 & \cir{6} & -\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		C & - & \cir{5} & - & 8 & -\\
+		D & 6 & 6 & 8 & - & 4\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		E & 5 & - & - & \cir{4} & -\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+	\end{tabular}}
+\end{center}
+
+We can now delete the final row and then we're done. The numbers on top of the columns show what order we added edges in.
+
+\begin{center}
+	{\renewcommand{\arraystretch}{1.15}
+	\begin{tabular}{c|c c c c c c}
+		\multicolumn{1}{c}{} & 3 & 4 & 5 & 1 & 2\\
+		& A & B & C & D & E\\
+		\hline
+		A & - & 7 & - & 6 & \cir{5}\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		B & 7 & - & 5 & \cir{6} & -\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		C & - & \cir{5} & - & 8 & -\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		D & 6 & 6 & 8 & - & 4\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+		E & 5 & - & - & \cir{4} & -\\[-1.8ex]
+		\hline\noalign{\vspace{\dimexpr 1.8ex-\doublerulesep}}
+	\end{tabular}}
+\end{center}
 
 \end{document}

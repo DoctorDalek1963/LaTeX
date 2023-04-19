@@ -4,6 +4,32 @@
 
 \topictitle{Shortest Path}
 
+Throughout this shortest path topic, we will use the following graph for all our examples:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.5]
+	\node [dot, label=left:$A$] (A) at (0, 0) {};
+	\node [dot, label=above:$B$] (B) at (1.2, 0) {};
+	\node [dot, label=below:$C$] (C) at (1.2, -0.9) {};
+	\node [dot, label=above right:$D$] (D) at (2.8, 0.8) {};
+	\node [dot, label=above:$E$] (E) at (1.2, 1) {};
+	\node [dot, label=right:$F$] (F) at (4, 0) {};
+
+	\draw (A) -- node[above left] {$5$} (E);
+	\draw (A) -- node[above] {$6$} (B);
+	\draw (A) -- node[below left] {$2$} (C);
+	\draw (E) -- node[above right] {$4$} (D);
+	\draw (B) -- node[right] {$2$} (C);
+	\draw (B) -- node[above left] {$4$} (D);
+	\draw (B) -- node[above] {$8$} (F);
+	\draw (C) -- node[below right] {$12$} (F);
+	\draw (D) -- node[above right] {$3$} (F);
+\end{tikzpicture}
+\label{fig:path:graph}
+\caption{The graph $\mathbf{G}$}
+\end{figure}
+
 \sectitle{Dijkstra's algorithm}
 
 Dijkstra's algorithm can be used to find the shortest path between two chosen vertices in a network.
@@ -32,6 +58,227 @@ To find the shortest path from $S$ to $T$, use the following algorithm:
 	\item Repeat steps \ref{path:dijkstra:iterate-working-values} and \ref{path:dijkstra:choose-new-vertex} until the destination vertex $T$ receives a final label
 	\item To find the shortest path, trace back from $T$ to $S$. Include an edge only when its weight is the difference of the final labels of the vertices on each end of it
 \end{enumerate}
+
+As an example, lets find the shortest path from $A$ to $F$ on graph $\mathbf{G}$ using Dijkstra's algorithm.
+
+We first redraw the graph with the boxes and fill in box $A$ with a final label of 0. This is the first box we labelled, so it gets an order number of 1.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.5]
+	\coordinate (A) at (0, 0);
+	\coordinate (B) at (1.2, 0);
+	\coordinate (C) at (1.2, -0.9);
+	\coordinate (D) at (2.8, 0.8);
+	\coordinate (E) at (1.2, 1);
+	\coordinate (F) at (4, 0);
+
+	\draw (A) -- node[above left] {$5$} (E);
+	\draw (A) -- node[above] {$6$} (B);
+	\draw (A) -- node[below left] {$2$} (C);
+	\draw (E) -- node[above right] {$4$} (D);
+	\draw (B) -- node[right] {$2$} (C);
+	\draw (B) -- node[above left] {$4$} (D);
+	\draw (B) -- node[above] {$8$} (F);
+	\draw (C) -- node[below right] {$12$} (F);
+	\draw (D) -- node[above right] {$3$} (F);
+
+	\pic [at=(A)] {dijkbox={$A$}{1}{0}{}};
+	\pic [at=(B)] {dijkbox={$B$}{}{}{}};
+	\pic [at=(C)] {dijkbox={$C$}{}{}{}};
+	\pic [at=(D)] {dijkbox={$D$}{}{}{}};
+	\pic [at=(E)] {dijkbox={$E$}{}{}{}};
+	\pic [at=(F)] {dijkbox={$F$}{}{}{}};
+\end{tikzpicture}
+\end{figure}
+
+We now fill in the working values for all visit-able nodes and thus choose $C$ as the next node to visit, so it gets a final label.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.5]
+	\coordinate (A) at (0, 0);
+	\coordinate (B) at (1.2, 0);
+	\coordinate (C) at (1.2, -0.9);
+	\coordinate (D) at (2.8, 0.8);
+	\coordinate (E) at (1.2, 1);
+	\coordinate (F) at (4, 0);
+
+	\draw (A) -- node[above left] {$5$} (E);
+	\draw (A) -- node[above] {$6$} (B);
+	\draw (A) -- node[below left] {$2$} (C);
+	\draw (E) -- node[above right] {$4$} (D);
+	\draw (B) -- node[right] {$2$} (C);
+	\draw (B) -- node[above left] {$4$} (D);
+	\draw (B) -- node[above] {$8$} (F);
+	\draw (C) -- node[below right] {$12$} (F);
+	\draw (D) -- node[above right] {$3$} (F);
+
+	\pic [at=(A)] {dijkbox={$A$}{1}{0}{}};
+	\pic [at=(B)] {dijkbox={$B$}{}{}{6}};
+	\pic [at=(C)] {dijkbox={$C$}{2}{2}{2}};
+	\pic [at=(D)] {dijkbox={$D$}{}{}{}};
+	\pic [at=(E)] {dijkbox={$E$}{}{}{5}};
+	\pic [at=(F)] {dijkbox={$F$}{}{}{}};
+\end{tikzpicture}
+\end{figure}
+
+We now repeat that process and choose $B$ as the next node to visit, so it gets a final label.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.5]
+	\coordinate (A) at (0, 0);
+	\coordinate (B) at (1.2, 0);
+	\coordinate (C) at (1.2, -0.9);
+	\coordinate (D) at (2.8, 0.8);
+	\coordinate (E) at (1.2, 1);
+	\coordinate (F) at (4, 0);
+
+	\draw (A) -- node[above left] {$5$} (E);
+	\draw (A) -- node[above] {$6$} (B);
+	\draw (A) -- node[below left] {$2$} (C);
+	\draw (E) -- node[above right] {$4$} (D);
+	\draw (B) -- node[right] {$2$} (C);
+	\draw (B) -- node[above left] {$4$} (D);
+	\draw (B) -- node[above] {$8$} (F);
+	\draw (C) -- node[below right] {$12$} (F);
+	\draw (D) -- node[above right] {$3$} (F);
+
+	\pic [at=(A)] {dijkbox={$A$}{1}{0}{}};
+	\pic [at=(B)] {dijkbox={$B$}{3}{4}{\cancel{6} 4}};
+	\pic [at=(C)] {dijkbox={$C$}{2}{2}{2}};
+	\pic [at=(D)] {dijkbox={$D$}{}{}{}};
+	\pic [at=(E)] {dijkbox={$E$}{}{}{5}};
+	\pic [at=(F)] {dijkbox={$F$}{}{}{14}};
+\end{tikzpicture}
+\end{figure}
+
+We then repeat that process once again and choose $E$ as the next node.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.5]
+	\coordinate (A) at (0, 0);
+	\coordinate (B) at (1.2, 0);
+	\coordinate (C) at (1.2, -0.9);
+	\coordinate (D) at (2.8, 0.8);
+	\coordinate (E) at (1.2, 1);
+	\coordinate (F) at (4, 0);
+
+	\draw (A) -- node[above left] {$5$} (E);
+	\draw (A) -- node[above] {$6$} (B);
+	\draw (A) -- node[below left] {$2$} (C);
+	\draw (E) -- node[above right] {$4$} (D);
+	\draw (B) -- node[right] {$2$} (C);
+	\draw (B) -- node[above left] {$4$} (D);
+	\draw (B) -- node[above] {$8$} (F);
+	\draw (C) -- node[below right] {$12$} (F);
+	\draw (D) -- node[above right] {$3$} (F);
+
+	\pic [at=(A)] {dijkbox={$A$}{1}{0}{}};
+	\pic [at=(B)] {dijkbox={$B$}{3}{4}{\cancel{6} 4}};
+	\pic [at=(C)] {dijkbox={$C$}{2}{2}{2}};
+	\pic [at=(D)] {dijkbox={$D$}{}{}{8}};
+	\pic [at=(E)] {dijkbox={$E$}{4}{5}{5}};
+	\pic [at=(F)] {dijkbox={$F$}{}{}{\cancel{14} 12}};
+\end{tikzpicture}
+\end{figure}
+
+We choose $D$ next, since $E$ offers no new lengths.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.5]
+	\coordinate (A) at (0, 0);
+	\coordinate (B) at (1.2, 0);
+	\coordinate (C) at (1.2, -0.9);
+	\coordinate (D) at (2.8, 0.8);
+	\coordinate (E) at (1.2, 1);
+	\coordinate (F) at (4, 0);
+
+	\draw (A) -- node[above left] {$5$} (E);
+	\draw (A) -- node[above] {$6$} (B);
+	\draw (A) -- node[below left] {$2$} (C);
+	\draw (E) -- node[above right] {$4$} (D);
+	\draw (B) -- node[right] {$2$} (C);
+	\draw (B) -- node[above left] {$4$} (D);
+	\draw (B) -- node[above] {$8$} (F);
+	\draw (C) -- node[below right] {$12$} (F);
+	\draw (D) -- node[above right] {$3$} (F);
+
+	\pic [at=(A)] {dijkbox={$A$}{1}{0}{}};
+	\pic [at=(B)] {dijkbox={$B$}{3}{4}{\cancel{6} 4}};
+	\pic [at=(C)] {dijkbox={$C$}{2}{2}{2}};
+	\pic [at=(D)] {dijkbox={$D$}{5}{8}{8}};
+	\pic [at=(E)] {dijkbox={$E$}{4}{5}{5}};
+	\pic [at=(F)] {dijkbox={$F$}{}{}{\cancel{14} 12}};
+\end{tikzpicture}
+\end{figure}
+
+And again.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.5]
+	\coordinate (A) at (0, 0);
+	\coordinate (B) at (1.2, 0);
+	\coordinate (C) at (1.2, -0.9);
+	\coordinate (D) at (2.8, 0.8);
+	\coordinate (E) at (1.2, 1);
+	\coordinate (F) at (4, 0);
+
+	\draw (A) -- node[above left] {$5$} (E);
+	\draw (A) -- node[above] {$6$} (B);
+	\draw (A) -- node[below left] {$2$} (C);
+	\draw (E) -- node[above right] {$4$} (D);
+	\draw (B) -- node[right] {$2$} (C);
+	\draw (B) -- node[above left] {$4$} (D);
+	\draw (B) -- node[above] {$8$} (F);
+	\draw (C) -- node[below right] {$12$} (F);
+	\draw (D) -- node[above right] {$3$} (F);
+
+	\pic [at=(A)] {dijkbox={$A$}{1}{0}{}};
+	\pic [at=(B)] {dijkbox={$B$}{3}{4}{\cancel{6} 4}};
+	\pic [at=(C)] {dijkbox={$C$}{2}{2}{2}};
+	\pic [at=(D)] {dijkbox={$D$}{5}{8}{8}};
+	\pic [at=(E)] {dijkbox={$E$}{4}{5}{5}};
+	\pic [at=(F)] {dijkbox={$F$}{6}{11}{\cancel{14}\cancel{12}\,11}};
+\end{tikzpicture}
+\end{figure}
+
+The target node $F$ now has a final label, so we have finished the algorithm. The shortest distance from $A$ to $F$ is 11 and to find the path, we backtrack from $F$ to $A$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.5]
+	\coordinate (A) at (0, 0);
+	\coordinate (B) at (1.2, 0);
+	\coordinate (C) at (1.2, -0.9);
+	\coordinate (D) at (2.8, 0.8);
+	\coordinate (E) at (1.2, 1);
+	\coordinate (F) at (4, 0);
+
+	\draw (A) -- node[above left] {$5$} (E);
+	\draw (A) -- node[above] {$6$} (B);
+	\draw[ultra thick] (A) -- node[below left] {$2$} (C);
+	\draw (E) -- node[above right] {$4$} (D);
+	\draw[ultra thick] (B) -- node[right] {$2$} (C);
+	\draw[ultra thick] (B) -- node[above left] {$4$} (D);
+	\draw (B) -- node[above] {$8$} (F);
+	\draw (C) -- node[below right] {$12$} (F);
+	\draw[ultra thick] (D) -- node[above right] {$3$} (F);
+
+	\pic [at=(A)] {dijkbox={$A$}{1}{0}{}};
+	\pic [at=(B)] {dijkbox={$B$}{3}{4}{\cancel{6} 4}};
+	\pic [at=(C)] {dijkbox={$C$}{2}{2}{2}};
+	\pic [at=(D)] {dijkbox={$D$}{5}{8}{8}};
+	\pic [at=(E)] {dijkbox={$E$}{4}{5}{5}};
+	\pic [at=(F)] {dijkbox={$F$}{6}{11}{\cancel{14}\cancel{12}\,11}};
+\end{tikzpicture}
+\end{figure}
+
+The final labels represent the distance between the start vertex and that labelled vertex, and you can use the backtracking method to find the shortest path between the start node and any vertex with a final label. To find the shortest path between a different pair of vertices, you'll have to do Dijkstra's again. Or you could use Floyd's.
 
 \sectitle{Floyd's algorithm}
 

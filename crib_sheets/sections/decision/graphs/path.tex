@@ -7,27 +7,51 @@
 Throughout this shortest path topic, we will use the following graph for all our examples:
 
 \begin{figure}[H]
-\centering
-\begin{tikzpicture}[scale=2.5]
-	\node [dot, label=left:$A$] (A) at (0, 0) {};
-	\node [dot, label=above:$B$] (B) at (1.2, 0) {};
-	\node [dot, label=below:$C$] (C) at (1.2, -0.9) {};
-	\node [dot, label=above right:$D$] (D) at (2.8, 0.8) {};
-	\node [dot, label=above:$E$] (E) at (1.2, 1) {};
-	\node [dot, label=right:$F$] (F) at (4, 0) {};
+\hspace{0.03\linewidth}
+\begin{minipage}{0.55\linewidth}
+	\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=2]
+		\node [dot, label=left:$A$] (A) at (0, 0) {};
+		\node [dot, label=above:$B$] (B) at (1.2, 0) {};
+		\node [dot, label=below:$C$] (C) at (1.2, -0.9) {};
+		\node [dot, label=above right:$D$] (D) at (2.8, 0.8) {};
+		\node [dot, label=above:$E$] (E) at (1.2, 1) {};
+		\node [dot, label=right:$F$] (F) at (4, 0) {};
 
-	\draw (A) -- node[above left] {$5$} (E);
-	\draw (A) -- node[above] {$6$} (B);
-	\draw (A) -- node[below left] {$2$} (C);
-	\draw (E) -- node[above right] {$4$} (D);
-	\draw (B) -- node[right] {$2$} (C);
-	\draw (B) -- node[above left] {$4$} (D);
-	\draw (B) -- node[above] {$8$} (F);
-	\draw (C) -- node[below right] {$12$} (F);
-	\draw (D) -- node[above right] {$3$} (F);
-\end{tikzpicture}
-\label{fig:path:graph}
-\caption{The graph $\mathbf{G}$}
+		\draw (A) -- node[above left] {$5$} (E);
+		\draw (A) -- node[above] {$6$} (B);
+		\draw (A) -- node[below left] {$2$} (C);
+		\draw (E) -- node[above right] {$4$} (D);
+		\draw (B) -- node[right] {$2$} (C);
+		\draw (B) -- node[above left] {$4$} (D);
+		\draw (B) -- node[above] {$8$} (F);
+		\draw (C) -- node[below right] {$12$} (F);
+		\draw (D) -- node[above right] {$3$} (F);
+	\end{tikzpicture}
+	\label{fig:path:graph}
+	\caption{The graph $\mathbf{G}$}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.35\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & - & 6 & 2 & - & 5 & -\\
+			B & 6 & - & 2 & 4 & - & 8\\
+			C & 2 & 2 & - & - & - & 12\\
+			D & - & 4 & - & - & 4 & 3\\
+			E & 5 & - & - & 4 & - & -\\
+			F & - & 8 & 12 & 3 & - & -\\
+		\end{tabular}}
+		\label{fig:mst:matrix}
+		\caption{The distance matrix of $\mathbf{G}$}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
 \end{figure}
 
 \sectitle{Dijkstra's algorithm}
@@ -296,5 +320,290 @@ Floyd's algorithm can be used to find the shortest path between every pair of ve
 	\item For the second iteration, copy the second row and column from the previous tables into a new pair of tables and shade them. Repeat step \ref{path:floyd:iterate-unshaded}
 	\item Continue iterating like this until you've done every row and column
 \end{enumerate}
+
+We will use graph $\mathbf{G}$ as an example to perform Floyd's algorithm on, with the distance table on the left and the route table on the right.
+
+\begin{figure}[H]
+\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & $\infty$ & 6 & 2 & $\infty$ & 5 & $\infty$\\
+			B & 6 & $\infty$ & 2 & 4 & $\infty$ & 8\\
+			C & 2 & 2 & $\infty$ & $\infty$ & $\infty$ & 12\\
+			D & $\infty$ & 4 & $\infty$ & $\infty$ & 4 & 3\\
+			E & 5 & $\infty$ & $\infty$ & 4 & $\infty$ & $\infty$\\
+			F & $\infty$ & 8 & 12 & 3 & $\infty$ & $\infty$\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & A & B & C & D & E & F\\
+			B & A & B & C & D & E & F\\
+			C & A & B & C & D & E & F\\
+			D & A & B & C & D & E & F\\
+			E & A & B & C & D & E & F\\
+			F & A & B & C & D & E & F\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
+\end{figure}
+
+For the first iteration, we will copy the A row and column to a new distance table and shade them, and then perform step \ref{path:floyd:iterate-unshaded}. Changed values are highlighted in red. This is the result after the first iteration:
+
+\begin{figure}[H]
+\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & \cg $\infty$ & \cg 6 & \cg 2 & \cg $\infty$ & \cg 5 & \cg $\infty$\\
+			B & \cg 6 & \cred 12 & 2 & 4 & \cred 11 & 8\\
+			C & \cg 2 & 2 & \cred 4 & $\infty$ & \cred 7 & 12\\
+			D & \cg $\infty$ & 4 & $\infty$ & $\infty$ & 4 & 3\\
+			E & \cg 5 & \cred 11 & \cred 7 & 4 & \cred 10 & $\infty$\\
+			F & \cg $\infty$ & 8 & 12 & 3 & $\infty$ & $\infty$\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & A & B & C & D & E & F\\
+			B & A & \cred A & C & D & \cred A & F\\
+			C & A & B & \cred A & D & \cred A & F\\
+			D & A & B & C & D & E & F\\
+			E & A & \cred A & \cred A & D & \cred A & F\\
+			F & A & B & C & D & E & F\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
+\end{figure}
+
+And here's the result after the second iteration:
+
+\begin{figure}[H]
+\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & \cred 12 & \cg 6 & 2 & \cred 10 & 5 & \cred 14\\
+			B & \cg 6 & \cg 12 & \cg 2 & \cg 4 & \cg 11 & \cg 8\\
+			C & 2 & \cg 2 & 4 & \cred 6 & 7 & \cred 10\\
+			D & \cred 10 & \cg 4 & \cred 6 & \cred 8 & 4 & 3\\
+			E & 5 & \cg 11 & 7 & 4 & 10 & \cred 19\\
+			F & \cred 14 & \cg 8 & \cred 10 & 3 & \cred 19 & \cred 16\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & \cred B & B & C & \cred B & E & \cred B\\
+			B & A & A & C & D & A & F\\
+			C & A & B & A & \cred B & A & \cred B\\
+			D & \cred B & B & \cred B & \cred B & E & F\\
+			E & A & A & A & D & A & \cred B\\
+			F & \cred B & B & \cred B & D & \cred B & \cred B\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
+\end{figure}
+
+And here's the result after the third iteration:
+
+\begin{figure}[H]
+\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & \cred 4 & \cred 4 & \cg 2 & \cred 8 & 5 & \cred 12\\
+			B & \cred 4 & \cred 4 & \cg 2 & 4 & \cred 9 & 8\\
+			C & \cg 2 & \cg 2 & \cg 4 & \cg 6 & \cg 7 & \cg 10\\
+			D & \cred 8 & 4 & \cg 6 & 8 & 4 & 3\\
+			E & 5 & \cred 9 & \cg 7 & 4 & 10 & \cred 17\\
+			F & \cred 12 & 8 & \cg 10 & 3 & \cred 17 & 16\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & \cred C & \cred C & C & \cred C & E & \cred C\\
+			B & \cred C & \cred C & C & D & \cred C & F\\
+			C & A & B & A & B & A & B\\
+			D & \cred C & B & B & B & E & F\\
+			E & A & \cred C & A & D & A & \cred C\\
+			F & \cred C & B & B & D & \cred C & B\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
+\end{figure}
+
+And here's the result after the fourth iteration:
+
+\begin{figure}[H]
+\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & 4 & 4 & 2 & \cg 8 & 5 & \cred 11\\
+			B & 4 & 4 & 2 & \cg 4 & \cred 8 & \cred 7\\
+			C & 2 & 2 & 4 & \cg 6 & 7 & \cred 9\\
+			D & \cg 8 & \cg 4 & \cg 6 & \cg 8 & \cg 4 & \cg 3\\
+			E & 5 & \cred 8 & 7 & \cg 4 & \cred 8 & \cred 7\\
+			F & \cred 11 & \cred 7 & \cred 9 & \cg 3 & \cred 7 & \cred 6\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & C & C & C & C & E & \cred D\\
+			B & C & C & C & D & \cred D & \cred D\\
+			C & A & B & A & B & A & \cred D\\
+			D & C & B & B & B & E & F\\
+			E & A & \cred D & A & D & \cred D & \cred D\\
+			F & \cred D & \cred D & \cred D & D & \cred D & \cred D\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
+\end{figure}
+
+And here's the result after the fifth iteration (nothing changed):
+
+\begin{figure}[H]
+\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & 4 & 4 & 2 & 8 & \cg 5 & 11\\
+			B & 4 & 4 & 2 & 4 & \cg 8 & 7\\
+			C & 2 & 2 & 4 & 6 & \cg 7 & 9\\
+			D & 8 & 4 & 6 & 8 & \cg 4 & 3\\
+			E & \cg 5 & \cg 8 & \cg 7 & \cg 4 & \cg 8 & \cg 7\\
+			F & 11 & 7 & 9 & 3 & \cg 7 & 6\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & C & C & C & C & E & D\\
+			B & C & C & C & D & D & D\\
+			C & A & B & A & B & A & D\\
+			D & C & B & B & B & E & F\\
+			E & A & D & A & D & D & D\\
+			F & D & D & D & D & D & D\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
+\end{figure}
+
+And here's the result after the sixth iteration:
+
+\begin{figure}[H]
+\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & 4 & 4 & 2 & 8 & 5 & \cg 11\\
+			B & 4 & 4 & 2 & 4 & 8 & \cg 7\\
+			C & 2 & 2 & 4 & 6 & 7 & \cg 9\\
+			D & 8 & 4 & 6 & \cred 6 & 4 & \cg 3\\
+			E & 5 & 8 & 7 & 4 & 8 & \cg 7\\
+			F & \cg 11 & \cg 7 & \cg 9 & \cg 3 & \cg 7 & \cg 6\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+	\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.15}
+		\begin{tabular}{c|c c c c c c}
+			& A & B & C & D & E & F\\
+			\hline
+			A & C & C & C & C & E & D\\
+			B & C & C & C & D & D & D\\
+			C & A & B & A & B & A & D\\
+			D & C & B & B & \cred F & E & F\\
+			E & A & D & A & D & D & D\\
+			F & D & D & D & D & D & D\\
+		\end{tabular}}
+	\end{figure}
+\end{minipage}
+\hspace{0.03\linewidth}
+\end{figure}
+
+From these tables, we can see that the shortest path between A and F has a length of 11, and it goes like this (using $\mapsto$ for an indirect connection and $\rightarrow$ for a direct one):
+{\large\begin{align*}
+	& A \mapsto F\\
+	& A \mapsto D \mapsto F\\
+	& A \mapsto C \mapsto D \rightarrow F\\
+	& A \rightarrow C \mapsto B \mapsto D \rightarrow F\\
+	& A \rightarrow C \rightarrow B \rightarrow D \rightarrow F\\
+\end{align*}}
+This is the same path and length we got using Dijkstra's, so we can assume it's correct.
+
+When resolving a path, find the start node on the left and the target node on the top. The connection goes through the corresponding node in the table. If this is the target node, then the connection is direct. If it's a different node, then the path goes through that one. Continue resolving indirect connections until all connections in the path are direct.
 
 \end{document}

@@ -4,10 +4,6 @@
 
 \topictitle{STEP Tips}
 
-\begin{figure}[h]
-\centering
-\begin{minipage}{0.85\linewidth}
-
 \sectitle{General}
 
 \begin{itemize}
@@ -15,6 +11,8 @@
 	\item Explore the stem to get everything out of it that you can
 	\item Check every line of algebra when you write it
 	\item Don't take shortcuts unless you can justify {\Large\textit{\textbf{why}}} they're allowed
+	\item Look for similar shapes (often triangles)
+	\item If you get stuck on a \enquote{show that} question, then just go onto the next part and use the previous result
 \end{itemize}
 
 \sectitle{Calculus}
@@ -30,12 +28,15 @@
 \begin{itemize}
 	\item If you've got multiple trig terms on the top of a fraction and just one on the bottom, try using $\tan$
 	\item If you have a sum of products of $n$ trig terms like $\cos^2 x + \cos x\sin x$ ($n = 2$), then you can divide by $\cos^n x$ (in this example, you get $1 + \tan x$)
+	\item If you're struggling to simplify a fraction with $\sin x$ and $\cos x$ mixed together on top and bottom, multiply top and bottom by $\frac{1}{\cos x}$
 \end{itemize}
 
 \sectitle{Proof}
 
 \begin{itemize}
 	\item A powerful form of proof is to try some simple cases, make a conjecture, and prove it to be true by induction
+	\item If you're trying to prove that $a > b$, it's probably easier to prove that $a - b > 0$
+	\item Use the format of the answer to inform your solution: if it wants something with $x^{-1}$, try using $x^{-1}$
 \end{itemize}
 
 \sectitle{Specifics}
@@ -44,7 +45,11 @@
 	\item Be careful when cancelling fractions with a factorial on the bottom $\displaystyle \left(\frac{x^2}{x!} = \frac{x}{(x - 1)!} \ne \frac{1}{(x - 2)!}\right)$
 \end{itemize}
 
-\end{minipage}
-\end{figure}
+\sectitle{Stats}
+
+\begin{itemize}
+	\item $\text{PDF} = \frac{d}{dx} \text{CDF}$ (alt. $P(X = x) = \frac{d}{dx} P(X \le x)$)
+	\item $E(X) = \sum\limits_{\min(X)}^{\max(X)} x P(X = x)$ (for discrete $X$) or $\int\limits_{-\infty}^{\infty} x P(X = x) dx$ (for continuous $X$)
+\end{itemize}
 
 \end{document}

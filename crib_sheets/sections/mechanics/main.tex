@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+
+\usepackage{preamble}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\tikzset{
+	pics/box/.style 2 args = {
+		code = {
+			\draw [fill=white] ({-0.5*#1},0) -- ({-0.5*#1},{#1}) -- ({0.5*#1},{#1}) -- ({0.5*#1},0) -- cycle;
+			\node at (0, {0.5*#1}) {\large\textbf{#2}};
+		},
+	},
+	force arrow/.style = {
+		ultra thick, -Stealth,
+	},
+}
+
+\begin{document}
+
+\booktitle{Mechanics}
+
+\subfile{const_accel.tex}
+\subfile{forces.tex}
+
+\end{document}

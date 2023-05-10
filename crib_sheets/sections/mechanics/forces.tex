@@ -1,0 +1,145 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Forces}
+
+\sectitle{Tackling a question}
+
+When tackling a question, start by saying \enquote{\textbf{R}ight, \textbf{W}hat \textbf{A}re \textbf{T}he \textbf{F}orces?} This stands for \textbf{R}eaction forces, \textbf{W}eight, \textbf{A}cceleration, \textbf{T}ension, and \textbf{F}riction.
+
+Then label all these things on a large, clear diagram. Imagine a situation like the following, where we have a block \textbf{P} of mass 10 kg on an inclined plane at angle $\theta$ where $\tan\theta = \frac{3}{4}$, with coefficient of friction $\mu$, attached via a pulley to a block \textbf{Q} of mass 2 kg. The block \textbf{P} is on the point of slipping down the slope. Find $\mu$.
+
+\begin{center}
+\begin{tikzpicture}
+	\coordinate (O) at (0, 0);
+	\coordinate (A) at (8, 6);
+	\coordinate (B) at (8, 0);
+
+	% Triangle
+	\draw (O) -- (A) -- (B) -- cycle;
+	% Pulley
+	\draw [fill=white] (A) circle[radius=0.6];
+
+	% Box P
+	\pic [rotate={atan(3/4)}] at ({atan(3/4)}:4) {box={1.6}{P}};
+	% Box Q
+	\pic [rotate=270] at (8.2,2) {box={0.8}{Q}};
+
+	\coordinate (P side) at ($ ({atan(3/4)}:{4+0.8}) + ({atan(3/4)+90}:0.6) $);
+	\coordinate (pulley P side) at ($ (A) + ({atan(3/4)+90}:0.6) $);
+	\coordinate (pulley Q side) at ($ (A) + (0.6, 0) $);
+	\coordinate (Q top) at (8.6, 2.4);
+
+	% Rope
+	\draw (P side) -- (pulley P side)
+		arc [start angle={90+atan(3/4)}, end angle={0}, radius=0.6]
+		(pulley Q side) -- (Q top);
+
+	% Angle
+	\tkzMarkAngle(B,O,A);
+	\tkzLabelAngle[pos=0.75](B,O,A){$\theta$};
+\end{tikzpicture}
+\end{center}
+
+We can label this diagram with force arrows and other information using the mnemonic from above.
+
+\begin{center}
+\begin{tikzpicture}
+	\coordinate (O) at (0, 0);
+	\coordinate (A) at (8, 6);
+	\coordinate (B) at (8, 0);
+	\coordinate (P side) at ($ ({atan(3/4)}:{4+0.8}) + ({atan(3/4)+90}:0.6) $);
+	\coordinate (pulley P side) at ($ (A) + ({atan(3/4)+90}:0.6) $);
+	\coordinate (pulley Q side) at ($ (A) + (0.6, 0) $);
+	\coordinate (Q top) at (8.6, 2.4);
+	\coordinate (P centre) at ($ ({atan(3/4)}:4) + ({atan(3/4)+90}:0.8) $);
+	\coordinate (Q centre) at (8.6, 2);
+
+	\draw[force arrow] (P centre) -- +({atan(3/4)+90}:2) node[above right] {$R_\textbf{P}$};
+	\draw[force arrow] (P centre) -- +(270:2) node[right] {$10g$};
+	\draw[force arrow] (P side) -- +({atan(3/4)}:1.2) node[below, xshift=0.4em] {$T$};
+	\draw[force arrow] (P side) ++({atan(3/4)+90}:0.4) -- +({atan(3/4)}:1.2) node[above] {$\mu R_\textbf{P}$};
+
+	\draw[force arrow] (Q centre) -- +(0, 1.5) node[right] {$T$};
+	\draw[force arrow] (Q centre) -- +(0, -1.5) node[right] {$2g$};
+
+	\begin{scope} % Original diagram
+		% Triangle
+		\draw (O) -- (A) -- (B) -- cycle;
+		% Pulley
+		\draw [fill=white] (A) circle[radius=0.6];
+
+		% Box P
+		\pic [rotate={atan(3/4)}] at ({atan(3/4)}:4) {box={1.6}{P}};
+		% Box Q
+		\pic [rotate=270] at (8.2,2) {box={0.8}{Q}};
+
+		% Rope
+		\draw (P side) -- (pulley P side)
+			arc [start angle={90+atan(3/4)}, end angle={0}, radius=0.6]
+			(pulley Q side) -- (Q top);
+
+		% Angle
+		\tkzMarkAngle(B,O,A);
+		\tkzLabelAngle[pos=0.75](B,O,A){$\theta$};
+	\end{scope}
+\end{tikzpicture}
+\end{center}
+
+We can then convert this diagram into free-body diagrams for \textbf{P} and \textbf{Q} and resolve the forces on \textbf{P} parallel and perpendicular to the plane.
+
+\begin{center}
+\begin{tikzpicture}
+	\coordinate (P centre) at (0, 0);
+	\coordinate (Q centre) at (5, 0);
+
+	% Box P
+	\draw[force arrow] (P centre) -- +({atan(3/4)+90}:2) node[above right] {$R_\textbf{P}$};
+	\draw[force arrow] (P centre) -- +({atan(3/4)}:2) node[above] {$T + \mu R_\textbf{P}$};
+	\draw[force arrow] (P centre) -- +({atan(3/4)+180}:2) node[below] {$10g\sin\theta$};
+	\draw[force arrow] (P centre) -- +({atan(3/4)-90}:2) node[below] {$10g\cos\theta$};
+
+	\pic [rotate={atan(3/4)}] at ($ (P centre) + ({atan(3/4)-90}:0.8) $) {box={1.6}{P}};
+
+	% Box Q
+	\draw[force arrow] (Q centre) -- +(0, 1.5) node[right] {$T$};
+	\draw[force arrow] (Q centre) -- +(0, -1.5) node[right] {$2g$};
+
+	\pic at ($ (Q centre) + (0, -0.4) $) {box={0.8}{Q}};
+\end{tikzpicture}
+\end{center}
+
+We know that $\tan\theta = \frac{3}{4}$, so we can find $\sin\theta$ and $\cos\theta$. We also know that both blocks are at rest:
+
+\begin{center}
+\begin{tikzpicture}
+	\coordinate (P centre) at (0, 0);
+	\coordinate (Q centre) at (5, 0);
+
+	% Box P
+	\draw[force arrow] (P centre) -- +({atan(3/4)+90}:2) node[above right] {$R_\textbf{P}$};
+	\draw[force arrow] (P centre) -- +({atan(3/4)}:2) node[above] {$T + \mu R_\textbf{P}$};
+	\draw[force arrow] (P centre) -- +({atan(3/4)+180}:2) node[below] {$6g$};
+	\draw[force arrow] (P centre) -- +({atan(3/4)-90}:2) node[below] {$8g$};
+
+	\pic [rotate={atan(3/4)}] at ($ (P centre) + ({atan(3/4)-90}:0.8) $) {box={1.6}{P}};
+
+	% Box Q
+	\draw[force arrow] (Q centre) -- +(0, 1.5) node[right] {$T$};
+	\draw[force arrow] (Q centre) -- +(0, -1.5) node[right] {$2g$};
+
+	\pic at ($ (Q centre) + (0, -0.4) $) {box={0.8}{Q}};
+\end{tikzpicture}
+\end{center}
+
+Thus, we get the following set of the equations:
+\begin{eqnarray}
+	R_\textbf{P} = 8g\\
+	6g = T + 8g\mu\\
+	T = 2g
+\end{eqnarray}
+
+From which we can easily derive $6g = g(2 + 8\mu) \implies 4 = 8\mu$ and find that $\mu = \frac{1}{2}$.
+
+\end{document}

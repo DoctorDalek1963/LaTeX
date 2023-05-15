@@ -7,14 +7,15 @@
 The \textbf{probability generating function (PGF)} of a probability distribution $X$ is some function $G_X(t)$ of a dummy variable $t$ such that:
 \begin{figure}[H]
 	\large
-	\begin{minipage}{0.45\linewidth}
-		\begin{empheq}[box=\rememberBox]{align*}
-			G_X(t) &= E\left(t^X\right) = \sum_x P(X = x) t^x\\
-			G_X(1) &= 1\\
-			Y = aX + b &\implies G_Y(t) = t^b G_X\left(t^a\right)
+	\begin{minipage}{0.48\linewidth}
+		\begin{empheq}[box=\rememberBox]{gather*}
+			G_X(t) = E\left(t^X\right) = \sum_x P(X = x) t^x\\[1.2ex]
+			G_X(1) = 1\\[1.5ex]
+			Y = aX + b \implies G_Y(t) = t^b G_X\left(t^a\right)\\[1.5ex]
+			P(X = n) = \frac{G_X^{(n)}(0)}{n!} \textcolor{darkgray}{,\ n \in \mathbb{N}}
 		\end{empheq}
 	\end{minipage}\hfill
-	\begin{minipage}{0.45\linewidth}
+	\begin{minipage}{0.48\linewidth}
 		\begin{empheq}[box=\formulaBookBox]{align*}
 			{\rm E}(X) &= G'_X(1)\\
 			{\rm Var}(X) &= G''_X(1) + G'_X(1) - (G'_X(1))^2\\

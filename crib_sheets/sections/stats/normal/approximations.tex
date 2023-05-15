@@ -1,0 +1,20 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Approximations}
+
+\vspace{-3ex}
+\sectitle{Binomial with normal}
+
+To approximate a binomial distribution with a normal distribution, use the mean and variance of the of the binomial distribution as the parameters of the normal distribution. To do so, we need to have a large $n$ and a $p$ which is close to $0.5$.
+
+To find a probability in this normal approximation, you need to apply a continuity correction. This consists of making the inequalities non-strict (making them $\le$ or $\ge$) and then extending the range by 0.5 in either direction. Take the following examples:
+\begin{gather*}
+	X \sim B(n, p)\hspace{4em}Y \sim N(np, npq)\\[2ex]
+	P(2 < X \le 8) = P(3 \le X \le 8) = P(2.5 < Y < 8.5)\\[2ex]
+	P(5 \le X < 12) = P(5 \le X \le 11) = P(4.5 < Y < 11.5)\\[2ex]
+	P(X = 4) = P(3.5 < Y < 4.5)
+\end{gather*}
+
+\end{document}

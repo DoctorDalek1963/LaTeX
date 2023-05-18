@@ -68,6 +68,34 @@ The \textit{internet layer} adds the IP addresses of the sender and recipient. T
 
 The \textit{link layer} adds the MAC address of the physical NIC that packets should be sent to based on the destination IP address. The MAC addresses change with each hop.
 
-When the recipient receives the packet, the link layer removes the MAC address, the internet layer removes the IP address, the transport layer removes the port and reassembles the packets into the full data structure, and the application layer handles the payload itself.
+When the recipient receives the packet, the link layer removes the MAC address, the internet layer removes the IP address, the transport layer removes the port and reassembles the packets into the full data structure, and then the application layer handles the payload itself.
+
+The stack is split into layers to decouple all the business logic and make maintenance much easier.
+
+\sectitle{MAC Addresses}
+
+MAC stands for Media Access Control.
+
+A MAC address uniquely identifies a physical device with a Network Interface Card (NIC). This may be the destination computer or a router in transit. The MAC addresses change with each hop, as the router unwraps and rewraps the packets with a link layer.
+
+\sectitle{Port numbers}
+
+A port number is used to alert a specific application to deal with data sent to a computer. These are used by protocols to specify what data is being sent. When an application starts, it registers a port number with the OS, and the OS will then send any network data on that port to the application to process.
+
+\sectitle{Protocols}
+
+\textbf{FTP} is an application level protocol used to move files across a network. FTP uses the client-server model with separate data and control channels operating over ports 20 and 21 respectively. Usernames and passwords and frequently used to protect access to files and to identify users. Access can also be provided anonymously so that any user can access the FTP server.
+
+Mail servers are dedicated servers that are responsible for storing email, providing access to clients and providing services to send emails.
+
+Mail servers use three protocols: \begin{itemize}
+	\item \textbf{SMTP} is used to send emails and forward them between mail servers to their destination
+	\item \textbf{POP3} downloads email stored on a remote server to a local client and deletes the remote copy after downloading
+	\item \textbf{IMAP} manages emails on a server so that multiple clients can access the same email account in synchronicity
+\end{itemize}
+
+\sectitle{Firewalls}
+
+A firewall controls access to and from a network. It decides which packets are allowed in based on their port numbers and headers. \textbf{A firewall is not antivirus software}.
 
 \end{document}

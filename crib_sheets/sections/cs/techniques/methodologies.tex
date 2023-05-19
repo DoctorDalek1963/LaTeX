@@ -1,0 +1,191 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Methodologies}
+
+\sectitle{Waterfall}
+
+\begin{figure}[H]
+	\begin{minipage}{0.38\linewidth}
+		In the waterfall method, each stage is carried out sequentially and must be completed and signed off on before the next stage can begin. This method comes from engineering and construction, where the whole building has to be meticulously planned out before any construction can begin. The developers must perform analysis and write detailed descriptions of the project requirements before starting development.
+	\end{minipage}\hfill
+	\begin{minipage}{0.6\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			scale=1.5,
+			every node/.style = {
+				rectangle, draw=black, thick, rounded corners=1mm,
+				node distance=6mm and -1mm,
+			},
+			arrow/.style = {
+				->, >=Stealth, semithick,
+			}
+		]
+			\node (analysis) at (0, 0) {Analysis};
+			\node [below right=of analysis] (design) {Design};
+			\node [below right=of design] (development) {Development};
+			\node [below right=of development] (testing) {Testing};
+			\node [below right=of testing] (release) {Release};
+			\node [below right=of release] (maintenance) {Maintenance};
+
+			\draw [arrow] (analysis.east) -| (design.north);
+			\draw [arrow] (design.east) -| (development.north);
+			\draw [arrow] (development.east) -| (testing.north);
+			\draw [arrow] (testing.east) -| (release.north);
+			\draw [arrow] (release.east) -| (maintenance.north);
+		\end{tikzpicture}
+	\end{minipage}
+\end{figure}
+
+This method is well suited for projects where all the requirements can be known at the beginning and won't change over the course of development. It also makes the whole project easier to plan, and different people and teams have distinct and clear responsibilities for the project.
+
+However, the waterfall method produces large amounts of documentation and has a lack of user involvement in the development process. It is heavily dependent on the initial specification of project requirements; if the client doesn't know what they want or how to express it, or if their requirements change, then the final product will not properly meet their needs.
+
+\sectitle{Spiral}
+
+\begin{figure}[H]
+	\begin{minipage}{0.75\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			scale=0.8,
+			spiral line/.style = {
+				variable=\t, smooth, samples=200, {Stealth}-
+			},
+		]
+			\draw [-{Stealth}] (-6, 0) -- (6, 0);
+			\draw [-{Stealth}] (0, -6) -- (0, 6);
+			\draw [domain=-9:-3.14159, spiral line] plot ({\t r}: {0.008*\t*\t});
+			\draw [domain=-12:-9, spiral line] plot ({\t r}: {0.008*\t*\t});
+			\draw [domain=-15:-12, spiral line] plot ({\t r}: {0.008*\t*\t});
+			\draw [domain=-18:-15, spiral line] plot ({\t r}: {0.008*\t*\t});
+			\draw [domain=-21:-18, spiral line] plot ({\t r}: {0.008*\t*\t});
+			\draw [domain=-24:-21, spiral line] plot ({\t r}: {0.008*\t*\t});
+			\draw [domain=-26.703537556:-24, spiral line] plot ({\t r}: {0.008*\t*\t});
+
+			\node [label={[label distance=-2mm]10:P1}] at (0.316, 0) {};
+			\node [label={[label distance=-1mm]350:P2}] at (1.263, 0) {};
+			\node [label={[label distance=-1mm]10:P3}] at (2.842, 0) {};
+			\node [label={[label distance=-1mm]350:Final prototype}] at (5.053, 0) {};
+
+			\node [label={180:Release}] at (0, -5.705) {};
+
+			\node at (-5, 5) {1. Determine objectives};
+			\node at (5, 5) {2. Identify and resolve risks};
+			\node at (5.5, -5) {3. Develop and test};
+			\node at (-5, -5) {4. Plan the next iteration};
+		\end{tikzpicture}
+	\end{minipage}\hfill
+	\begin{minipage}{0.22\linewidth}
+		The spiral model is much like the waterfall model, but it uses \textbf{project cycles}, each producing a prototype which is used to inform the next cycle. This process is repeated until the final product is completed and released.
+	\end{minipage}
+\end{figure}
+
+Each cycle is split into 4 stages: \vspace{-1.5ex}\begin{enumerate}
+	\item Determine objectives
+	\item Identify and resolve risks
+	\item Develop and test
+	\item Plan the next iteration
+\end{enumerate}
+
+The risk management step is a key difference between the spiral method and other approaches. In any iteration, if the risks cannot be successfully managed, then the project can be stopped.
+
+The emphasis on risk management makes the spiral approach suitable for large-scale, high-risk projects. These might be projects where technologies are unproven or multiple organisations are involved. However, project teams will often need to include a risk management expert (someone who has been trained to identify and quantify risk), which will add to the cost of the project.
+
+\sectitle{Agile}
+
+\begin{figure}[H]
+	\begin{minipage}{0.55\linewidth}\setlength{\parskip}{2ex}
+		The agile approach advocates building prototypes, testing, and incorporating feedback as soon as possible. Once a prototype is built, it is reviewed by the team and the client. At the next stage, the prototype can be modified and new features can be added if required.
+
+		The agile approach is suitable for many projects and is widely used. Large projects may need to be decomposed so that work can be spread across multiple teams and managed separately.
+
+		However, the use of prototypes is often criticised for giving rise to \textit{scope creep}. This is where the client continually adds to the requirements when each prototype is evaluated, as they think of new features or functionality.
+	\end{minipage}\hfill
+	\begin{minipage}{0.4\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			arrow/.style = {
+				very thick, -{Stealth},
+			},
+			bent text/.style = {
+				postaction = {
+					decorate,
+					decoration = {
+						raise = -2.5ex,
+						text along path,
+						text align = center,
+						text = {#1},
+					},
+				},
+			},
+			bent text upside down/.style = {
+				postaction = {
+					decorate,
+					decoration = {
+						raise = 1.2ex,
+						text along path,
+						text align = center,
+						text = {#1},
+						reverse path,
+					},
+				},
+			},
+		]
+			\draw [arrow, bent text={Plan}]
+				(180:3) arc [start angle=180, end angle=125, radius=3];
+			\draw [arrow, bent text={Design}]
+				(120:3) arc [start angle=120, end angle=65, radius=3];
+			\draw [arrow, bent text={Develop}]
+				(60:3) arc [start angle=60, end angle=5, radius=3];
+
+			\draw [arrow, bent text upside down={Test}]
+				(0:3) arc [start angle=0, end angle=-55, radius=3];
+			\draw [arrow, bent text upside down={Release}]
+				(-60:3) arc [start angle=-60, end angle=-115, radius=3];
+			\draw [arrow, bent text upside down={Feedback}]
+				(-120:3) arc [start angle=-120, end angle=-175, radius=3];
+		\end{tikzpicture}
+	\end{minipage}
+\end{figure}
+
+The Agile Manifesto describes 12 principles: \vspace{-1ex}\begin{enumerate}
+	\item Prioritise customer satisfaction and provide early and continuous delivery
+	\item Welcome changing requirements, even late in development
+	\item Deliver working software frequently
+	\item Business people and developers should work together daily throughout the project
+	\item Build projects around motivated individuals --- give them the environment and support they need, and trust them to get the job done
+	\item Face-to-face conversation is the most effective way of communicating within a team
+	\item Working software is the primary measure of progress
+	\item Development should be sustainable ---  everyone should be able to maintain a constant pace indefinitely
+	\item Continuous attention to technical excellence and good design enhances agility
+	\item Simplicity --- the art of maximizing the amount of work \textit{not} done --- is essential
+	\item The best architectures, requirements, and designs emerge from self-organizing teams
+	\item At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behaviour accordingly
+\end{enumerate}
+
+\sectitle{Rapid application development}
+
+Rapid application development (RAD) is an agile approach based around prototyping. It puts less emphasis on rigid planning and more emphasis on an adaptive process.
+
+RAD is especially well suited for developing software where the requirements are unclear, or for projects where the user interface is an important part of the project. It is good for smaller projects where there are smaller development teams that include users or their representatives.
+
+Because of its emphasis on continuous feedback, it is not suitable for projects where the users are hard to contact or do not want to be actively involved.
+
+However, it can encourage sloppiness --- a 'try-and-see' approach --- and ignores the importance of making sure that the overall system architecture is right. Projects can also sometimes take far longer than anticipated, where users make constant requests for minor changes.
+
+\sectitle{Extreme programming}
+
+Extreme programming (XP) is another agile approach. Where RAD focuses on the refinement of the objectives, XP focuses on the refinement of the code.
+
+The core principle is that there should be frequent releases in short development cycles, and continual communication with the customer. In XP, the user (or a representative) is part of the development team. They are there to focus on the 'user journey' and to provide feedback at every stage of the project.
+
+There are several key differences between XP and RAD. The importance of code quality is paramount in XP. The development and feedback loops are much shorter, and the releases are not called 'prototypes', but are working versions of a system component.
+
+At the start of each release, there is a planning phase that determines what will be developed and how it will be tested. Programming is done in pairs, with two programmers working in collaboration to develop, test, and review code. There is a heavy emphasis on development standards and strict version control. At the end of each release, there is a feedback stage that will inform the next release.
+
+The main benefit of the extreme programming approach is that code quality is high. This means that there are fewer bugs, and therefore less time needs to be spent fixing them. Also, having a user on each team means that there is a strong focus on getting the user requirements right.
+
+The main criticism of XP --- as with all forms of iterative development --- is that of scope creep, due to a lack of firm requirements at the outset of the project. It also requires a high degree of communication and collaboration, which can sometimes be difficult or even impossible if team members do not work in the same office. As with RAD, the client has to commit to having one or more users actively involved throughout the project.
+
+\end{document}

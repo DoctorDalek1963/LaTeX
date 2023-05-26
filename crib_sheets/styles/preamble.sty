@@ -1,6 +1,9 @@
 \usepackage[UKenglish]{babel}  % UK writing style
 \usepackage{inputenc}
 
+\usepackage[quiet]{fontspec}
+\setmonofont[Scale=MatchLowercase]{Hack}
+
 % Set size of text area with total parameter
 \usepackage[a4paper, top=15mm, bottom=18mm, left=15mm, right=15mm]{geometry}
 
@@ -43,6 +46,7 @@
 	math,
 	matrix,
 	positioning,
+	shapes.gates.logic.US,
 	shapes.multipart,
 }
 \tikzmath{

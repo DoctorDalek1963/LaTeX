@@ -1,0 +1,41 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Simplifying}
+
+\sectitle{De Morgan's Laws}
+
+$\wedge$ is the \texttt{AND} operator and $\vee$ is the \texttt{OR} operator.
+
+\begin{empheq}[box=\rememberBox]{gather*}
+	\neg (A \vee B) \equiv \neg A \wedge \neg B\\
+	\neg (A \wedge B) \equiv \neg A \vee \neg B
+\end{empheq}
+
+\begin{align*}
+	X \wedge 0 &= 0 & X \wedge 1 &= X\\
+	X \wedge X &= X & X \wedge \neg X &= 0\\
+	X \vee 0 &= X & X \vee 1 &= 1\\
+	X \vee X &= X & X \vee \neg X &= 1\\
+	\neg \neg X &= X & &
+\end{align*}
+
+$\vee$ and $\wedge$ are commutative and associative with themselves.
+
+$\wedge$ is distributive over $\vee$, so $X \wedge (Y \vee Z) = (X \wedge Y) \vee (X \wedge Z)$
+
+\sectitle{Absorption}
+
+The absorption rules state that if you have different operators inside and outside of the bracket and the variable outside the bracket also appears inside the bracket, then the whole thing is the variable on the outside of the bracket.
+
+\begin{empheq}[box=\rememberBox]{gather*}
+	X \vee (X \wedge Y) = X\\
+	X \wedge (X \vee Y) = X
+\end{empheq}
+
+\sectitle{Karnaugh maps}
+
+IT WRAPS!
+
+\end{document}

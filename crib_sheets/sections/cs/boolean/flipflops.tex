@@ -1,0 +1,81 @@
+\documentclass[../main.tex]{subfile}
+
+\begin{document}
+
+\topictitle{Flip flops}
+
+A half adder is $S = A \veebar B$, $C = A \wedge B$.
+
+\begin{center}
+\begin{tikzpicture}[
+	scale=1.5,
+	branch point/.style = {
+		fill, shape=circle, minimum size=3pt, inner sep=0pt,
+	},
+]
+	\node[draw, xor gate US] (xor gate) at (0, 1.5) {};
+	\node[draw, and gate US] (and gate) at (0, 0) {};
+
+	\node[branch point] (A branch) at ($ (xor gate.input 1) +(-0.8, 0) $) {};
+	\node[branch point] (B branch) at ($ (xor gate.input 2) +(-1.6, 0) $) {};
+
+	\node[label=90:$A$] (A input) at ($ (A branch) +(-2.2, 0) $) {};
+	\node[label=270:$B$] (B input) at ($ (B branch) +(-1.4, 0) $) {};
+
+	\node (S output) at ($ (xor gate.output) +(1.2, 0) $) {$S$};
+	\node (C output) at ($ (and gate.output) +(1.2, 0) $) {$C$};
+
+	\draw (A input) -- (A branch) -- (xor gate.input 1);
+	\draw (B input) -- (B branch) -- (xor gate.input 2);
+	\draw (A branch) |- (and gate.input 1);
+	\draw (B branch) |- (and gate.input 2);
+	\draw (xor gate.output) -- (S output);
+	\draw (and gate.output) -- (C output);
+\end{tikzpicture}
+\end{center}
+
+\sectitle{D-type}
+
+A rising edge D-type flip flop has two inputs: a clock signal and an input called $D$. It has two outputs: $Q$ and $\neg Q$. When the clock pulse rises, $Q$ is set to the value of $D$.
+
+D-type flip flops are good for registers, static RAM, and CPU-internal cache. SRAM is faster and more expensive than regular dynamic RAM which must be periodically refreshed. SRAM is used for cache memory; DRAM is used for main memory.
+
+\sectitle{SR-NOR-latch}
+
+NOR gates connected together with S and R inputs representing set and reset. The outputs are the opposite of each other. If both inputs are on, then both outputs are off (this is an undefined state). When one input is pulsed, its corresponding output (on the opposite side of this diagram) will remain on until the other input is pulsed, when the outputs will switch.
+
+\begin{center}
+\begin{tikzpicture}[
+	scale=1.5,
+	branch point/.style = {
+		fill, shape=circle, minimum size=3pt, inner sep=0pt,
+	},
+]
+	\node[draw, nor gate US] (S nor) at (3, 2) {};
+	\node[draw, nor gate US] (R nor) at (3, 0) {};
+
+	\node (S input) at ($ (S nor.input 1) +(-2, 0) $) {$S$};
+	\node (R input) at ($ (R nor.input 2) +(-2, 0) $) {$R$};
+
+	\node (Q output) at (5.5, 2) {$Q$};
+	\node (not Q output) at (5.5, 0) {$\neg Q$};
+
+	\node[branch point] (S branch) at (4, 2) {};
+	\node[branch point] (R branch) at (4, 0) {};
+
+	\draw (S input.east) -- (S nor.input 1);
+	\draw (R input.east) -- (R nor.input 2);
+
+	\coordinate (R before) at ($ (R nor.input 1) +(-0.5, 0) $);
+	\coordinate (R before above) at ($ (R before) +(0, 0.3) $);
+	\draw (S nor.output) -- (S branch) -- (R before above) -- (R before) -- (R nor.input 1);
+	\draw (S branch) -- (Q output);
+
+	\coordinate (S before) at ($ (S nor.input 2) +(-0.5, 0) $);
+	\coordinate (S before below) at ($ (S before) +(0, -0.3) $);
+	\draw (R nor.output) -- (R branch) -- (S before below) -- (S before) -- (S nor.input 2);
+	\draw (R branch) -- (not Q output);
+\end{tikzpicture}
+\end{center}
+
+\end{document}

@@ -22,7 +22,7 @@ Entities can be linked by one-to-one, one-to-many, or many-to-many relationships
 
 To create a relationship between entities, the \enquote{many} side must have a \textbf{foreign key}, which matches the primary key in another table. Say a customer can have many subscriptions. Each record must have a fixed number of fields, so they can't have an arbitrary number of foreign keys to link to subscriptions. Therefore, each subscription record should have a foreign key to point to a customer.
 
-*Referential integrity* means that every foreign key must reference a existent record in a related table that actually exists. Dangling foreign keys are forbidden.
+\textbf{Referential integrity} means that every foreign key must reference a existent record in a related table that actually exists. Dangling foreign keys are forbidden.
 
 As a canonical example, a customer can have many orders; an order can have many orderLines (an order is like a shopping cart, and an orderLine is like a single order with product, quantity, price); a product can appear in many orderLines.
 

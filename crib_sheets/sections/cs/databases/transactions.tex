@@ -30,13 +30,28 @@ What happens if the stock file has been updated and the system crashes before pa
 
 \textbf{A}tomicity, \textbf{C}onsistency, \textbf{I}solation, \textbf{D}urability: this is a set of properties to ensure that the integrity of the database is maintained under all circumstances. It guarantees that transactions are processed reliably.
 
-\textbf{Atomicity} requires that a transaction is processed entirely or not at all. In any situation, including power cuts or hard disk crashed, it is not possible to process only part of a transaction.
+\textbf{Atomicity} requires that a transaction is processed entirely or not at all. In any situation, including power cuts or hard disk crashes, it is not possible to process only part of a transaction.
 
 \textbf{Consistency} ensures that no transaction can violate any of the defined validation rules. Referential integrity will always be upheld.
 
 \textbf{Isolation} ensures that concurrent execution of transactions leads to the same result as if transactions were processed one after the other. This is crucial in a multi-user database.
 
 \textbf{Durability} ensures that once a transaction has been committed, it will remain so, even in the event of a power cut. As each part of a transaction is completed, it is held in a buffer on disk until all elements of the transaction are completed. Only then will the changes to the tables actually be made.
+
+In short:
+\begin{center}
+\begin{tabular}{|c|c|}
+	\hline
+	\textbf{Atomicity} & Process entirely or not at all\\
+	\hline
+	\textbf{Consistency} & Referential integrity will always be upheld\\
+	\hline
+	\textbf{Isolation} & Concurrent transactions have the same result as procedural ones (record locking)\\
+	\hline
+	\textbf{Durability} & Transaction commitments stay committed\\
+	\hline
+\end{tabular}
+\end{center}
 
 \sectitle{Record locking and multi-user databases}
 

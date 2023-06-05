@@ -20,10 +20,12 @@ A table is 2NF if it's 1NF and \textbf{contains no partial dependencies}.
 
 Identify a table's purpose. Each column must describe the singular thing that the primary key identifies. If it doesn't, then it should belong in a different table. For example, in a \texttt{tblEmployee}, all columns should describe an attribute of the particular employee identified by the primary key.
 
-If a table has a composite primary key, then it is only in 2NF if each column directly relates to *both* parts of the primary key. The table must refer entirely to a singular entity.
+If a table has a composite primary key, then it is only in 2NF if each column directly relates to \textbf{both} parts of the primary key. The table must refer entirely to a singular entity.
 
 \sectitle{Third Normal Form (3NF)}
 
 A table is 3NF if it's 2NF and \textbf{contains no non-key dependencies}. All attributes are dependent entirely on the primary key and nothing else. This means that the primary key determines all other attributes in its record.
+
+\enquote*{All attributes are dependent on the key, the whole key, and nothing but the key.}
 
 \end{document}
